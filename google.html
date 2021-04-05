@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/dd8cc4c414.js" crossorigin="anonymous"></script>
+    <base href="/">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <title>Skipper Auto Post</title>
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light pl-4 fixed-top">
+        <a class="navbar-brand" href="#">auto-Post</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+        </div>
+    </nav>
+    <!-- end navbar -->
+
+    <!-- sidebar -->
+    <div class="sidebar">
+        <h6 class="text-heading text-primary">INVENTORY</h6>
+        <a href="/indexing.html">
+            <p class="sub-heading "><i class="fas fa-server"></i> Item</p>
+        </a>
+        <div data-toggle="modal" data-target="#path">
+            <p class="sub-heading "><i class="fas fa-map-marker-alt"></i> Path Image</p>
+        </div>
+        <h6 class="text-heading text-primary">DATA ACCOUNTS</h6>
+        <a href="/google.html">
+            <p class="sub-heading "><i class="fab fa-facebook"></i> Facebook Accounts</p>
+        </a>
+        <h6 class="text-heading text-primary">MORE ACTION</h6>
+        <div data-toggle="modal" data-target="#add-akun" class="add">
+            <p class="sub-heading "><i class="fas fa-user-plus"></i>Add Account User</p>
+        </div>
+        <div class="logout">
+            <p class="sub-heading "><i class="fas fa-sign-out-alt"></i>Sign Out</p>
+        </div>
+
+    </div>
+    <!-- end sidebar -->
+
+    <!-- content -->
+    <div class="content">
+        <div class="google-account">
+            <div class="google-icon">
+                <img src="/img/facebook.png" alt="">
+            </div>
+            <h6>Facebook Accounts</h6>
+            <p class="text-secondary">Add your facebook accounts here!</p>
+        </div>
+        <div class="data-table">
+            <div class="container">
+                <div class="row">
+                    <div class="dropdown ml-3">
+                        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-plus"></i> add</button>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#file">Add Via
+                                File(.xlsx)</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#manualy">Add Manualy</a>
+                        </div>
+                    </div>
+                    <div class="ml-auto mr-3">
+                        <button class="btn btn-rounded btn-secondary btn-delete-all"><i
+                                class="fas fa-trash-alt"></i></button>
+                        <button class="btn btn-rounded btn-success btn-play show"><i class='fas fa-play'></i></button>
+                        <button class="btn btn-rounded btn-success btn-pause none"><i class='fas fa-pause'></i></button>
+                        <button class="btn btn-rounded btn-success btn-resume none"><i class='fas fa-play'></i></button>
+                        <button class="btn btn-rounded btn-danger btn-stop"><i class="fas fa-stop"></i></button>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">no</th>
+                                    <th scope="col text-center"><input type="checkbox" class="chekedAll"></th>
+                                    <th scope="col">Gmail</th>
+                                    <th scope="col">Password</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-body">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end content -->
+
+
+    <!-- Modal File-->
+    <div class="modal fade" id="file" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add Facebook Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="http://localhost:3000/convert/account" method="post" enctype="multipart/form-data">
+                        <div class="custom-file">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="filename" required>
+                                <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                            </div>
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                            <input type="hidden" name="id" value="" class="id_user">
+                        </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                    <button type="submit" class="btn btn-success">save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal manualy-->
+    <div class="modal fade" id="manualy" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add Facebook Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="http://localhost:3000/add/account" method="post">
+                        <div class="custom-file">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Username</span>
+                                </div>
+                                <input type="text" class="form-control" name="username">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Password</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="password" name="password" aria-describedby="basic-addon1">
+                                <input type="hidden" name="id" value="" class="id_user">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                    <button type="submit" class="btn btn-success">save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal add account-->
+    <div class="modal fade" id="add-akun" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add User Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="http://localhost:3000/add/account/user" method="post">
+                        <div class="custom-file">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Username</span>
+                                </div>
+                                <input type="text" class="form-control" name="username">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Password</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="password" name="password" aria-describedby="basic-addon1">
+                                <input type="hidden" name="level" value="" class="level">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                    <button type="submit" class="btn btn-success">save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal path -->
+    <div class="modal fade" id="path" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Set Path Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="http://localhost:3000/add/path" method="post">
+                        <div class="custom-file">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Path saat ini</span>
+                                </div>
+                                <input type="text" class="form-control path" aria-label="Username" name="username" aria-describedby="basic-addon1" readonly value="">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Set Path</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="password" name="path" aria-describedby="basic-addon1">
+                                <input type="hidden" name="id_user" value="" class="id_user">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                    <button type="submit" class="btn btn-success">save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal edit akun -->
+    <div class="modal fade" id="akun" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit Data Akun</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="http://localhost:3000/update/account" method="post">
+                        <div class="custom-file">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">username</span>
+                                </div>
+                                <input type="text" class="form-control username" aria-label="Username" name="username" aria-describedby="basic-addon1"  value="">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">password</span>
+                                </div>
+                                <input type="text" class="form-control password" aria-label="password" name="password" aria-describedby="basic-addon1">
+                                <input type="hidden" name="id" value="" class="id">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                    <button type="submit" class="btn btn-success">save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script> 
+
+        $('.id_user').val(sessionStorage.getItem('id_user'));
+        $('.level').val(sessionStorage.getItem('level'));
+        let data = {
+            akun: null,
+            barang: null,
+            path: null
+        };
+
+        $.ajax({
+                url: 'http://localhost:3000/get/account/' + sessionStorage.getItem('id_user'),
+                success: (Account) => {
+                    let akun = Account.Search;
+                    data.akun = akun;
+                    let row = "";
+                    let i = 1;
+                    akun.forEach(data => {
+                        row += `
+                                <tr>
+                                    <th scope="row">${i}</th>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="checked">
+                                    </td>
+                                    <td>${data.username}</td>
+                                    <td>${data.password}</td>
+                                </tr>
+                            `;
+                        i += 1;
+                    });
+
+                    // mengisi data kedalam tabel
+                    $('.table-body').html(row);
+
+                    // jika tombol delete ditekan
+                    $('.btn-delete').on('click', function() {
+                        let id = $(this).attr('data-id');
+                        let konfirmasi = confirm("apakah anda yakin ingin menghapus data ini ?");
+                        if (konfirmasi) {
+                            $.ajax({
+                                url: 'http://localhost:3000/delete/account/' + id,
+                                success: (data) => {
+                                    alert(data);
+                                },
+                                error: (err) => {
+                                    alert(err);
+                                }
+                            })
+                        }
+                    });
+
+                    // jika tombol checked di tekan
+                    $('.chekedAll').on('change', function () {
+                        if (this.checked) {
+                            $('.checked').attr('checked', 'checked');
+                        } else {
+                            $('.checked').removeAttr('checked');
+                        }
+                    })
+
+                    // jika tombol edit ditekan
+                    $('.btn-edit').on('click',function(){
+                        let id = $(this).attr('data-id');
+                        $.ajax({
+                            url :'http://localhost:3000/get/account/detail/'+id,
+                            success : (data) =>{
+                                $('.username').val(data[0].username);
+                                $('.password').val(data[0].password);
+                                $('.id').val(data[0].id);
+                            },
+                            error : (err) =>{
+                                console.log(err);
+                            }
+                        })
+                    })
+                },
+                error: (err) => {
+                    console.log(err);
+                }
+            })
+        
+
+        // mendapatkan data item barang
+        $.ajax({
+            url: 'http://localhost:3000/get/item/' + sessionStorage.getItem("id_user"),
+            success: (Item) => {
+                let barang = Item.Search;
+                data.barang = barang;
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        })
+
+        // mendapatkan urlpath image
+        $.ajax({
+            url: 'http://localhost:3000/get/path/' + sessionStorage.getItem("id_user"),
+            success: (path) => {
+                if (path.length == 0) {
+                    $('.path').val("Path saat ini Belum disetting");
+                    data.path = null;
+                } else {
+                    data.path = path[0].path;
+                    $('.path').val(path[0].path);
+                }
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        })
+
+        // jika tombol play ditekan
+        $('.btn-play').on('click', function() {
+            $('.btn-play').addClass('none');
+            $('.btn-play').removeClass('show');
+            $('.btn-pause').addClass('show');
+            $('.btn-pause').removeClass('none');
+            if (data.path == null) {
+                alert("Path Belum Di Set")
+            } else {
+                $.ajax({
+                    url: 'http://localhost:3000/run',
+                    type: 'post',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    success : (data) =>{
+                        alert(data);
+                    }
+                })
+            }
+        })
+
+        // jika tombol delete ditekan
+        let button_delete = document.querySelectorAll('.btn-delete');
+        button_delete.forEach((btn) => {
+            btn.addEventListener('click', function() {
+                alert("oke");
+            })
+        })
+
+        // //jika tombol pause ditekan
+        $('.btn-pause').on('click', function() {
+            $('.btn-pause').addClass('none');
+            $('.btn-pause').removeClass('show');
+            $('.btn-resume').addClass('show');
+            $('.btn-resume').removeClass('none');
+            $.ajax({
+                url: 'http://localhost:3000/pause',
+                success: (data) => {
+                    alert(data);
+                },
+                error: (err) => {
+                    alert(err);
+                }
+            })
+        })
+
+        //jika tombol resume ditekan
+        $('.btn-resume').on('click', function() {
+            $('.btn-resume').addClass('none');
+            $('.btn-resume').removeClass('show');
+            $('.btn-pause').addClass('show');
+            $('.btn-pause').removeClass('none');
+            $.ajax({
+                url: 'http://localhost:3000/resume',
+                success: (data) => {
+                    alert(data);
+                },
+                error: (err) => {
+                    alert(err);
+                }
+            })
+        })
+
+        //jika tompol stop ditekan
+        $('.btn-stop').on('click', function() {
+            $('.btn-pause').addClass('none');
+            $('.btn-pause').removeClass('show');
+            $('.btn-play').addClass('show');
+            $('.btn-play').removeClass('none');
+            $('.btn-resume').addClass('none');
+            $('.btn-resume').removeClass('show');
+            $.ajax({
+                url: 'http://localhost:3000/stop',
+                success: (data) => {
+                    alert(data);
+                },
+                error: (err) => {
+                    alert(err);
+                }
+            })
+        })
+
+        // jika tombol hapus semua ditekan
+        $('.btn-delete-all').on('click', function() {
+            let konfirmasi = confirm("apakah anda yakin ingin menghapus semua data ini ?");
+            if (konfirmasi) {
+                $.ajax({
+                    url: 'http://localhost:3000/delete/account/all/' + sessionStorage.getItem('id_user'),
+                    success: (data) => {
+                        alert(data);
+                    },
+                    error: (err) => {
+                        alert(err);
+                    }
+                })
+            }
+        })
+
+        // jika tombol logout ditekan
+        $('.logout').on('click', function() {
+            sessionStorage.setItem('cek', 0);
+            sessionStorage.setItem('id_user', null);
+            sessionStorage.setItem('level', null);
+            sessionStorage.setItem('nama', null);
+            window.location.replace("http://localhost:3000");
+        });
+    </script>
+
+</body>
+
+</html>
+
+</html>

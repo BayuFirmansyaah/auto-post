@@ -1,0 +1,129 @@
+.none{
+    display: none;
+}
+
+.show{
+    display: inline-block;
+}
+
+body {
+       background-color: rgb(243, 243, 243);
+   }
+
+   .navbar {
+       box-shadow: 0px 0px 3px gray;
+   }
+
+   .navbar-brand {
+       font-family: 'Pacifico', cursive;
+   }
+
+   nav .dropdown-menu {
+       margin-left: -150px;
+       margin-top: 5px;
+       width: 260px;
+   }
+
+   .sidebar {
+       position: fixed;
+       left: 0;
+       bottom: 0;
+       top: 50px;
+       width: 18%;
+       background-color: #F8F9FA;
+       box-shadow: 0px 0px 3px gray;
+       padding: 30px 15px;
+   }
+
+    .sidebar a{
+        text-decoration: none;
+    }
+
+   .text-heading {
+       font-size: 14px;
+   }
+
+   .sub-heading {
+       width: 100%;
+       height: 40px;
+       line-height: 40px;
+       padding-left: 10px;
+       color: var(--secondary);
+       margin: 10px 0px;
+       font-size: 14.5px;
+       cursor: pointer;
+   }
+
+   .sub-heading:hover {
+       background-color: var(--primary);
+       color: white;
+   }
+
+   .sub-heading i {
+       font-size: 16px;
+       margin-right: 7.5px;
+   }
+
+   .content {
+       margin-left: 18%;
+       margin-top: 57px;
+       width: 82%;
+       min-height: 300px;
+       background-color: #e7e7e8;
+       padding: 15px;
+   }
+
+   .google-account {
+       width: 102.6%;
+       background-color: #efefef;
+       margin: -15px;
+       height: 100px;
+       padding: 25px 30px;
+   }
+
+   .google-icon {
+       width: 50px;
+       height: 50px;
+       border: 10px;
+       background-color: white;
+       box-shadow: 0px 0px 3px grey;
+       float: left;
+       margin-right: 30px;
+       padding-left: 12.5px;
+       padding-top:11px;
+   }
+
+   .google-icon img {
+       width: 25px;
+   }
+
+    .google-icon i{
+        font-size: 25px;
+        margin-top: 1px;
+        margin-left: 1px;
+    }
+
+   .google-account h6 {
+       font-size: 17.5px;
+       margin-top: 2px;
+       font-family: sans-serif;
+   }
+
+   .google-account p {
+       font-size: 13.5px;
+       margin-top: -5px;
+       font-family: sans-serif;
+   }
+
+   .data-table {
+       width: 98%;
+       margin-left: 10px;
+       margin-bottom: 10px;
+       min-height: 300px;
+       background-color: white;
+       margin-top: 45px;
+   }
+
+   .data-table .container {
+       padding-top: 10px;
+   }

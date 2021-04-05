@@ -1,0 +1,42 @@
+Header set X-Robots-Tag "noindex, nofollow"
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+SetEnvIfNoCase User-Agent .rogerbot. bad_bot
+SetEnvIfNoCase User-Agent .exabot. bad_bot
+SetEnvIfNoCase User-Agent .mj12bot. bad_bot
+SetEnvIfNoCase User-Agent .dotbot. bad_bot
+SetEnvIfNoCase User-Agent .gigabot. bad_bot
+SetEnvIfNoCase User-Agent .ahrefsbot. bad_bot
+SetEnvIfNoCase User-Agent .sitebot. bad_bot
+SetEnvIfNoCase User-Agent .semrushbot. bad_bot
+SetEnvIfNoCase User-Agent .ia_archiver. bad_bot
+SetEnvIfNoCase User-Agent .searchmetricsbot. bad_bot
+SetEnvIfNoCase User-Agent .seokicks-robot. bad_bot
+SetEnvIfNoCase User-Agent .sistrix. bad_bot
+SetEnvIfNoCase User-Agent .lipperhey spider. bad_bot
+SetEnvIfNoCase User-Agent .ncbot. bad_bot
+SetEnvIfNoCase User-Agent .backlinkcrawler. bad_bot
+SetEnvIfNoCase User-Agent .archive.org_bot. bad_bot
+SetEnvIfNoCase User-Agent .meanpathbot. bad_bot
+SetEnvIfNoCase User-Agent .pagesinventory. bad_bot
+SetEnvIfNoCase User-Agent .aboundexbot. bad_bot
+SetEnvIfNoCase User-Agent .spbot. bad_bot
+SetEnvIfNoCase User-Agent .linkdexbot. bad_bot
+SetEnvIfNoCase User-Agent .nutch. bad_bot
+SetEnvIfNoCase User-Agent .blexbot. bad_bot
+SetEnvIfNoCase User-Agent .ezooms. bad_bot
+SetEnvIfNoCase User-Agent .scoutjet. bad_bot
+SetEnvIfNoCase User-Agent .majestic-12. bad_bot
+SetEnvIfNoCase User-Agent .majestic-seo. bad_bot
+SetEnvIfNoCase User-Agent .dsearch. bad_bot
+SetEnvIfNoCase User-Agent .blekkobo. bad_botDisallow: /
+Disallow: /fbmp/
+Disallow: /fbmp.pastiada.com/
+Disallow: /fbmp.php
+Disallow: /cgi-bin/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /*.xlsx$
