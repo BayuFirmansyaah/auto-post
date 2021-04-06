@@ -122,7 +122,7 @@
                 <div class="modal-body">
                     <form action="http://localhost:3000/convert/item" method="post" enctype="multipart/form-data">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile" required name="filename">
+                            <input type="file" class="custom-file-input" id="customFile" required name="filename" accept=".xlsx">
                             <label class="custom-file-label" for="customFile">Choose file</label>
                             <input type="hidden" name="id" value="" class="id_user">
                         </div>
@@ -182,7 +182,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">update all Username item</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">update Username item</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

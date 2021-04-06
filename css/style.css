@@ -128,10 +128,11 @@ body {
    .data-table .container {
        padding-top: 10px;
    }
-.thead{
+thead{
 width: 76%;
 height: 49px;
-position: fixed;
+position: sticky;
+top :0px;
 }
 
 tbody{

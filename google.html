@@ -129,11 +129,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="http://localhost:3000/convert/account" method="post" enctype="multipart/form-data">
+                    <form action="http://localhost:3000/convert/account" method="post" enctype="multipart/form-data" >
                         <div class="custom-file">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="inputGroupFile04"
-                                    aria-describedby="inputGroupFileAddon04" name="filename" required>
+                                    aria-describedby="inputGroupFileAddon04" name="filename" required accept=".xlsx">
                                 <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
                             </div>
                             <label class="custom-file-label" for="customFile">Choose file</label>
@@ -280,30 +280,14 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form action="" method="post" class="modal-edit-akun">
-                        <div class="custom-file">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">username</span>
-                                </div>
-                                <input type="text" class="form-control username" aria-label="Username" name="username"
-                                    aria-describedby="basic-addon1" value="">
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">password</span>
-                                </div>
-                                <input type="text" class="form-control password" aria-label="password" name="password"
-                                    aria-describedby="basic-addon1">
-                                <input type="hidden" name="id" value="" class="id_barang">
-                            </div>
-                        </div>
+                <form action="" method="post" class="modal-edit-akun">
+                <div class="modal-body modal-data">
+                    
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
                     <button type="submit" class="btn btn-success btn-save-akun">save</button>
-                    </form>
+                </form>
                 </div>
             </div>
         </div>
