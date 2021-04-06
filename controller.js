@@ -344,13 +344,19 @@ exports.updateAkun = function(req,res){
 exports.updateEmailAll = function(req,res){
     let id = req.body.id;
     let email = req.body.email;
-    db.query("UPDATE item SET account=? WHERE id_user=?",[email,id],function(err,rows){
-        if(err){
-            console.log(err)
-        }
-        res.redirect('/indexing.html');
-        res.end();
-    })
+    id = id.split(",");
+
+    for(let i=0;i<id.length;i++){
+        db.query("UPDATE item SET account=? WHERE id_barang=?", [email, id[i]], function (err, rows) {
+            if (err) {
+                console.log(err)
+            }
+
+        })
+    }
+
+    res.redirect('/indexing.html');
+    res.end();
 }
 
 
