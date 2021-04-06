@@ -122,8 +122,18 @@ body {
        min-height: 300px;
        background-color: white;
        margin-top: 45px;
+       overflow: hidden;
    }
 
    .data-table .container {
        padding-top: 10px;
    }
+.thead{
+width: 76%;
+height: 49px;
+position: fixed;
+}
+
+tbody{
+    margin-top: 0px;
+}
