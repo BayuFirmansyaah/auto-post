@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <!-- google font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -22,7 +23,8 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light pl-4 fixed-top">
         <a class="navbar-brand" href="#">auto-Post</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -70,7 +72,8 @@
             <div class="container">
                 <div class="row">
                     <div class="dropdown ml-3">
-                        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-plus"></i> add</button>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -93,9 +96,10 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">no</th>
-                                    <th scope="col text-center"><input type="checkbox" class="chekedAll"></th>
-                                    <th scope="col">Gmail</th>
+                                    <th scope="col" width="30px">no</th>
+                                    <th scope="col" width="60px"><input type="checkbox" class="chekedAll"
+                                            style="margin-left: 10px;"></th>
+                                    <th scope="col">Username</th>
                                     <th scope="col">Password</th>
                                 </tr>
                             </thead>
@@ -112,7 +116,8 @@
 
 
     <!-- Modal File-->
-    <div class="modal fade" id="file" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="file" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -125,7 +130,8 @@
                     <form action="http://localhost:3000/convert/account" method="post" enctype="multipart/form-data">
                         <div class="custom-file">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="filename" required>
+                                <input type="file" class="custom-file-input" id="inputGroupFile04"
+                                    aria-describedby="inputGroupFileAddon04" name="filename" required>
                                 <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
                             </div>
                             <label class="custom-file-label" for="customFile">Choose file</label>
@@ -144,7 +150,8 @@
     </div>
 
     <!--Modal manualy-->
-    <div class="modal fade" id="manualy" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="manualy" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -164,9 +171,10 @@
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">Password</span>
+                                    <span class="input-group-text" id="basic-addon1">Password</span>
                                 </div>
-                                <input type="text" class="form-control" aria-label="password" name="password" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" aria-label="password" name="password"
+                                    aria-describedby="basic-addon1">
                                 <input type="hidden" name="id" value="" class="id_user">
                             </div>
                         </div>
@@ -181,7 +189,8 @@
     </div>
 
     <!--Modal add account-->
-    <div class="modal fade" id="add-akun" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="add-akun" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -203,7 +212,8 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">Password</span>
                                 </div>
-                                <input type="text" class="form-control" aria-label="password" name="password" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" aria-label="password" name="password"
+                                    aria-describedby="basic-addon1">
                                 <input type="hidden" name="level" value="" class="level">
                             </div>
                         </div>
@@ -218,7 +228,8 @@
     </div>
 
     <!-- modal path -->
-    <div class="modal fade" id="path" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="path" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -234,13 +245,15 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">Path saat ini</span>
                                 </div>
-                                <input type="text" class="form-control path" aria-label="Username" name="username" aria-describedby="basic-addon1" readonly value="">
+                                <input type="text" class="form-control path" aria-label="Username" name="username"
+                                    aria-describedby="basic-addon1" readonly value="">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">Set Path</span>
                                 </div>
-                                <input type="text" class="form-control" aria-label="password" name="path" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" aria-label="password" name="path"
+                                    aria-describedby="basic-addon1">
                                 <input type="hidden" name="id_user" value="" class="id_user">
                             </div>
                         </div>
@@ -255,7 +268,8 @@
     </div>
 
     <!-- modal edit akun -->
-    <div class="modal fade" id="akun" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="akun" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -271,13 +285,15 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">username</span>
                                 </div>
-                                <input type="text" class="form-control username" aria-label="Username" name="username" aria-describedby="basic-addon1"  value="">
+                                <input type="text" class="form-control username" aria-label="Username" name="username"
+                                    aria-describedby="basic-addon1" value="">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">password</span>
                                 </div>
-                                <input type="text" class="form-control password" aria-label="password" name="password" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control password" aria-label="password" name="password"
+                                    aria-describedby="basic-addon1">
                                 <input type="hidden" name="id" value="" class="id">
                             </div>
                         </div>
@@ -293,9 +309,12 @@
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-    <script> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+    <script>
 
         $('.id_user').val(sessionStorage.getItem('id_user'));
         $('.level').val(sessionStorage.getItem('level'));
@@ -306,76 +325,59 @@
         };
 
         $.ajax({
-                url: 'http://localhost:3000/get/account/' + sessionStorage.getItem('id_user'),
-                success: (Account) => {
-                    let akun = Account.Search;
-                    data.akun = akun;
-                    let row = "";
-                    let i = 1;
-                    akun.forEach(data => {
-                        row += `
+            url: 'http://localhost:3000/get/account/' + sessionStorage.getItem('id_user'),
+            success: (Account) => {
+                let akun = Account.Search;
+                data.akun = akun;
+                let row = "";
+                let i = 1;
+                akun.forEach(data => {
+                    row += `
                                 <tr>
                                     <th scope="row">${i}</th>
                                     <td class="text-center">
-                                        <input type="checkbox" class="checked">
+                                        <input type="checkbox" class="checked id-barang" value="${data.id}" >
                                     </td>
                                     <td>${data.username}</td>
                                     <td>${data.password}</td>
                                 </tr>
                             `;
-                        i += 1;
-                    });
+                    i += 1;
+                });
 
-                    // mengisi data kedalam tabel
-                    $('.table-body').html(row);
+                // mengisi data kedalam tabel
+                $('.table-body').html(row);
 
-                    // jika tombol delete ditekan
-                    $('.btn-delete').on('click', function() {
-                        let id = $(this).attr('data-id');
-                        let konfirmasi = confirm("apakah anda yakin ingin menghapus data ini ?");
-                        if (konfirmasi) {
-                            $.ajax({
-                                url: 'http://localhost:3000/delete/account/' + id,
-                                success: (data) => {
-                                    alert(data);
-                                },
-                                error: (err) => {
-                                    alert(err);
-                                }
-                            })
-                        }
-                    });
+                // jika tombol checked di tekan
+                $('.chekedAll').on('change', function () {
+                    if (this.checked) {
+                        $('.checked').attr('checked', 'checked');
+                    } else {
+                        $('.checked').removeAttr('checked');
+                    }
+                })
 
-                    // jika tombol checked di tekan
-                    $('.chekedAll').on('change', function () {
-                        if (this.checked) {
-                            $('.checked').attr('checked', 'checked');
-                        } else {
-                            $('.checked').removeAttr('checked');
+                // jika tombol edit ditekan
+                $('.btn-edit').on('click', function () {
+                    let id = $(this).attr('data-id');
+                    $.ajax({
+                        url: 'http://localhost:3000/get/account/detail/' + id,
+                        success: (data) => {
+                            $('.username').val(data[0].username);
+                            $('.password').val(data[0].password);
+                            $('.id').val(data[0].id);
+                        },
+                        error: (err) => {
+                            console.log(err);
                         }
                     })
+                })
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        })
 
-                    // jika tombol edit ditekan
-                    $('.btn-edit').on('click',function(){
-                        let id = $(this).attr('data-id');
-                        $.ajax({
-                            url :'http://localhost:3000/get/account/detail/'+id,
-                            success : (data) =>{
-                                $('.username').val(data[0].username);
-                                $('.password').val(data[0].password);
-                                $('.id').val(data[0].id);
-                            },
-                            error : (err) =>{
-                                console.log(err);
-                            }
-                        })
-                    })
-                },
-                error: (err) => {
-                    console.log(err);
-                }
-            })
-        
 
         // mendapatkan data item barang
         $.ajax({
@@ -407,7 +409,7 @@
         })
 
         // jika tombol play ditekan
-        $('.btn-play').on('click', function() {
+        $('.btn-play').on('click', function () {
             $('.btn-play').addClass('none');
             $('.btn-play').removeClass('show');
             $('.btn-pause').addClass('show');
@@ -421,23 +423,44 @@
                     contentType: 'application/json',
                     data: JSON.stringify(data),
                     dataType: 'json',
-                    success : (data) =>{
+                    success: (data) => {
                         alert(data);
                     }
                 })
             }
         })
 
-        // jika tombol delete ditekan
-        let button_delete = document.querySelectorAll('.btn-delete');
-        button_delete.forEach((btn) => {
-            btn.addEventListener('click', function() {
-                alert("oke");
+        // jika tombol hapus ditekan
+        $('.btn-delete-all').on('click', function () {
+            let id = document.querySelectorAll('.id-barang');
+            let id_barang = [];
+            id.forEach((id) => {
+                if (id.checked) {
+                    id_barang.push(id.getAttribute('value'));
+                }
             })
+            if (id_barang.length > 0) {
+                let konfirmasi = confirm("apakah anda yakin ingin menghapus data ini ?");
+                if (konfirmasi) {
+                    $.ajax({
+                        url: 'http://localhost:3000/delete/account/all/' + id_barang,
+                        success: (data) => {
+                            alert(data);
+                            location.reload();
+                        },
+                        error: (err) => {
+                            alert(err);
+                        }
+                    })
+                }
+            } else {
+                alert('tidak ada item yang dipilih');
+            }
         })
 
+
         // //jika tombol pause ditekan
-        $('.btn-pause').on('click', function() {
+        $('.btn-pause').on('click', function () {
             $('.btn-pause').addClass('none');
             $('.btn-pause').removeClass('show');
             $('.btn-resume').addClass('show');
@@ -454,7 +477,7 @@
         })
 
         //jika tombol resume ditekan
-        $('.btn-resume').on('click', function() {
+        $('.btn-resume').on('click', function () {
             $('.btn-resume').addClass('none');
             $('.btn-resume').removeClass('show');
             $('.btn-pause').addClass('show');
@@ -471,7 +494,7 @@
         })
 
         //jika tompol stop ditekan
-        $('.btn-stop').on('click', function() {
+        $('.btn-stop').on('click', function () {
             $('.btn-pause').addClass('none');
             $('.btn-pause').removeClass('show');
             $('.btn-play').addClass('show');
@@ -489,24 +512,8 @@
             })
         })
 
-        // jika tombol hapus semua ditekan
-        $('.btn-delete-all').on('click', function() {
-            let konfirmasi = confirm("apakah anda yakin ingin menghapus semua data ini ?");
-            if (konfirmasi) {
-                $.ajax({
-                    url: 'http://localhost:3000/delete/account/all/' + sessionStorage.getItem('id_user'),
-                    success: (data) => {
-                        alert(data);
-                    },
-                    error: (err) => {
-                        alert(err);
-                    }
-                })
-            }
-        })
-
         // jika tombol logout ditekan
-        $('.logout').on('click', function() {
+        $('.logout').on('click', function () {
             sessionStorage.setItem('cek', 0);
             sessionStorage.setItem('id_user', null);
             sessionStorage.setItem('level', null);

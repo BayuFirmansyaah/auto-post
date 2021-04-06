@@ -177,28 +177,19 @@ exports.hapusAkun = function(req, res) {
 
 // hapus semua akun
 exports.hapusSemuaAkun = function(req, res) {
-    db.query("DELETE FROM facebook WHERE id_user=?", [req.params.id_user], function(err) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.send("Data Berhasil Di Hapus");
-            res.end();
-        }
-    })
+    let id = req.params.id_user;
+    id = id.split(",");
+    for (let i = 0; i < id.length; i++) {
+        db.query("DELETE FROM facebook WHERE id=?", [id[i]], function (err) {
+            if (err) {
+                console.log(err);
+            }
+        })
+    }
+    res.send("Data Berhasil Di Hapus");
+    res.end();
 }
 
-// menghapus barang
-exports.hapusBarang = function(req, res) {
-    db.query("DELETE FROM item WHERE id_barang=?", [req.params.id], function(err) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.send("Data Berhasil Di Hapus");
-            res.end()
-        }
-    })
-
-}
 
 
 // menghapus semua barang
