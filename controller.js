@@ -310,29 +310,34 @@ exports.getDetailAkun = function(req,res){
 
 // mengubah data akun
 exports.updateAkun = function(req,res){
-    db.query("UPDATE facebook SET username=?,password=? WHERE id=?",[req.body.username,req.body.password,req.body.id],
-        function(err,rows){
-            if(err){
-                console.log(err);
-            }else{
-                res.redirect('/google.html');
-                res.end();
-            }
-    })
+    let id = req.body.id;
+    id=id.split(",");
+
+    for(let i=0;i<id.length;i++){
+        db.query("UPDATE facebook SET username=?,password=? WHERE id=?", [req.body.username, req.body.password, id[i]],
+            function (err, rows) {
+                if (err) {
+                    console.log(err);
+                } 
+            })
+    }
+
+    res.redirect('/google.html');
+    res.end();
 }
 
 // mengubah data item
-exports.updateAkun = function(req,res){
-    db.query("UPDATE item SET account=?,kode=?,judul=?,gambar=? WHERE id=?",[req.body.username,req.body.password,req.body.id],
-        function(err,rows){
-            if(err){
-                console.log(err);
-            }else{
-                res.redirect('/google.html');
-                res.end();
-            }
-    })
-}
+// exports.updateAkun = function(req,res){
+//     db.query("UPDATE item SET account=?,kode=?,judul=?,gambar=? WHERE id=?",[req.body.username,req.body.password,req.body.id],
+//         function(err,rows){
+//             if(err){
+//                 console.log(err);
+//             }else{
+//                 res.redirect('/google.html');
+//                 res.end();
+//             }
+//     })
+// }
 
 // update seluruh email
 exports.updateEmailAll = function(req,res){

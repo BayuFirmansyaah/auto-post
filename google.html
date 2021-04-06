@@ -89,6 +89,7 @@
                         <button class="btn btn-rounded btn-success btn-pause none"><i class='fas fa-pause'></i></button>
                         <button class="btn btn-rounded btn-success btn-resume none"><i class='fas fa-play'></i></button>
                         <button class="btn btn-rounded btn-danger btn-stop"><i class="fas fa-stop"></i></button>
+                        <button class="btn btn-rounded btn-warning btn-edit-all " data-toggle="modal" data-target="#akun"><i class="fas fa-pen-alt"></i></button>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -279,7 +280,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="http://localhost:3000/update/account" method="post">
+                    <form action="" method="post" class="modal-edit-akun">
                         <div class="custom-file">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -294,13 +295,13 @@
                                 </div>
                                 <input type="text" class="form-control password" aria-label="password" name="password"
                                     aria-describedby="basic-addon1">
-                                <input type="hidden" name="id" value="" class="id">
+                                <input type="hidden" name="id" value="" class="id_barang">
                             </div>
                         </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
-                    <button type="submit" class="btn btn-success">save</button>
+                    <button type="submit" class="btn btn-success btn-save-akun">save</button>
                     </form>
                 </div>
             </div>
@@ -511,6 +512,45 @@
                 }
             })
         })
+
+        // jika tombol update akun ditekan;
+            $('.btn-edit-all').on('click', function () {
+                let id = document.querySelectorAll('.id-barang');
+                let id_barang = [];
+
+                id.forEach((id) => {
+                    if (id.checked) {
+                        id_barang.push(id.getAttribute('value'));
+                    }
+                })
+                $('.id_barang').val(id_barang);
+
+                if (id_barang.length == 1) {
+                    $.ajax({
+                        url :'http://localhost:3000/get/account/detail/'+id_barang,
+                        success : (data) =>{
+                            $('.username').val(data[0].username);
+                            $('.password').val(data[0].password);
+                        },
+                        error : (err) =>{
+                            console.log(err)
+                        }
+                    })
+                    $('.modal-edit-akun').attr('action', 'http://localhost:3000/update/account');
+                    $('.btn-save-akun').removeClass('disabled');
+                    $('.btn-save-akun').removeAttr('disabled', '');
+                }else if(id_barang.length >0 && id_barang.length > 1){
+                    $('.modal-edit-akun').attr('action', 'http://localhost:3000/update/account');
+                    $('.btn-save-akun').removeClass('disabled');
+                    $('.btn-save-akun').removeAttr('disabled', '');
+                     $('.username').val("");
+                    $('.password').val("");
+                } else {
+                    $('.modal-edit-akun').attr('action', '');
+                    $('.btn-save-akun').addClass('disabled');
+                    $('.btn-save-akun').attr('disabled', '');
+                }
+            })
 
         // jika tombol logout ditekan
         $('.logout').on('click', function () {
