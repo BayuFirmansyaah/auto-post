@@ -87,12 +87,13 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col" width="30px" >no</th>
-                                    <th scope="col text-center" width="60px"><input type="checkbox" style="margin-left: 11px;"
-                                            class="chekedAll"></th>
+                                    <th scope="col" width="30px">no</th>
+                                    <th scope="col text-center" width="60px"><input type="checkbox"
+                                            style="margin-left: 11px;" class="chekedAll"></th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Account</th>
                                     <th scope="col">Kode</th>
+                                    <th scope="col">Image</th>
                                 </tr>
                             </thead>
                             <tbody class="table-body">
@@ -343,11 +344,14 @@
                                     <td>${data.judul}</td>
                                     <td>${nama}</td>
                                     <td>${data.kode}</td>
+                                    <td>${data.gambar}</td>
                                  </tr>
                             `;
                     i += 1;
                 });
                 $('.table-body').html(row);
+
+
                 $('.btn-delete').on('click', function () {
                     let id = $(this).attr('data-id');
                     let konfirmasi = confirm("apakah anda yakin ingin menghapus data ini ?");
@@ -396,19 +400,32 @@
 
         // jika tombol hapus ditekan
         $('.btn-delete-all').on('click', function () {
-            let id = $(this).attr('data-id');
-            let konfirmasi = confirm("apakah anda yakin ingin menghapus semua data ini ?");
-            if (konfirmasi) {
-                $.ajax({
-                    url: 'http://localhost:3000/delete/item/all/' + sessionStorage.getItem('id_user'),
-                    success: (data) => {
-                        alert(data);
-                    },
-                    error: (err) => {
-                        alert(err);
-                    }
-                })
+            let id = document.querySelectorAll('.id-barang');
+            let id_barang = [];
+            id.forEach((id) => {
+                if (id.checked) {
+                    id_barang.push(id.getAttribute('value'));
+                }
+            })
+
+            if (id_barang.length > 0) {
+                let konfirmasi = confirm("apakah anda yakin ingin menghapus data ini ?");
+                if (konfirmasi) {
+                    $.ajax({
+                        url: 'http://localhost:3000/delete/item/all/' + id_barang,
+                        success: (data) => {
+                            alert(data);
+                            location.reload();
+                        },
+                        error: (err) => {
+                            alert(err);
+                        }
+                    })
+                }
+            }else{
+                alert('tidak ada item yang dipilih');
             }
+
         })
 
         // jika tombol logout ditekan
@@ -421,25 +438,25 @@
         });
 
         // jika tombol update akun ditekan;
-        $('.btn-edit-all').on('click',function(){
+        $('.btn-edit-all').on('click', function () {
             let id = document.querySelectorAll('.id-barang');
             let id_barang = [];
 
-            id.forEach((id)=>{
-                if(id.checked){
+            id.forEach((id) => {
+                if (id.checked) {
                     id_barang.push(id.getAttribute('value'));
                 }
             })
             $('.id_barang').val(id_barang);
 
-            if(id_barang.length>0){
-                $('.modal-edit-akun').attr('action','http://localhost:3000/update/all/email');
+            if (id_barang.length > 0) {
+                $('.modal-edit-akun').attr('action', 'http://localhost:3000/update/all/email');
                 $('.btn-save-akun').removeClass('disabled');
                 $('.btn-save-akun').removeAttr('disabled', '');
-            }else{
+            } else {
                 $('.modal-edit-akun').attr('action', '');
                 $('.btn-save-akun').addClass('disabled');
-                $('.btn-save-akun').attr('disabled','');
+                $('.btn-save-akun').attr('disabled', '');
             }
         })
     </script>
