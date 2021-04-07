@@ -57,7 +57,7 @@ module.exports = function(app) {
             res.end();
         })
     
-        // mendapatkan data account
+    // mendapatkan data account
     app.route('/get/account/:id_user').get((req, res) => {
         Controller.getDataAccount(res, req);
     });
@@ -92,7 +92,6 @@ module.exports = function(app) {
     // mendapatkan data item
     app.route('/get/item/:id_user').get((req, res) => {
         Controller.getDataItem(res, req);
-
     });
 
     // melakukan convert dari excel to json untuk file item
@@ -141,5 +140,10 @@ module.exports = function(app) {
     app.route('/update/all/email').post((req,res)=>{
         Controller.updateEmailAll(req,res);
     });
+
+    // mendapatkan data item yang akan di run
+    app.route('/get/item/run/:id').get((req,res)=>{
+        Controller.getItemRun(req,res);
+    })
 
 }

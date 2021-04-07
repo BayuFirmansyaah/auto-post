@@ -128,13 +128,10 @@ body {
    .data-table .container {
        padding-top: 10px;
    }
-thead{
-width: 76%;
-height: 49px;
-position: sticky;
-top :0px;
-}
-
-tbody{
-    margin-top: 0px;
+.thumbnail-produk{
+    width:40px;
+    height: 40px;
+    margin:5px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 7);
+    float:left;
 }

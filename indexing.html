@@ -38,6 +38,10 @@
 
     <!-- sidebar -->
     <div class="sidebar">
+        <h6 class="text-heading text-primary">DATA ACCOUNTS</h6>
+        <a href="/google.html">
+            <p class="sub-heading "><i class="fab fa-facebook"></i> Facebook Accounts</p>
+        </a>
         <h6 class="text-heading text-primary">INVENTORY</h6>
         <a href="/indexing.html">
             <p class="sub-heading "><i class="fas fa-server"></i> Item</p>
@@ -45,17 +49,14 @@
         <div data-toggle="modal" data-target="#path">
             <p class="sub-heading "><i class="fas fa-map-marker-alt"></i> Path Image</p>
         </div>
-        <h6 class="text-heading text-primary">DATA ACCOUNTS</h6>
-        <a href="/google.html">
-            <p class="sub-heading "><i class="fab fa-facebook"></i> Facebook Accounts</p>
-        </a>
-        <h6 class="text-heading text-primary">MORE ACTION</h6>
+
+        <!--<h6 class="text-heading text-primary">MORE ACTION</h6>
         <div data-toggle="modal" data-target="#add-akun" class="add">
             <p class="sub-heading "><i class="fas fa-user-plus"></i>Add Account User</p>
         </div>
         <div class="logout">
             <p class="sub-heading "><i class="fas fa-sign-out-alt"></i>Sign Out</p>
-        </div>
+        </div>-->
     </div>
     <!-- end sidebar -->
 
@@ -80,10 +81,11 @@
                         <button class="btn btn-success btn-edit-all" data-toggle="modal" data-target="#allAkun"><i
                                 class="fas fa-pen-alt"></i></button>
                         <button class="btn btn-danger  btn-delete-all"><i class="fas fa-trash-alt"></i></button>
+                        <button class="btn btn-primary  btn-save"><i class="fas fa-save"></i></button>
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col">
+                    <div class="col" style="height: 490px;overflow-y: scroll;">
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -122,7 +124,8 @@
                 <div class="modal-body">
                     <form action="http://localhost:3000/convert/item" method="post" enctype="multipart/form-data">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile" required name="filename" accept=".xlsx">
+                            <input type="file" class="custom-file-input" id="customFile" required name="filename"
+                                accept=".xlsx">
                             <label class="custom-file-label" for="customFile">Choose file</label>
                             <input type="hidden" name="id" value="" class="id_user">
                         </div>
@@ -161,9 +164,10 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">Set Path</span>
                                 </div>
-                                <input type="text" class="form-control" aria-label="password" name="path"
-                                    aria-describedby="basic-addon1">
-                                <input type="hidden" name="id_user" value="" class="id_user">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input input-path" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
                             </div>
                         </div>
                 </div>
@@ -188,16 +192,16 @@
                     </button>
                 </div>
                 <form action="" method="post" class="modal-edit-akun">
-                <div class="modal-body modal-body-update-username">
-                        
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
-                    <button type="submit" class="btn btn-success btn-save-akun">save</button>
-                    </form>
-                </div>
+                    <div class="modal-body modal-body-update-username">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                        <button type="submit" class="btn btn-success btn-save-akun">save</button>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 
     <!--Modal add account-->
@@ -303,6 +307,7 @@
         </script>
     <script src="main.js"></script>
     <script src="index.js"></script>
+    <script src="run.js"></script>
 
 </body>
 

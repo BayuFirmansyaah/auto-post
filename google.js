@@ -100,27 +100,6 @@ $.ajax({
     }
 })
 
-// jika tombol play ditekan
-$('.btn-play').on('click', function () {
-    $('.btn-play').addClass('none');
-    $('.btn-play').removeClass('show');
-    $('.btn-pause').addClass('show');
-    $('.btn-pause').removeClass('none');
-    if (data.path == null) {
-        alert("Path Belum Di Set")
-    } else {
-        $.ajax({
-            url: 'http://localhost:3000/run',
-            type: 'post',
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-            dataType: 'json',
-            success: (data) => {
-                alert(data);
-            }
-        })
-    }
-})
 
 // jika tombol hapus ditekan
 $('.btn-delete-all').on('click', function () {

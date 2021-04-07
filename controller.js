@@ -328,18 +328,30 @@ exports.updateAkun = function (req, res) {
     res.end();
 }
 
-// mengubah data item
-// exports.updateAkun = function(req,res){
-//     db.query("UPDATE item SET account=?,kode=?,judul=?,gambar=? WHERE id=?",[req.body.username,req.body.password,req.body.id],
-//         function(err,rows){
-//             if(err){
-//                 console.log(err);
-//             }else{
-//                 res.redirect('/google.html');
-//                 res.end();
-//             }
-//     })
-// }
+// mendaatkan data item yang akan di run
+exports.getItemRun =  async function (req, res) {
+    let id = req.params.id;
+    id = id.split(",");
+    console.log(id);
+    let data = {
+        status : 200,
+        search : []
+    }
+    for (let i = 0; i < id.length; i++) {
+        db.query("SELECT * FROM item WHERE id_barang=?", [id[i]],
+            function (err, rows) {
+                if (err) {
+                    console.log(err);
+                }else{
+                    res.send(rows);
+                }
+            })
+    }
+    res.send(data);
+    res.end();
+}
+
+
 
 // update seluruh email
 exports.updateEmailAll = function (req, res) {
@@ -407,7 +419,7 @@ exports.Run = async (data) => {
                         inputUploadHandle.uploadFile(fileToUpload);
                     }
 
-                    let namaBarang = data.barang[j].kode + " " + data.barang[j].judul + "(FREE ONGKIR + COD)";
+                    let namaBarang = data.barang[j].kode + " " + data.barang[j].judul + "(FREE ONGKIR+COD)";
                     // melakukan pengisian form
                     await page.type(
                         "[aria-label='Judul'] input[type='text']",

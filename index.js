@@ -32,7 +32,6 @@ $.ajax({
     success: (data) => {
         let Item = data.Search;
         Item = sortByProperty(Item,"Item.account");
-        console.log(Item);
         let row = "";
         let i = 1;
         let nama;
@@ -42,16 +41,23 @@ $.ajax({
             } else {
                 nama = data.account;
             }
+            // melakukan perulangan pada image
+            let image = "";
+            let gambar = data.gambar;
+                gambar = gambar.split(" ");
+            gambar.forEach((img)=>{
+                image += `<img src="https://images.tokopedia.net/img/cache/700/VqbcmM/2020/7/18/013c1e4d-0ae7-4521-ae38-36835f974722.jpg" class="thumbnail-produk" >`;
+            })
             row += `
                                 <tr>
                                     <th scope="row">${i}</th>
                                      <td class="text-center"> 
                                         <input type="checkbox" class="checked id-barang" value="${data.id_barang}" >
                                     </td>
-                                    <td>${data.judul}</td>
-                                    <td>${nama}</td>
-                                    <td>${data.kode}</td>
-                                    <td>${data.gambar}</td>
+                                    <td width="250px">${data.judul}</td>
+                                    <td width="150px">${nama}</td>
+                                    <td width="100px" class="text-center">${data.kode}</td>
+                                    <td>${image}${image}${image}${image}</td>
                                  </tr>
                             `;
             i += 1;
@@ -179,3 +185,4 @@ $('.btn-edit-all').on('click', function () {
         $('.modal-body-update-username').html("<h3 class='text-center'>Wajib Memilih Salah Satu Data </h3>");
     }
 })
+
