@@ -1,9 +1,9 @@
+$('.id_user').val(sessionStorage.getItem('id_user'));
+$('.level').val(sessionStorage.getItem('level'));
+
 if ($('.level').val(sessionStorage.getItem('level')) != "admin") {
     $('.add').addClass('none');
 }
-
-$('.id_user').val(sessionStorage.getItem('id_user'));
-$('.level').val(sessionStorage.getItem('level'));
 
 $.ajax({
     url: 'http://localhost:3000/get/item/' + sessionStorage.getItem("id_user"),
@@ -130,9 +130,21 @@ $('.btn-edit-all').on('click', function () {
             id_barang.push(id.getAttribute('value'));
         }
     })
-    $('.id_barang').val(id_barang);
 
     if (id_barang.length > 0) {
+        let contentForm = `
+            <div class="custom-file">
+                <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">username</span>
+            </div>
+                <input type="text" class="form-control" aria-label="password" name="email"
+                                    aria-describedby="basic-addon1">
+                <input type="hidden" name="id" value="" class="id_barang">
+            </div>
+        </div>`;
+        $('.modal-body-update-username').html(contentForm);
+        $('.id_barang').val(id_barang);
         $('.modal-edit-akun').attr('action', 'http://localhost:3000/update/all/email');
         $('.btn-save-akun').removeClass('disabled');
         $('.btn-save-akun').removeAttr('disabled', '');
@@ -140,5 +152,6 @@ $('.btn-edit-all').on('click', function () {
         $('.modal-edit-akun').attr('action', '');
         $('.btn-save-akun').addClass('disabled');
         $('.btn-save-akun').attr('disabled', '');
+        $('.modal-body-update-username').html("<h3 class='text-center'>Wajib Memilih Salah Satu Data </h3>");
     }
 })

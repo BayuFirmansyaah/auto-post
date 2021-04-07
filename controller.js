@@ -231,9 +231,11 @@ exports.login = function (req, res) {
         } else {
             bcrypt.compare(req.body.password, row[0].password, function (err, isMatch) {
                 if (err) {
-                    res.send(err)
+                    res.send(err);
+                    res.end();
                 } else if (!isMatch) {
-                    res.send("Password doesn't match!")
+                    res.send("Password doesn't match!");
+                    res.end();
                 } else {
                     let id = row[0].id;
                     let nama = row[0].nama;
