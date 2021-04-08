@@ -28,8 +28,8 @@ let dataServer = {
 
 
 
-// ketika tombol save ditekan 
-$('.btn-save').on('click', async function (){
+// ketika tombol save item ditekan 
+$('.btn-save').on('click', async function () {
     let id = document.querySelectorAll('.id-barang');
     let id_barang = [];
 
@@ -39,7 +39,7 @@ $('.btn-save').on('click', async function (){
         }
     });
 
-    if(id_barang.length>0){
+    if (id_barang.length > 0) {
         let result = await $.ajax({
             url: 'http://localhost:3000/get/item/' + sessionStorage.getItem("id_user"),
             success: async (data) => {
@@ -60,35 +60,83 @@ $('.btn-save').on('click', async function (){
                 }
             }
         })
-        dataServer.barang = temporary;
-        console.log(dataServer);
-        localStorage.setItem("barang", JSON.stringify(temporary));
+        localStorage.setItem('item', JSON.stringify(temporary));
         alert("Data Berhasil disimpan");
-    }else{
+        location.reload();
+    } else {
         alert("Tidak Ada data item yang dipilih");
     }
 
 })
 
+ 
+let items = localStorage.getItem('daftar_nama');
 
 // jika tombol play ditekan
-$('.btn-play').on('click', function () {
+$('.btn-play').on('click', async function () {
     $('.btn-play').addClass('none');
     $('.btn-play').removeClass('show');
     $('.btn-pause').addClass('show');
     $('.btn-pause').removeClass('none');
-    if (data.path == null) {
+    if ($('.path').val() == null) {
         alert("Path Belum Di Set")
     } else {
-        $.ajax({
-            url: 'http://localhost:3000/run',
-            type: 'post',
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-            dataType: 'json',
-            success: (data) => {
-                alert(data);
+        // mendapatkan id akun
+        let id = document.querySelectorAll('.id-facebook');
+        let id_facebook = [];
+
+        id.forEach((id) => {
+            if (id.checked) {
+                id_facebook.push(id.getAttribute('value'));
             }
         })
+
+        // jika data akun lebih dari no
+        if (id_facebook.length > 0) {
+            let result = await $.ajax({
+                url: 'http://localhost:3000/get/account/' + sessionStorage.getItem("id_user"),
+                success: async (data) => {
+                    return data;
+                },
+                error: (err) => {
+                    console.log(err);
+                }
+            })
+
+            let temporary = [];
+            let Akun = result.Search;
+            Akun = sortByProperty(Akun, "Akun.username");
+            await Akun.forEach((Akun) => {
+                for (let i = 0; i < id_facebook.length; i++) {
+                    if (id_facebook[i] == Akun.id) {
+                        temporary.push(Akun);
+                    }
+                }
+            });
+            localStorage.setItem('akun', JSON.stringify(temporary));
+
+            // menyimpan data yang akan dikirim ke server
+            let data = {
+                akun: localStorage.getItem('akun'),
+                barang: localStorage.getItem('item'),
+                path: $('.path').val()
+            };
+
+            console.table(data);
+
+            // $.ajax({
+            //     url: 'http://localhost:3000/run',
+            //     type: 'post',
+            //     contentType: 'application/json',
+            //     data: JSON.stringify(data),
+            //     dataType: 'json',
+            //     success: (data) => {
+            //         alert(data);
+            //     }
+            // })
+        } else {
+            alert("Tidak ada data akun yang dipilih");
+        }
+
     }
 })

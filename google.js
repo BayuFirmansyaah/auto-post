@@ -1,11 +1,6 @@
 $('.id_user').val(sessionStorage.getItem('id_user'));
 $('.level').val(sessionStorage.getItem('level'));
-// menyimpan data yang akan dikirim ke server
-let data = {
-    akun: null,
-    barang: null,
-    path: null
-};
+
 
 
 // function sort json
@@ -36,7 +31,6 @@ $.ajax({
     success: (Account) => {
         let akun = Account.Search;
         akun = sortByProperty(akun, "akun.username");
-        console.log(akun);
         let row = "";
         let i = 1;
         akun.forEach(data => {
@@ -76,7 +70,6 @@ $.ajax({
     url: 'http://localhost:3000/get/item/' + sessionStorage.getItem("id_user"),
     success: (Item) => {
         let barang = Item.Search;
-        data.barang = barang;
     },
     error: (err) => {
         console.log(err);
@@ -89,9 +82,7 @@ $.ajax({
     success: (path) => {
         if (path.length == 0) {
             $('.path').val("Path saat ini Belum disetting");
-            data.path = null;
         } else {
-            data.path = path[0].path;
             $('.path').val(path[0].path);
         }
     },
