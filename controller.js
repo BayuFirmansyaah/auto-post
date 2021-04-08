@@ -11,6 +11,12 @@ const { get } = require('http');
 const salt = bcrypt.genSaltSync(10);
 let onRun = 0;
 
+
+// ======================================================================================
+// =========================== bagian untuk koneksi database ============================
+// ======================================================================================
+
+// data koneksi
 var DB_HOST = "localhost";
 var DB_USER = "root";
 var DB_PASSWORD = "";
@@ -31,38 +37,11 @@ db.connect(function (err) {
 })
 
 
-// merubah fitur pause/play/stop
-exports.isRun = function (value) {
-    onRun = value;
-}
 
-// melakukan convert data akun dari excel ke json
-exports.convertAccount = function (req, res) {
-    // mendapatkan file
-    let file = req.files.filename;
-    let filename = file.name;
-    file.mv('./excel/' + filename, (err) => {
-        if (err) {
-            res.send('maaf file tidak bisa diupload ');
-        } else {
-            let result = importExcel({
-                sourceFile: './excel/' + filename
-            });
+// ======================================================================================
+// ========================= bagian untuk end point add program =========================
+// ======================================================================================
 
-            let dataAccount = result.Sheet1;
-            for (let i = 0; i < dataAccount.length; i++) {
-                db.query("INSERT INTO facebook (id_user,username,password) values(?,?,?)", [req.body.id, dataAccount[i].A, dataAccount[i].B],
-                    function (err, row, field) {
-                        if (err) {
-                            console.log(err)
-                        }
-                    })
-            }
-            del(['excel/' + filename]).then(paths => { console.log('file berhasil dihapus') });
-            res.end();
-        }
-    });
-}
 
 // add data akun facebook manual
 exports.addAccount = function (req, res) {
@@ -98,6 +77,41 @@ exports.addAccountUser = function (req, res) {
 
 }
 
+
+
+// ======================================================================================
+// =========================== bagian untuk end point convert ===========================
+// ======================================================================================
+
+
+// melakukan convert data akun dari excel ke json
+exports.convertAccount = function (req, res) {
+    // mendapatkan file
+    let file = req.files.filename;
+    let filename = file.name;
+    file.mv('./excel/' + filename, (err) => {
+        if (err) {
+            res.send('maaf file tidak bisa diupload ');
+        } else {
+            let result = importExcel({
+                sourceFile: './excel/' + filename
+            });
+
+            let dataAccount = result.Sheet1;
+            for (let i = 0; i < dataAccount.length; i++) {
+                db.query("INSERT INTO facebook (id_user,username,password) values(?,?,?)", [req.body.id, dataAccount[i].A, dataAccount[i].B],
+                    function (err, row, field) {
+                        if (err) {
+                            console.log(err)
+                        }
+                    })
+            }
+            del(['excel/' + filename]).then(paths => { console.log('file berhasil dihapus') });
+            res.end();
+        }
+    });
+}
+
 // melakukan convert data akun dari excel ke json
 exports.convertDataItem = function (req, res) {
     // mendapatkan file
@@ -131,6 +145,12 @@ exports.convertDataItem = function (req, res) {
 }
 
 
+
+// ======================================================================================
+// ========================= bagian untuk end point  get data ===========================
+// ======================================================================================
+
+
 // mendapatkan data account
 exports.getDataAccount = function (res, req) {
     db.query("select * from facebook where id_user=?", [req.params.id_user], function (err, rows, fields) {
@@ -161,6 +181,54 @@ exports.getDataItem = function (res, req) {
     })
 }
 
+// mengisi data session
+let dataSession;
+const sessionData = (id, nama, level) => {
+    dataSession = {
+        id: id,
+        nama: nama,
+        level: level
+    }
+}
+
+// mendapatkan data session 
+exports.sessionUser = function (req, res) {
+    res.send(dataSession)
+}
+
+// get data path
+exports.getPath = function (req, res) {
+    db.query("SELECT * FROM path WHERE id_user=?", [req.params.id_user], function (err, rows) {
+        if (err) {
+            res.send([{
+                id_user: null,
+                path: null
+            }]);
+            res.end();
+        } else {
+            res.send(rows);
+            res.end();
+        }
+    });
+}
+
+// mendapatkan data spesifik akun
+exports.getDetailAkun = function (req, res) {
+    db.query("SELECT * FROM facebook WHERE id=?", [req.params.id_akun],
+        function (err, rows) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(rows);
+            }
+        })
+}
+
+
+// ======================================================================================
+// ======================== bagian untuk end point delete data ==========================
+// ======================================================================================
+
 
 // menghapus akun
 exports.hapusAkun = function (req, res) {
@@ -173,7 +241,6 @@ exports.hapusAkun = function (req, res) {
         }
     })
 }
-
 
 // hapus semua akun
 exports.hapusSemuaAkun = function (req, res) {
@@ -190,8 +257,6 @@ exports.hapusSemuaAkun = function (req, res) {
     res.end();
 }
 
-
-
 // menghapus semua barang
 exports.hapusSemuaBarang = function (req, res) {
     let id = req.params.id_user;
@@ -206,6 +271,79 @@ exports.hapusSemuaBarang = function (req, res) {
     res.send("Data Berhasil Di Hapus");
     res.end();
 }
+
+
+
+// ======================================================================================
+// ======================== bagian untuk end point update data ==========================
+// ======================================================================================
+
+
+// setting path
+exports.setPath = function (req, res) {
+    db.query("DELETE FROM path WHERE id_user=?", [req.body.id_user], function (err, rows) {
+        if (err) {
+            console.log(err);
+        }
+    });
+
+    db.query("INSERT INTO path (id_user,path) VALUES(?,?)", [req.body.id_user, req.body.path], function (err, rows) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect('/google.html');
+            res.end()
+        }
+    })
+
+
+}
+
+
+
+// mengubah data akun
+exports.updateAkun = function (req, res) {
+    let id = req.body.id;
+    id = id.split(",");
+
+    for (let i = 0; i < id.length; i++) {
+        db.query("UPDATE facebook SET username=?,password=? WHERE id=?", [req.body.username, req.body.password, id[i]],
+            function (err, rows) {
+                if (err) {
+                    console.log(err);
+                }
+            })
+    }
+
+    res.redirect('/google.html');
+    res.end();
+}
+
+// update seluruh email
+exports.updateEmailAll = function (req, res) {
+    let id = req.body.id;
+    let email = req.body.email;
+    id = id.split(",");
+
+    for (let i = 0; i < id.length; i++) {
+        db.query("UPDATE item SET account=? WHERE id_barang=?", [email, id[i]], function (err, rows) {
+            if (err) {
+                console.log(err)
+            }
+
+        })
+    }
+
+    res.redirect('/indexing.html');
+    res.end();
+}
+
+
+
+// ======================================================================================
+// ============================= bagian untuk sistem login ==============================
+// ======================================================================================
+
 
 //melakukan register
 exports.register = function (req, res) {
@@ -247,131 +385,17 @@ exports.login = function (req, res) {
     })
 }
 
-// mengisi data session
-let dataSession;
-const sessionData = (id, nama, level) => {
-    dataSession = {
-        id: id,
-        nama: nama,
-        level: level
-    }
+
+
+// ======================================================================================
+// ========================= bagian untuk sistem run program ============================
+// ======================================================================================
+
+
+// merubah fitur pause/play/stop
+exports.isRun = function (value) {
+    onRun = value;
 }
-
-// mendapatkan data session 
-exports.sessionUser = function (req, res) {
-    res.send(dataSession)
-}
-
-// get data path
-exports.getPath = function (req, res) {
-    db.query("SELECT * FROM path WHERE id_user=?", [req.params.id_user], function (err, rows) {
-        if (err) {
-            res.send([{
-                id_user: null,
-                path: null
-            }]);
-            res.end();
-        } else {
-            res.send(rows);
-            res.end();
-        }
-    });
-}
-
-// setting path
-exports.setPath = function (req, res) {
-    db.query("DELETE FROM path WHERE id_user=?", [req.body.id_user], function (err, rows) {
-        if (err) {
-            console.log(err);
-        }
-    });
-
-    db.query("INSERT INTO path (id_user,path) VALUES(?,?)", [req.body.id_user, req.body.path], function (err, rows) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.redirect('/google.html');
-            res.end()
-        }
-    })
-
-
-}
-
-// mendapatkan data spesifik akun
-exports.getDetailAkun = function (req, res) {
-    db.query("SELECT * FROM facebook WHERE id=?", [req.params.id_akun],
-        function (err, rows) {
-            if (err) {
-                console.log(err);
-            } else {
-                res.send(rows);
-            }
-        })
-}
-
-// mengubah data akun
-exports.updateAkun = function (req, res) {
-    let id = req.body.id;
-    id = id.split(",");
-
-    for (let i = 0; i < id.length; i++) {
-        db.query("UPDATE facebook SET username=?,password=? WHERE id=?", [req.body.username, req.body.password, id[i]],
-            function (err, rows) {
-                if (err) {
-                    console.log(err);
-                }
-            })
-    }
-
-    res.redirect('/google.html');
-    res.end();
-}
-
-// mendaatkan data item yang akan di run
-exports.getItemRun =  async function (req, res) {
-    let id = req.params.id;
-    id = id.split(",");
-    console.log(id);
-    let data = {
-        status : 200,
-        search : []
-    }
-    for (let i = 0; i < id.length; i++) {
-        db.query("SELECT * FROM item WHERE id_barang=?", [id[i]],
-            function (err, rows) {
-                if (err) {
-                    console.log(err);
-                }else{
-                    res.send(rows);
-                }
-            })
-    }
-    res.send(data);
-    res.end();
-}
-
-
-
-// update seluruh email
-exports.updateEmailAll = function (req, res) {
-    let id = req.body.id;
-    let email = req.body.email;
-    id = id.split(",");
-
-    for (let i = 0; i < id.length; i++) {
-        db.query("UPDATE item SET account=? WHERE id_barang=?", [email, id[i]], function (err, rows) {
-            if (err) {
-                console.log(err)
-            }
-
-        })
-    }
-
-    res.redirect('/indexing.html');
-    res.end();
-}
-
 
 //run auto-post
 exports.Run = async (data) => {
