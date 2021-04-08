@@ -141,7 +141,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
                     <button type="submit" class="btn btn-success">save</button>
                     </form>
                 </div>
@@ -205,7 +205,7 @@
                         <input type="hidden" name="id" value="" class="id_user">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
                     <button type="submit" class="btn btn-success">save</button>
                     </form>
                 </div>
@@ -246,7 +246,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
                     <button type="submit" class="btn btn-success">save</button>
                     </form>
                 </div>
@@ -270,7 +270,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                        <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
                         <button type="submit" class="btn btn-success btn-save-akun">save</button>
                 </form>
             </div>
@@ -309,7 +309,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
                     <button type="submit" class="btn btn-success">save</button>
                     </form>
                 </div>
@@ -364,7 +364,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
                     <button type="submit" class="btn btn-success">save</button>
                     </form>
                 </div>
@@ -382,6 +382,18 @@
     <script src="main.js"></script>
     <script src="index.js"></script>
     <script src="run.js"></script>
+    <script>
+        window.addEventListener("keydown", checkKeyPress, false);
+
+        function checkKeyPress(key) {
+            if (key.keyCode == "27") {
+                let close = document.querySelectorAll(".btn-close");
+                close.forEach((close) => {
+                    close.click();
+                })
+            }
+        }
+    </script>
 
 </body>
 

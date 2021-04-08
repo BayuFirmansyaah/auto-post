@@ -144,7 +144,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
                     <button type="submit" class="btn btn-success">save</button>
                     </form>
                 </div>
@@ -183,7 +183,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
                     <button type="submit" class="btn btn-success">save</button>
                     </form>
                 </div>
@@ -222,7 +222,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
                     <button type="submit" class="btn btn-success">save</button>
                     </form>
                 </div>
@@ -262,7 +262,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
                     <button type="submit" class="btn btn-success">save</button>
                     </form>
                 </div>
@@ -302,6 +302,18 @@
         crossorigin="anonymous"></script>
     <script src="google.js"></script>
     <script src="run.js"></script>
+    <script>
+        window.addEventListener("keydown", checkKeyPress, false);
+
+        function checkKeyPress(key) {
+            if (key.keyCode == "27") {
+                let close = document.querySelectorAll(".btn-close");
+                close.forEach((close) => {
+                    close.click();
+                })
+            }
+        }
+    </script>
 
 </body>
 
