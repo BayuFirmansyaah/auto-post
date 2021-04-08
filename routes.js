@@ -2,66 +2,6 @@ module.exports = function (app) {
     let Controller = require('./controller');
 
 
-    // ==================================================================================
-    // ======================= bagian untuk end point run program =======================
-    // ==================================================================================
-
-    // root index
-    app.route('/').get((req, res) => {
-        res.sendFile(__dirname + "/login.html");
-    });
-
-    // login
-    app.route('/login/account').post((req, res) => {
-        Controller.login(req, res);
-        res.redirect('/indexing.html');
-        res.end();
-    })
-
-    // get session
-    app.route('/session').get((req, res) => {
-        Controller.sessionUser(req, res);
-    })
-
-    // register
-    app.route('/register/account').post((req, res) => {
-        Controller.register(req, res);
-    })
-
-    // run program
-    app.route('/run').post(async (req, res) => {
-        let data = req.body;
-        await Controller.isRun(1);
-        Controller.Run(data);
-        console.log("jalan");
-        res.send('Program Mulai Dijalankan');
-        // res.end();
-    })
-
-    // pause program
-    app.route('/pause').get((req, res) => {
-        Controller.isRun(2);
-        res.send('Program Dihentikan Sementara');
-        res.redirect('/google.html');
-        res.end();
-    })
-
-    // resume program
-    app.route('/resume').get((req, res) => {
-        Controller.isRun(1);
-        res.send('Program Dijalankan kembali');
-        res.redirect('/google.html');
-        res.end();
-    })
-
-    // stop program
-    app.route('/stop').get((req, res) => {
-        Controller.isRun(3);
-        res.send('Program Dihentikan');
-        res.redirect('/google.html');
-        res.end();
-    })
-
 
     // ==================================================================================
     // ============================ bagian untuk end point get ==========================
@@ -106,9 +46,17 @@ module.exports = function (app) {
     app.route('/add/account').post((req, res) => {
         Controller.addAccount(req, res);
     })
+
     // menambahkan data akun user
     app.route('/add/account/user').post((req, res) => {
         Controller.addAccountUser(req, res);
+    })
+
+    // menambahkan data barang secara manual
+    app.route('/add/item/manually').post((req, res) => {
+        Controller.addItemManually(req, res);
+         res.redirect('/indexing.html');
+        res.end();
     })
 
 
@@ -174,5 +122,68 @@ module.exports = function (app) {
         res.redirect('/indexing.html');
         res.end();
     })
+
+
+    // ==================================================================================
+    // ======================= bagian untuk end point run program =======================
+    // ==================================================================================
+
+    // root index
+    app.route('/').get((req, res) => {
+        res.sendFile(__dirname + "/login.html");
+    });
+
+    // login
+    app.route('/login/account').post((req, res) => {
+        Controller.login(req, res);
+        res.redirect('/indexing.html');
+        res.end();
+    })
+
+    // get session
+    app.route('/session').get((req, res) => {
+        Controller.sessionUser(req, res);
+    })
+
+    // register
+    app.route('/register/account').post((req, res) => {
+        Controller.register(req, res);
+    })
+
+    // run program
+    app.route('/run').post(async (req, res) => {
+        let data = req.body;
+        await Controller.isRun(1);
+        Controller.Run(data);
+        console.log("jalan");
+        res.send('Program Mulai Dijalankan');
+        // res.end();
+    })
+
+    // pause program
+    app.route('/pause').get((req, res) => {
+        Controller.isRun(2);
+        res.send('Program Dihentikan Sementara');
+        res.redirect('/google.html');
+        res.end();
+    })
+
+    // resume program
+    app.route('/resume').get((req, res) => {
+        Controller.isRun(1);
+        res.send('Program Dijalankan kembali');
+        res.redirect('/google.html');
+        res.end();
+    })
+
+    // stop program
+    app.route('/stop').get((req, res) => {
+        Controller.isRun(3);
+        res.send('Program Dihentikan');
+        res.redirect('/google.html');
+        res.end();
+    })
+
+
 
 }

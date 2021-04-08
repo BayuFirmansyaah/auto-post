@@ -57,7 +57,7 @@ $.ajax({
                                     <td width="250px">${data.judul}</td>
                                     <td width="150px">${nama}</td>
                                     <td width="100px" class="text-center">${data.kode}</td>
-                                    <td>${image}${image}${image}${image}</td>
+                                    <td>${image}</td>
                                  </tr>
                             `;
             i += 1;

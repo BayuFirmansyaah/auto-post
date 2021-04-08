@@ -77,6 +77,21 @@ exports.addAccountUser = function (req, res) {
 
 }
 
+// add data item secara manual
+exports.addItemManually = function(req,res){
+    let username = req.body.username;
+    let kode = req.body.kode;
+    let judul = req.body.judul;
+    let kategori = req.body.kategori;
+    let deskripsi = req.body.deskripsi;
+    let gambar = req.body.gambar;
+    let id_user = req.body.id;
+    db.query("INSERT INTO item (id_user,account,kode,judul,kategori,deskripsi,gambar) VALUES(?,?,?,?,?,?,?)",[id_user,username,kode,judul,kategori,deskripsi,gambar],(err)=>{
+        if(err){
+            console.log(err);
+        }
+    })
+}
 
 
 // ======================================================================================

@@ -73,8 +73,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col-10">
-                        <button class="btn btn-success mr-auto ml-3" data-toggle="modal" data-target="#modalFile"><i
-                                class="fas fa-plus"></i> Add</button>
+                        <div class="dropdown">
+                            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-plus"></i> <span>ADD</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <button class="dropdown-item" data-toggle="modal" data-target="#modalFile">Add Via File
+                                    .xlsx</button>
+                                <button class="dropdown-item" data-toggle="modal" data-target="#modalAddManually">Add
+                                    Via Manually</button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-2">
@@ -129,6 +139,70 @@
                             <label class="custom-file-label" for="customFile">Choose file</label>
                             <input type="hidden" name="id" value="" class="id_user">
                         </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                    <button type="submit" class="btn btn-success">save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal add manually -->
+    <div class="modal fade" id="modalAddManually" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add List Inventaris</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="http://localhost:3000/add/item/manually" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Username</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" name="username">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Kode</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" name="kode">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Judul Barang</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" name ="judul">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Kategori</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" name="kategori">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Deskripsi</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="deskripsi"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Gambar</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" name="gambar">
+                        </div>
+                        <input type="hidden" name="id" value="" class="id_user">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
