@@ -1,5 +1,10 @@
-module.exports = function(app) {
+module.exports = function (app) {
     let Controller = require('./controller');
+
+
+    // ==================================================================================
+    // ======================= bagian untuk end point run program =======================
+    // ==================================================================================
 
     // root index
     app.route('/').get((req, res) => {
@@ -24,7 +29,7 @@ module.exports = function(app) {
     })
 
     // run program
-    app.route('/run').post(async(req, res) => {
+    app.route('/run').post(async (req, res) => {
         let data = req.body;
         await Controller.isRun(1);
         Controller.Run(data);
@@ -51,23 +56,85 @@ module.exports = function(app) {
 
     // stop program
     app.route('/stop').get((req, res) => {
-            Controller.isRun(3);
-            res.send('Program Dihentikan');
-            res.redirect('/google.html');
-            res.end();
-        })
-    
+        Controller.isRun(3);
+        res.send('Program Dihentikan');
+        res.redirect('/google.html');
+        res.end();
+    })
+
+
+    // ==================================================================================
+    // ============================ bagian untuk end point get ==========================
+    // ==================================================================================
+
     // mendapatkan data account
     app.route('/get/account/:id_user').get((req, res) => {
         Controller.getDataAccount(res, req);
     });
 
-    // melakukan convert dari excel to json untuk file account
-    app.route('/convert/account').post((req, res) => {
-        Controller.convertAccount(req, res);
-        res.redirect('/google.html');
-        res.end();
+    // mendapatkan data item
+    app.route('/get/item/:id_user').get((req, res) => {
+        Controller.getDataItem(res, req);
+    });
+
+    // mendapatkan data path
+    app.route('/get/path/:id_user').get((req, res) => {
+        Controller.getPath(req, res);
     })
+
+    // mendapatkan data spesifik akun
+    app.route('/get/account/detail/:id_akun').get((req, res) => {
+        Controller.getDetailAkun(req, res);
+    })
+
+    // mendapatkan data item yang akan di run
+    app.route('/get/item/run/:id').get((req, res) => {
+        Controller.getItemRun(req, res);
+    })
+
+
+    // ==================================================================================
+    // ============================ bagian untuk end point add ==========================
+    // ==================================================================================
+
+    // mengubah & menambahkan path image
+    app.route('/add/path').post((req, res) => {
+        Controller.setPath(req, res);
+    })
+
+    // menambahkan data akun facebook secara maual
+    app.route('/add/account').post((req, res) => {
+        Controller.addAccount(req, res);
+    })
+    // menambahkan data akun user
+    app.route('/add/account/user').post((req, res) => {
+        Controller.addAccountUser(req, res);
+    })
+
+
+    // ===================================================================================
+    // =========================== bagian untuk end point update =========================
+    // ===================================================================================
+
+    // mengubah data akun facebook
+    app.route('/update/account').post((req, res) => {
+        Controller.updateAkun(req, res);
+    })
+
+    // mengubah data item facebook
+    app.route('/update/item').post((req, res) => {
+        Controller.updateitem(req, res);
+    })
+
+    // merubah seluru email
+    app.route('/update/all/email').post((req, res) => {
+        Controller.updateEmailAll(req, res);
+    });
+
+
+    // ==================================================================================
+    // ========================= bagian untuk end point delete ==========================
+    // ==================================================================================
 
     // menghapus akun
     app.route('/delete/account/:id').get((req, res) => {
@@ -89,61 +156,23 @@ module.exports = function(app) {
         Controller.hapusSemuaBarang(req, res);
     })
 
-    // mendapatkan data item
-    app.route('/get/item/:id_user').get((req, res) => {
-        Controller.getDataItem(res, req);
-    });
+
+    // ==================================================================================
+    // ====================== bagian untuk end point convert ===========================
+    // ==================================================================================
+
+    // melakukan convert dari excel to json untuk file account
+    app.route('/convert/account').post((req, res) => {
+        Controller.convertAccount(req, res);
+        res.redirect('/google.html');
+        res.end();
+    })
 
     // melakukan convert dari excel to json untuk file item
     app.route('/convert/item').post((req, res) => {
         Controller.convertDataItem(req, res);
         res.redirect('/indexing.html');
         res.end();
-    })
-
-    // mendapatkan data path
-    app.route('/get/path/:id_user').get((req, res) => {
-        Controller.getPath(req, res);
-    })
-
-    // mengubah & menambahkan path image
-    app.route('/add/path').post((req, res) => {
-        Controller.setPath(req, res);
-    })
-
-    // mendapatkan data spesifik akun
-    app.route('/get/account/detail/:id_akun').get((req,res)=>{
-        Controller.getDetailAkun(req,res);
-    })
-
-    // mengubah data akun facebook
-    app.route('/update/account').post((req,res)=>{
-        Controller.updateAkun(req,res);
-    })
-
-    // mengubah data item facebook
-    app.route('/update/item').post((req,res)=>{
-        Controller.updateitem(req,res);
-    })
-
-    // menambahkan data akun facebook secara maual
-    app.route('/add/account').post((req,res)=>{
-        Controller.addAccount(req,res);
-    })
-
-    // menambahkan data akun user
-    app.route('/add/account/user').post((req, res) => {
-        Controller.addAccountUser(req, res);
-    })
-    
-    // merubah seluru email
-    app.route('/update/all/email').post((req,res)=>{
-        Controller.updateEmailAll(req,res);
-    });
-
-    // mendapatkan data item yang akan di run
-    app.route('/get/item/run/:id').get((req,res)=>{
-        Controller.getItemRun(req,res);
     })
 
 }
