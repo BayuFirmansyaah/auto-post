@@ -117,23 +117,23 @@ $('.btn-play').on('click', async function () {
 
             // menyimpan data yang akan dikirim ke server
             let data = {
-                akun: localStorage.getItem('akun'),
-                barang: localStorage.getItem('item'),
+                akun: JSON.parse(localStorage.getItem('akun')),
+                barang: JSON.parse(localStorage.getItem('item')),
                 path: $('.path').val()
             };
 
             console.table(data);
 
-            // $.ajax({
-            //     url: 'http://localhost:3000/run',
-            //     type: 'post',
-            //     contentType: 'application/json',
-            //     data: JSON.stringify(data),
-            //     dataType: 'json',
-            //     success: (data) => {
-            //         alert(data);
-            //     }
-            // })
+            $.ajax({
+                url: 'http://localhost:3000/run',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                dataType: 'json',
+                success: (data) => {
+                    alert(data);
+                }
+            })
         } else {
             alert("Tidak ada data akun yang dipilih");
         }

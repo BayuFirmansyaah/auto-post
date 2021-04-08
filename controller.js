@@ -414,6 +414,7 @@ exports.isRun = function (value) {
 
 //run auto-post
 exports.Run = async (data) => {
+    console.log(data)
     //insert code here
     let browser = await puppeteer.launch({ headless: false });
     const context = browser.defaultBrowserContext();
@@ -424,6 +425,7 @@ exports.Run = async (data) => {
     await page.setViewport({ width: 1200, height: 800 });
     console.log("link jalan")
 
+   
 
     for (let i = 0; i < data.akun.length; i++) {
         console.log(data.akun[i]);
@@ -431,6 +433,7 @@ exports.Run = async (data) => {
             await page.goto("https://www.facebook.com/login", {
                 waitUntil: "networkidle2",
             });
+            console.log(data.akun[i].username);
             await page.click("#email");
             await page.keyboard.down("Control");
             await page.keyboard.press("KeyA");
