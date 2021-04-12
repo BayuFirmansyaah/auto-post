@@ -10,6 +10,7 @@ const { send } = require('process');
 const { get } = require('http');
 const salt = bcrypt.genSaltSync(10);
 let onRun = 0;
+const clipboardy = require('clipboardy');
 
 
 // ======================================================================================
@@ -78,7 +79,7 @@ exports.addAccountUser = function (req, res) {
 }
 
 // add data item secara manual
-exports.addItemManually = function(req,res){
+exports.addItemManually = function (req, res) {
     let username = req.body.username;
     let kode = req.body.kode;
     let judul = req.body.judul;
@@ -86,8 +87,8 @@ exports.addItemManually = function(req,res){
     let deskripsi = req.body.deskripsi;
     let gambar = req.body.gambar;
     let id_user = req.body.id;
-    db.query("INSERT INTO item (id_user,account,kode,judul,kategori,deskripsi,gambar) VALUES(?,?,?,?,?,?,?)",[id_user,username,kode,judul,kategori,deskripsi,gambar],(err)=>{
-        if(err){
+    db.query("INSERT INTO item (id_user,account,kode,judul,kategori,deskripsi,gambar) VALUES(?,?,?,?,?,?,?)", [id_user, username, kode, judul, kategori, deskripsi, gambar], (err) => {
+        if (err) {
             console.log(err);
         }
     })
@@ -425,7 +426,7 @@ exports.Run = async (data) => {
     await page.setViewport({ width: 1200, height: 800 });
     console.log("link jalan")
 
-   
+
 
     for (let i = 0; i < data.akun.length; i++) {
         console.log(data.akun[i]);
@@ -449,6 +450,8 @@ exports.Run = async (data) => {
             });
             for (let j = 0; j < data.barang.length; j++) {
                 if (data.barang[j].account == data.akun[i].username) {
+                    clipboardy.writeSync(data.barang[j].deskripsi);
+
                     //melakukan repeat pada foto
                     let nameImage = data.barang[j].gambar;
                     console.log(nameImage);
@@ -612,10 +615,17 @@ exports.Run = async (data) => {
                     await page.evaluate(() =>
                         document.querySelectorAll("[data-pagelet='root'] div[role='menu'] div[aria-checked='false']")[0].click()
                     );
-                    await page.type(
+
+                   
+                    // await page.click('[aria-describedby="jsc_c_1g"]');
+                     await page.type(
                         "[aria-label='Keterangan'] textarea",
-                        data.barang[j].deskripsi, { delay: -100 }
+                        '', { delay: -100 }
                     );
+                    await page.keyboard.down("Control");
+                    await page.keyboard.press("KeyV");
+                    await page.keyboard.up("Control");
+                   
 
 
                     await page.evaluate(() => {
