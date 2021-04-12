@@ -49,7 +49,7 @@ $.ajax({
                 image += `<img src="https://images.tokopedia.net/img/cache/700/VqbcmM/2020/7/18/013c1e4d-0ae7-4521-ae38-36835f974722.jpg" class="thumbnail-produk" >`;
             })
             row += `
-                                <tr>
+                                <tr class="baris-data">
                                     <th scope="row">${i}</th>
                                      <td class="text-center"> 
                                         <input type="checkbox" class="checked id-barang" value="${data.id_barang}" >
@@ -64,7 +64,19 @@ $.ajax({
         });
         $('.table-body').html(row);
 
+        $('.baris-data').on('click',function() {
+            let cek = $(".id-barang", this)
+            if (cek.is(":checked")){
+                $(".id-barang", this).removeAttr('checked');
+            }else{
+                $(".id-barang", this).attr('checked', 'checked');
+            }
+            
+        })
 
+        let baris = document.querySelectorAll('.baris-data');
+
+        
         $('.btn-delete').on('click', function () {
             let id = $(this).attr('data-id');
             let konfirmasi = confirm("apakah anda yakin ingin menghapus data ini ?");

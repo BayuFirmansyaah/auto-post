@@ -238,10 +238,9 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">Set Path</span>
                                 </div>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input input-path" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                </div>
+                                <input type="text" class="form-control" aria-label="password" name="path"
+                                    aria-describedby="basic-addon1">
+                                <input type="hidden" name="id_user" value="" class="id_user">
                             </div>
                         </div>
                 </div>
@@ -391,6 +390,8 @@
                 close.forEach((close) => {
                     close.click();
                 })
+            }else if(key.keyCode == "16"||key.keyCode == "70"){
+                alert("berhasil")
             }
         }
     </script>

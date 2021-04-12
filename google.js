@@ -35,7 +35,7 @@ $.ajax({
         let i = 1;
         akun.forEach(data => {
             row += `
-                    <tr>
+                    <tr class="baris-data">
                         <th scope="row">${i}</th>
                         <td class="text-center">
                             <input type="checkbox" class="checked id-facebook" value="${data.id}" 
@@ -49,6 +49,16 @@ $.ajax({
 
         // mengisi data kedalam tabel
         $('.table-body').html(row);
+
+        $('.baris-data').on('click', function () {
+            let cek = $(".id-facebook", this)
+            if (cek.is(":checked")) {
+                $(".id-facebook", this).removeAttr('checked');
+            } else {
+                $(".id-facebook", this).attr('checked', 'checked');
+            }
+
+        })
 
         // jika tombol checked di tekan
         $('.chekedAll').on('change', function () {
