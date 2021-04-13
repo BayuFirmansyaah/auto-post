@@ -11,7 +11,6 @@ const { get } = require('http');
 const salt = bcrypt.genSaltSync(10);
 let onRun = 0;
 const clipboardy = require('clipboardy');
-const fs = require('fs');
 
 
 // ======================================================================================
