@@ -426,29 +426,38 @@ exports.Run = async (data) => {
     await page.setViewport({ width: 1200, height: 800 });
     console.log("link jalan")
 
-    // let items = [];
-    // let item = []
-    // for (let barang = 0; barang < data.barang.length; barang++) {
-    //     let last = item.length;
-    //     last -=1;
-    //     if(last < 1){
-    //         item.push(data.barang[barang]);
-    //     }else{
-    //         if(item[last].account == data.barang[barang].account){
-    //             item.push(data.barang[barang])
-    //         }else{
-    //             items.push(item);
-    //             item = [];
-                
-    //         }
-    //     }    
-    // }
+    let items = [];
+    let item = [];
 
-    // console.log(items)
+    let lengthBarang = data.barang.length;
+    lengthBarang -= 1;
 
+    for (let i = 0; i < data.barang.length; i++) {
+        let last = item.length;
+        if (last > 0) {
+            last -= 1;
+            if (item[last].account == data.barang[i].account) {
+                item.push(data.barang[i])
+                // console.log("berhasi di tambahkan ketika nilai sama")
+                if (i == lengthBarang) {
+                    items.push(item);
+                    item = [];
+                }
+            } else if (item[last].account !== data.barang[i].account) {
+                // console.log("berhasi di tambahkan ketika nilai berbeda");
+                items.push(item);
+                item = [];
+                item.push(data.barang[i])
+            }
+        } else {
+            // console.log("berhasi di tambahkan ketika array kosong")
+            item.push(data.barang[i]);
+        }
+    }
 
+    let data_barang = items[0];
 
-    for (let i = 0; i < data.akun.length; i++) {
+    /*for (let i = 0; i < data.akun.length; i++) {
          if (onRun == 1) {
              await page.goto("https://www.facebook.com/login", {
                  waitUntil: "networkidle2",
@@ -468,13 +477,9 @@ exports.Run = async (data) => {
                  waitUntil: "networkidle2",
              });
  
-            
- 
-            // let data_barang = items[0][i];
-            // console.log(data_barang);
  
              for (let j = 0; j < data.barang.length; j++) {
-                 if (data.barang[j].account == data.akun[i].username) {
+                /* if (data.barang[j].account == data.akun[i].username) {
                      clipboardy.writeSync(data.barang[j].deskripsi);
  
                      //melakukan repeat pada foto
@@ -694,7 +699,7 @@ exports.Run = async (data) => {
              return false;
          }
 
-    }
+    }*/
 
     //Close Browser
     await browser.close();
