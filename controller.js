@@ -11,7 +11,7 @@ const { get } = require('http');
 const salt = bcrypt.genSaltSync(10);
 let onRun = 0;
 const clipboardy = require('clipboardy');
-const fs = require('fs');
+const date = require('date-and-time');
 
 
 // ======================================================================================
@@ -670,6 +670,22 @@ exports.Run = async (data) => {
 
                     await page.waitForSelector("[aria-label='Terbitkan']");
                     await page.click("[aria-label='Terbitkan']");
+                    
+                    let log = fs.readFileSync('.log.json','utf-8');
+                        log = JSON.parse(log);
+
+                    const now = new Date();
+                    let waktu = date.format(now, 'YYYY/MM/DD HH:mm:ss');
+                    let dataLog = {
+                        id: data_barang[j].id_barang,
+                        nama: data_barang[j].Judul,
+                        kode : data_barang[j].kode,
+                        status : 'success',
+                        time : waktu,
+                    }
+
+                    log.push(dataLog);
+                    fs.writeFileSync('./log.josn',JSON.stringify(log,null,2));
                 }
 
 
