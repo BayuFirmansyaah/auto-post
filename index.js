@@ -54,9 +54,9 @@ $.ajax({
                                      <td class="text-center"> 
                                         <input type="checkbox" class="checked id-barang" value="${data.id_barang}" >
                                     </td>
-                                    <td width="250px">${data.judul}</td>
-                                    <td width="150px">${nama}</td>
-                                    <td width="100px" class="text-center">${data.kode}</td>
+                                    <td class="kolom1">${data.judul}</td>
+                                    <td class="kolom2">${nama}</td>
+                                    <td class="text-center kolom3">${data.kode}</td>
                                     <td>${image}</td>
                                  </tr>
                             `;

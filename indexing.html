@@ -39,16 +39,16 @@
     <!-- sidebar -->
     <div class="sidebar">
         <h6 class="text-heading text-primary">DATA ACCOUNTS</h6>
-        <a href="/google.html">
-            <p class="sub-heading "><i class="fab fa-facebook"></i> Facebook Accounts</p>
-        </a>
-        <h6 class="text-heading text-primary">INVENTORY</h6>
-        <a href="/indexing.html">
-            <p class="sub-heading "><i class="fas fa-server"></i> Item</p>
-        </a>
-        <div data-toggle="modal" data-target="#path">
-            <p class="sub-heading "><i class="fas fa-map-marker-alt"></i> Path Image</p>
-        </div>
+            <a href="/google.html">
+                <p class="sub-heading "><i class="fab fa-facebook"></i> Facebook Accounts</p>
+            </a>
+            <h6 class="text-heading text-primary">INVENTORY</h6>
+            <a href="/indexing.html">
+                <p class="sub-heading "><i class="fas fa-server"></i> Item</p>
+            </a>
+            <div data-toggle="modal" data-target="#path">
+                <p class="sub-heading "><i class="fas fa-map-marker-alt"></i> Path Image</p>
+            </div>
 
         <!--<h6 class="text-heading text-primary">MORE ACTION</h6>
         <div data-toggle="modal" data-target="#add-akun" class="add">
@@ -70,7 +70,7 @@
             <p class="text-secondary">Add Inventaris item here!</p>
         </div>
         <div class="data-table">
-            <div class="container">
+            <div class="container-fluid " style="padding: 15px;">
                 <div class="row">
                     <div class="col-10">
                         <div class="dropdown">
@@ -94,9 +94,9 @@
                         <button class="btn btn-primary  btn-save"><i class="fas fa-save"></i></button>
                     </div>
                 </div>
-                <div class="row mt-3">
-                    <div class="col" style="height: 490px;overflow-y: scroll;">
-                        <table class="table table-bordered table-hover">
+                <div class="row mt-3 row-table">
+                    <div class="col-12" style="height: 425px;overflow-y: scroll;">
+                        <table class="table table-bordered table-hover" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th scope="col" width="30px">no</th>
@@ -184,7 +184,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Judul Barang</label>
                                     <input type="text" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp" name ="judul">
+                                        aria-describedby="emailHelp" name="judul">
                                 </div>
                             </div>
                             <div class="col">
@@ -196,7 +196,8 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Deskripsi</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="deskripsi"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                name="deskripsi"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Gambar</label>
@@ -382,18 +383,51 @@
     <script src="index.js"></script>
     <script src="run.js"></script>
     <script>
-        window.addEventListener("keydown", checkKeyPress, false);
-
-        function checkKeyPress(key) {
-            if (key.keyCode == "27") {
-                let close = document.querySelectorAll(".btn-close");
-                close.forEach((close) => {
-                    close.click();
-                })
-            }else if(key.keyCode == "16"||key.keyCode == "70"){
-                alert("berhasil")
-            }
+        var map = {}; // You could also use an array
+onkeydown = onkeyup = function(e){
+    e = e || event; // to deal with IE
+    map[e.keyCode] = e.type == 'keydown';
+    /* insert conditional here */
+    if(map[16] && map[70]){ // CTRL+SHIFT+A
+        let none = document.querySelector('.sidebar-none');
+        let block = document.querySelector('.sidebar-block');
+        if(none == null){
+            document.querySelector('.sidebar').classList.add('sidebar-none')
+            document.querySelector('.sidebar').classList.remove('sidebar-block')
+            document.querySelector('.content').classList.add('table-none')
+            document.querySelector('table').classList.add('table-full')
+            document.querySelector('.row-table').classList.add('.row-table-none')
+            $('.sidebar').html(`  <a href="/google.html">
+            <p class="sub-heading "><i class="fab fa-facebook"></i></p>
+        </a>
+        <a href="/indexing.html">
+            <p class="sub-heading "><i class="fas fa-server"></i></p>
+        </a>
+        <div data-toggle="modal" data-target="#path">
+            <p class="sub-heading "><i class="fas fa-map-marker-alt"></i></p>
+        </div>`)
+            
+        }else if(block == null){
+            document.querySelector('.sidebar').classList.remove('sidebar-none')
+            document.querySelector('.sidebar').classList.add('sidebar-block')
+            document.querySelector('.content').classList.remove('table-none')
+            document.querySelector('.table').classList.remove('table-full')
+            document.querySelector('.row-table').classList.remove('.row-table-none')
+            $('.sidebar').html(` <h6 class="text-heading text-primary">DATA ACCOUNTS</h6>
+            <a href="/google.html">
+                <p class="sub-heading "><i class="fab fa-facebook"></i> Facebook Accounts</p>
+            </a>
+            <h6 class="text-heading text-primary">INVENTORY</h6>
+            <a href="/indexing.html">
+                <p class="sub-heading "><i class="fas fa-server"></i> Item</p>
+            </a>
+            <div data-toggle="modal" data-target="#path">
+                <p class="sub-heading "><i class="fas fa-map-marker-alt"></i> Path Image</p>
+            </div>`)
         }
+    map = {};
+}
+}
     </script>
 
 </body>

@@ -71,6 +71,7 @@ body {
        min-height: 300px;
        background-color: #e7e7e8;
        padding: 15px;
+       transition: .3s ease-in-out;
    }
 
    .google-account {
@@ -128,6 +129,24 @@ body {
    .data-table .container {
        padding-top: 10px;
    }
+   .kolom1{
+       width:250px;
+   }
+   .kolom2{
+        width:150px;
+    }
+    .kolom3{
+        width:100px;
+    }
+    .colom1{
+        width:350px;    
+    }
+    .colom2{
+        width:250px;
+    }
+    .colom3{
+        width:200px;
+    }
 .thumbnail-produk{
     width:40px;
     height: 40px;
@@ -135,3 +154,28 @@ body {
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 7);
     float:left;
 }
+
+
+.sidebar-none{
+    left:0%;
+    transition: .3s ease-in-out;
+    width: 5%;
+}
+
+.sidebar-block{
+    left:0;
+    transition: .3s ease-in-out;
+}
+.table-none{
+    position:absolute;
+    margin-left: 5%;
+    width: 95%;
+    transition: .3s ease-in-out;
+    overflow-x: auto;
+}
+
+.table-full{
+    width:100%;
+}
+
+
