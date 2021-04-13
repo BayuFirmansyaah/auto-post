@@ -426,273 +426,279 @@ exports.Run = async (data) => {
     await page.setViewport({ width: 1200, height: 800 });
     console.log("link jalan")
 
-    // let items = [];
-    // let item = []
-    // for (let barang = 0; barang < data.barang.length; barang++) {
-    //     let last = item.length;
-    //     last -=1;
-    //     if(last < 1){
-    //         item.push(data.barang[barang]);
-    //     }else{
-    //         if(item[last].account == data.barang[barang].account){
-    //             item.push(data.barang[barang])
-    //         }else{
-    //             items.push(item);
-    //             item = [];
-                
-    //         }
-    //     }    
-    // }
+    let items = [];
+    let item = [];
 
-    // console.log(items)
+    let lengthBarang = data.barang.length;
+    lengthBarang -= 1;
+
+    for (let i = 0; i < data.barang.length; i++) {
+        let last = item.length;
+        if (last > 0) {
+            last -= 1;
+            if (item[last].account == data.barang[i].account) {
+                item.push(data.barang[i])
+                // console.log("berhasi di tambahkan ketika nilai sama")
+                if (i == lengthBarang) {
+                    items.push(item);
+                    item = [];
+                }
+            } else if (item[last].account !== data.barang[i].account) {
+                // console.log("berhasi di tambahkan ketika nilai berbeda");
+                items.push(item);
+                item = [];
+                item.push(data.barang[i])
+            }
+        } else {
+            // console.log("berhasi di tambahkan ketika array kosong")
+            item.push(data.barang[i]);
+        }
+    }
 
 
 
     for (let i = 0; i < data.akun.length; i++) {
-         if (onRun == 1) {
-             await page.goto("https://www.facebook.com/login", {
-                 waitUntil: "networkidle2",
-             });
-             console.log(data.akun[i].username);
-             await page.click("#email");
-             await page.keyboard.down("Control");
-             await page.keyboard.press("KeyA");
-             await page.keyboard.up("Control");
-             await page.keyboard.press("Backspace");
-             await page.type("#email", data.akun[i].username, { delay: 30 });
-             await page.type("#pass", data.akun[i].password, { delay: 30 });
-             await page.click("#loginbutton");
-             await page.waitForNavigation({ waitUntil: "networkidle0" });
-             await page.waitFor(3000);
-             await page.goto("https://www.facebook.com/marketplace/create/item", {
-                 waitUntil: "networkidle2",
-             });
- 
-            
- 
-            // let data_barang = items[0][i];
-            // console.log(data_barang);
- 
-             for (let j = 0; j < data.barang.length; j++) {
-                 if (data.barang[j].account == data.akun[i].username) {
-                     clipboardy.writeSync(data.barang[j].deskripsi);
- 
-                     //melakukan repeat pada foto
-                     let nameImage = data.barang[j].gambar;
-                     console.log(nameImage);
-                     nameImage = nameImage.split(" ");
- 
-                     for (let k = 0; k < nameImage.length; k++) {
-                         const inputUploadHandle = await page.$("input[type=file]");
-                         let fileToUpload = data.path + nameImage[k];
-                         // Sets the value of the file input to fileToUpload
-                         inputUploadHandle.uploadFile(fileToUpload);
-                     }
- 
-                     let namaBarang = data.barang[j].kode + " " + data.barang[j].judul + "(FREE ONGKIR+COD)";
-                     // melakukan pengisian form
-                     await page.type(
-                         "[aria-label='Judul'] input[type='text']",
-                         namaBarang, { delay: 30 }
-                     );
-                     await page.type("[aria-label='Harga'] input[type='text']", "123", {
-                         delay: 30,
-                     });
-                     await page.click("[aria-label='Kategori']");
-                     let keyword = data.barang[j].kategori;
-                     keyword.toLowerCase();
- 
-                     //inisialisasi index
-                     let index = 0;
-                     switch (keyword) {
-                         case "peralatan":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[2].click()
-                             });
-                             break;
-                         case "mebel":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[3].click()
-                             });
-                             break;
-                         case "peralatan rumah tangga":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[4].click()
-                             });
-                             break;
-                         case "kebun":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[5].click()
-                             });
-                             break;
-                         case "perkakas":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[6].click()
-                             });
-                             break;
-                         case "video game":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[7].click()
-                             });
-                             break;
-                         case "buku, film, & musik":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[8].click()
-                             });
-                             break;
-                         case "tas & koper":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[9].click()
-                             });
-                             break;
-                         case "sepatu wanita":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[10].click()
-                             });
-                             break;
-                         case "sepatu pria":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[11].click()
-                             });
-                             break;
-                         case "aksesoris":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[12].click()
-                             });
-                             break;
-                         case "kecantikan":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[13].click()
-                             });
-                             break;
-                         case "kebutuhan hewan peliharaan":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[14].click()
-                             });
-                             break;
-                         case "anak-anak":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[15].click()
-                             });
-                             break;
-                         case "mainan":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[16].click()
-                             });
-                             break;
-                         case "elektronik":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[17].click()
-                             });
-                             break;
-                         case "telepon seluler":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[18].click()
-                             });
-                             break;
-                         case "sepeda":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[19].click()
-                             });
-                             break;
-                         case "kerajinan":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[20].click()
-                             });
-                             break;
-                         case "olahraga":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[21].click()
-                             });
-                             break;
-                         case "otomotif":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[22].click()
-                             });
-                             break;
-                         case "alat musik":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[23].click()
-                             });
-                             break;
-                         case "koleksi":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[24].click()
-                             });
-                             break;
-                         case "garage sale":
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[25].click()
-                             });
-                             break;
-                         default:
-                             await page.evaluate(() => {
-                                 document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[26].click()
-                             });
-                             break;
-                     }
-                     await page.evaluate(() => {
-                         document.querySelector("[aria-label='Kondisi']").click();
-                     })
-                     await page.waitForSelector(
-                         "[data-pagelet='root'] div[role='menu'] div[aria-checked='false']"
-                     );
-                     await page.evaluate(() =>
-                         document.querySelectorAll("[data-pagelet='root'] div[role='menu'] div[aria-checked='false']")[0].click()
-                     );
- 
-                    
-                      await page.type(
-                         "[aria-label='Keterangan'] textarea",
-                         '', { delay: -100 }
-                     );
-                     await page.keyboard.down("Control");
-                     await page.keyboard.press("KeyV");
-                     await page.keyboard.up("Control");
-                    
- 
- 
-                     await page.evaluate(() => {
-                         let selanjutnya = document.querySelector("[aria-label='Selanjutnya']");
-                         if (selanjutnya) {
-                             selanjutnya.click();
-                         } else {
-                             selanjutnya = null;
-                         }
-                     })
- 
-                     await page.waitForSelector("[aria-label='Terbitkan']");
-                     await page.click("[aria-label='Terbitkan']");
- 
-                 }
- 
-                 await page.goto("https://www.facebook.com/marketplace/create/item", {
-                     waitUntil: "networkidle2",
-                 });
- 
-             }
-             await page.click("[aria-label='Akun']");
-             page.evaluate(() => {
-                 let btn = document.querySelectorAll('.ow4ym5g4 ')
-                 for (let keluar = 0; keluar < btn.length; keluar++) {
-                     if (btn[keluar].innerText == "Keluar") {
-                         btn[keluar].click();
-                     }
-                 }
-             });
-             let url = await page.url();
-             await page.waitFor(500)
-             await page.goto("https://www.facebook.com/login", {
-                 waitUntil: "networkidle2",
-             });
-             console.log("logout")
-         } else if (onRun == 2) {
-             i -= 1;
-         } else {
-             onRun = 0;
-             browser.close();
-             return false;
-         }
+        if (onRun == 1) {
+            await page.goto("https://www.facebook.com/login", {
+                waitUntil: "networkidle2",
+            });
+            console.log(data.akun[i].username);
+            await page.click("#email");
+            await page.keyboard.down("Control");
+            await page.keyboard.press("KeyA");
+            await page.keyboard.up("Control");
+            await page.keyboard.press("Backspace");
+            await page.type("#email", data.akun[i].username, { delay: 30 });
+            await page.type("#pass", data.akun[i].password, { delay: 30 });
+            await page.click("#loginbutton");
+            await page.waitForNavigation({ waitUntil: "networkidle0" });
+            await page.waitFor(3000);
+            await page.goto("https://www.facebook.com/marketplace/create/item", {
+                waitUntil: "networkidle2",
+            });
+
+            let data_barang = items[i];
+
+            for (let j = 0; j < data_barang.length; j++) {
+                if (data_barang[j].account == data.akun[i].username) {
+                    clipboardy.writeSync(data_barang[j].deskripsi);
+
+                    //melakukan repeat pada foto
+                    let nameImage = data_barang[j].gambar;
+                    console.log(nameImage);
+                    nameImage = nameImage.split(" ");
+
+                    for (let k = 0; k < nameImage.length; k++) {
+                        const inputUploadHandle = await page.$("input[type=file]");
+                        let fileToUpload = data.path + nameImage[k];
+                        // Sets the value of the file input to fileToUpload
+                        inputUploadHandle.uploadFile(fileToUpload);
+                    }
+
+                    let namaBarang = data_barang[j].kode + " " + data_barang[j].judul + "(FREE ONGKIR+COD)";
+                    // melakukan pengisian form
+                    await page.type(
+                        "[aria-label='Judul'] input[type='text']",
+                        namaBarang, { delay: 30 }
+                    );
+                    await page.type("[aria-label='Harga'] input[type='text']", "123", {
+                        delay: 30,
+                    });
+                    await page.click("[aria-label='Kategori']");
+                    let keyword = data_barang[j].kategori;
+                    keyword.toLowerCase();
+
+                    //inisialisasi index
+                    let index = 0;
+                    switch (keyword) {
+                        case "peralatan":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[2].click()
+                            });
+                            break;
+                        case "mebel":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[3].click()
+                            });
+                            break;
+                        case "peralatan rumah tangga":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[4].click()
+                            });
+                            break;
+                        case "kebun":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[5].click()
+                            });
+                            break;
+                        case "perkakas":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[6].click()
+                            });
+                            break;
+                        case "video game":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[7].click()
+                            });
+                            break;
+                        case "buku, film, & musik":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[8].click()
+                            });
+                            break;
+                        case "tas & koper":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[9].click()
+                            });
+                            break;
+                        case "sepatu wanita":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[10].click()
+                            });
+                            break;
+                        case "sepatu pria":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[11].click()
+                            });
+                            break;
+                        case "aksesoris":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[12].click()
+                            });
+                            break;
+                        case "kecantikan":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[13].click()
+                            });
+                            break;
+                        case "kebutuhan hewan peliharaan":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[14].click()
+                            });
+                            break;
+                        case "anak-anak":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[15].click()
+                            });
+                            break;
+                        case "mainan":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[16].click()
+                            });
+                            break;
+                        case "elektronik":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[17].click()
+                            });
+                            break;
+                        case "telepon seluler":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[18].click()
+                            });
+                            break;
+                        case "sepeda":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[19].click()
+                            });
+                            break;
+                        case "kerajinan":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[20].click()
+                            });
+                            break;
+                        case "olahraga":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[21].click()
+                            });
+                            break;
+                        case "otomotif":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[22].click()
+                            });
+                            break;
+                        case "alat musik":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[23].click()
+                            });
+                            break;
+                        case "koleksi":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[24].click()
+                            });
+                            break;
+                        case "garage sale":
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[25].click()
+                            });
+                            break;
+                        default:
+                            await page.evaluate(() => {
+                                document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[26].click()
+                            });
+                            break;
+                    }
+                    await page.evaluate(() => {
+                        document.querySelector("[aria-label='Kondisi']").click();
+                    })
+                    await page.waitForSelector(
+                        "[data-pagelet='root'] div[role='menu'] div[aria-checked='false']"
+                    );
+                    await page.evaluate(() =>
+                        document.querySelectorAll("[data-pagelet='root'] div[role='menu'] div[aria-checked='false']")[0].click()
+                    );
+
+
+                    await page.type(
+                        "[aria-label='Keterangan'] textarea",
+                        '', { delay: -100 }
+                    );
+                    await page.keyboard.down("Control");
+                    await page.keyboard.press("KeyV");
+                    await page.keyboard.up("Control");
+
+
+
+                    await page.evaluate(() => {
+                        let selanjutnya = document.querySelector("[aria-label='Selanjutnya']");
+                        if (selanjutnya) {
+                            selanjutnya.click();
+                        } else {
+                            selanjutnya = null;
+                        }
+                    })
+
+                    await page.waitForSelector("[aria-label='Terbitkan']");
+                    await page.click("[aria-label='Terbitkan']");
+
+                }
+
+                await page.goto("https://www.facebook.com/marketplace/create/item", {
+                    waitUntil: "networkidle2",
+                });
+
+            }
+            await page.click("[aria-label='Akun']");
+            page.evaluate(() => {
+                let btn = document.querySelectorAll('.ow4ym5g4 ')
+                for (let keluar = 0; keluar < btn.length; keluar++) {
+                    if (btn[keluar].innerText == "Keluar") {
+                        btn[keluar].click();
+                    }
+                }
+            });
+            let url = await page.url();
+            await page.waitFor(500)
+            await page.goto("https://www.facebook.com/login", {
+                waitUntil: "networkidle2",
+            });
+            console.log("logout")
+        } else if (onRun == 2) {
+            i -= 1;
+        } else {
+            onRun = 0;
+            browser.close();
+            return false;
+        }
 
     }
 
