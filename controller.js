@@ -11,6 +11,7 @@ const { get } = require('http');
 const salt = bcrypt.genSaltSync(10);
 let onRun = 0;
 const clipboardy = require('clipboardy');
+const fs = require('fs');
 
 
 // ======================================================================================
@@ -669,7 +670,7 @@ exports.Run = async (data) => {
 
                     await page.waitForSelector("[aria-label='Terbitkan']");
                     await page.click("[aria-label='Terbitkan']");
-
+                    
                 }
 
                 await page.goto("https://www.facebook.com/marketplace/create/item", {
