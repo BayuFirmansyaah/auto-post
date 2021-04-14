@@ -74,10 +74,6 @@ let items = localStorage.getItem('daftar_nama');
 
 // jika tombol play ditekan
 $('.btn-play').on('click', async function () {
-    $('.btn-play').addClass('none');
-    $('.btn-play').removeClass('show');
-    $('.btn-pause').addClass('show');
-    $('.btn-pause').removeClass('none');
     if ($('.path').val() == null) {
         alert("Path Belum Di Set")
     } else {
@@ -93,6 +89,11 @@ $('.btn-play').on('click', async function () {
 
         // jika data akun lebih dari no
         if (id_facebook.length > 0) {
+            $('.btn-play').addClass('none');
+            $('.btn-play').removeClass('show');
+            $('.btn-pause').addClass('show');
+            $('.btn-pause').removeClass('none');
+
             let result = await $.ajax({
                 url: 'http://localhost:3000/get/account/' + sessionStorage.getItem("id_user"),
                 success: async (data) => {

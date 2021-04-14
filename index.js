@@ -31,7 +31,7 @@ $.ajax({
     url: 'http://localhost:3000/get/item/' + sessionStorage.getItem("id_user"),
     success: (data) => {
         let Item = data.Search;
-        Item = sortByProperty(Item,"Item.account");
+        Item = sortByProperty(Item, "Item.account");
         let row = "";
         let i = 1;
         let nama;
@@ -44,8 +44,8 @@ $.ajax({
             // melakukan perulangan pada image
             let image = "";
             let gambar = data.gambar;
-                gambar = gambar.split(" ");
-            gambar.forEach((img)=>{
+            gambar = gambar.split(" ");
+            gambar.forEach((img) => {
                 image += `<img src="https://images.tokopedia.net/img/cache/700/VqbcmM/2020/7/18/013c1e4d-0ae7-4521-ae38-36835f974722.jpg" class="thumbnail-produk" >`;
             })
             row += `
@@ -64,19 +64,19 @@ $.ajax({
         });
         $('.table-body').html(row);
 
-        $('.baris-data').on('click',function() {
+        $('.baris-data').on('click', function () {
             let cek = $(".id-barang", this)
-            if (cek.is(":checked")){
+            if (cek.is(":checked")) {
                 $(".id-barang", this).removeAttr('checked');
-            }else{
+            } else {
                 $(".id-barang", this).attr('checked', 'checked');
             }
-            
+
         })
 
         let baris = document.querySelectorAll('.baris-data');
 
-        
+
         $('.btn-delete').on('click', function () {
             let id = $(this).attr('data-id');
             let konfirmasi = confirm("apakah anda yakin ingin menghapus data ini ?");
@@ -173,20 +173,83 @@ $('.btn-edit-all').on('click', function () {
         }
     })
 
-    if (id_barang.length > 0) {
+    if (id_barang.length == 1) {
+        $('.modal-edit-data').addClass('modal-lg');
+        let detailBarang = $.ajax({
+            url: 'http://localhost:3000/get/item/detail/' + id_barang[0],
+            success: (data) => {
+                console.log(data);
+                username = data[0].account;
+                kode = data[0].kode;
+                judul = data[0].judul;
+                kategori = data[0].kategori;
+                desc = data[0].deskripsi;
+                img = data[0].gambar;
+                let contentForm = `
+        <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Username</label>
+                <input type="text" class="form-control" 
+                    aria-describedby="emailHelp" name="username" value=${username}>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="exampleInputPassword1">Kode</label>
+                <input type="text" class="form-control" name="kode" value=${kode}>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Judul Barang</label>
+                <input type="text" class="form-control" 
+                    aria-describedby="emailHelp" name="judul" value=${judul}>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="exampleInputPassword1">Kategori</label>
+                <input type="text" class="form-control" name="kategori" value=${kategori}>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Deskripsi</label>
+        <textarea class="form-control" rows="3"
+            name="deskripsi">${desc}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Gambar</label>
+        <input type="text" class="form-control" name="gambar" value=${img}>
+        <input type="hidden" name="id" value="${id_barang}" class="id_user">
+    </div>
+   `; $('.modal-body-update-username').html(contentForm);
+                $('.modal-edit-akun').attr('action', 'http://localhost:3000/update/item');
+                $('.btn-save-akun').removeClass('disabled');
+                $('.btn-save-akun').removeAttr('disabled', '');
+
+            }, error: (err) => {
+                console.log(err);
+            }
+        });
+
+    } else if (id_barang.length > 0 && id_barang.length > 1) {
+        $('.modal-edit-data').removeClass('modal-lg');
         let contentForm = `
-            <div class="custom-file">
-                <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">username</span>
-            </div>
-                <input type="text" class="form-control" aria-label="password" name="email"
-                                    aria-describedby="basic-addon1">
-                <input type="hidden" name="id" value="" class="id_barang">
-            </div>
+        <div class="custom-file">
+            <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">username</span>
+        </div>
+            <input type="text" class="form-control" aria-label="password" name="email"
+                                aria-describedby="basic-addon1">
+            <input type="hidden" name="id" value="${id_barang}" class="id_barang">
+        </div>
         </div>`;
         $('.modal-body-update-username').html(contentForm);
-        $('.id_barang').val(id_barang);
         $('.modal-edit-akun').attr('action', 'http://localhost:3000/update/all/email');
         $('.btn-save-akun').removeClass('disabled');
         $('.btn-save-akun').removeAttr('disabled', '');

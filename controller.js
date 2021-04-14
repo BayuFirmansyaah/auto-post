@@ -13,6 +13,7 @@ let onRun = 0;
 const clipboardy = require('clipboardy');
 
 
+
 // ======================================================================================
 // =========================== bagian untuk koneksi database ============================
 // ======================================================================================
@@ -236,10 +237,21 @@ exports.getDetailAkun = function (req, res) {
                 console.log(err);
             } else {
                 res.send(rows);
+                res.end();
             }
         })
 }
-
+// mendapatkan data spesifik Item
+exports.getDetailItem = function (req, res) {
+    db.query("SELECT * FROM item WHERE id_barang=?", [req.params.id_barang],
+        function (err, rows) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(rows);
+            }
+        })
+}
 
 // ======================================================================================
 // ======================== bagian untuk end point delete data ==========================
@@ -315,8 +327,6 @@ exports.setPath = function (req, res) {
 
 }
 
-
-
 // mengubah data akun
 exports.updateAkun = function (req, res) {
     let id = req.body.id;
@@ -354,7 +364,22 @@ exports.updateEmailAll = function (req, res) {
     res.end();
 }
 
-
+// merubah data item
+exports.updateItem = function(req,res){
+    let username = req.body.username;
+    let kode = req.body.kode;
+    let judul = req.body.judul;
+    let kategori = req.body.kategori;
+    let deskripsi = req.body.deskripsi;
+    let gambar = req.body.gambar;
+    let id_barang = req.body.id;
+    db.query("UPDATE item SET account=?,kode=?,judul=?,kategori=?,deskripsi=?,gambar=? WHERE id_barang=?", [username, kode, judul, kategori, deskripsi, gambar,id_barang], (err) => {
+        if (err) {
+            console.log(err);
+        }
+        res.end()
+    })
+}
 
 // ======================================================================================
 // ============================= bagian untuk sistem login ==============================
@@ -433,6 +458,13 @@ exports.Run = async (data) => {
     lengthBarang -= 1;
 
     for (let i = 0; i < data.barang.length; i++) {
+
+        if(data.barang.length <=1){
+            item.push(data.barang[i]);
+            items.push(item);
+            item = [];
+        }
+
         let last = item.length;
         if (last > 0) {
             last -= 1;
@@ -472,7 +504,7 @@ exports.Run = async (data) => {
             await page.type("#pass", data.akun[i].password, { delay: 30 });
             await page.click("#loginbutton");
             await page.waitForNavigation({ waitUntil: "networkidle0" });
-            await page.waitFor(3000);
+            await page.waitFor(1000);
             await page.goto("https://www.facebook.com/marketplace/create/item", {
                 waitUntil: "networkidle2",
             });
@@ -669,6 +701,7 @@ exports.Run = async (data) => {
 
                     await page.waitForSelector("[aria-label='Terbitkan']");
                     await page.click("[aria-label='Terbitkan']");
+                    
                 }
 
 
