@@ -11,7 +11,6 @@ const { get } = require('http');
 const salt = bcrypt.genSaltSync(10);
 let onRun = 0;
 const clipboardy = require('clipboardy');
-const date = require('date-and-time');
 
 
 // ======================================================================================
@@ -473,7 +472,7 @@ exports.Run = async (data) => {
             await page.type("#pass", data.akun[i].password, { delay: 30 });
             await page.click("#loginbutton");
             await page.waitForNavigation({ waitUntil: "networkidle0" });
-            await page.waitFor(3000);
+            await page.waitFor(1000);
             await page.goto("https://www.facebook.com/marketplace/create/item", {
                 waitUntil: "networkidle2",
             });
@@ -653,11 +652,10 @@ exports.Run = async (data) => {
                         "[aria-label='Keterangan'] textarea",
                         '', { delay: -100 }
                     );
+
                     await page.keyboard.down("Control");
                     await page.keyboard.press("KeyV");
                     await page.keyboard.up("Control");
-
-
 
                     await page.evaluate(() => {
                         let selanjutnya = document.querySelector("[aria-label='Selanjutnya']");
@@ -671,24 +669,7 @@ exports.Run = async (data) => {
                     await page.waitForSelector("[aria-label='Terbitkan']");
                     await page.click("[aria-label='Terbitkan']");
                     
-                    let log = fs.readFileSync('.log.json','utf-8');
-                        log = JSON.parse(log);
-
-                    const now = new Date();
-                    let waktu = date.format(now, 'YYYY/MM/DD HH:mm:ss');
-                    let dataLog = {
-                        id: data_barang[j].id_barang,
-                        nama: data_barang[j].Judul,
-                        kode : data_barang[j].kode,
-                        status : 'success',
-                        time : waktu,
-                    }
-
-                    log.push(dataLog);
-                    fs.writeFileSync('./log.josn',JSON.stringify(log,null,2));
                 }
-
-
                 
                 await page.goto("https://www.facebook.com/marketplace/create/item", {
                     waitUntil: "networkidle2",
