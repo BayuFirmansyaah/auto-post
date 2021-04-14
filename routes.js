@@ -17,6 +17,11 @@ module.exports = function (app) {
         Controller.getDataItem(res, req);
     });
 
+    // mendapatkan detail item
+    app.route('/get/item/detail/:id_barang').get((req,res)=>{
+        Controller.getDetailItem(req,res);
+    })
+
     // mendapatkan data path
     app.route('/get/path/:id_user').get((req, res) => {
         Controller.getPath(req, res);
@@ -32,6 +37,10 @@ module.exports = function (app) {
         Controller.getItemRun(req, res);
     })
 
+    //aadlkdjlakjd
+    app.route('/get/log').get((req, res) => {
+        Controller.getLog(req, res);
+    })
 
     // ==================================================================================
     // ============================ bagian untuk end point add ==========================
@@ -71,7 +80,9 @@ module.exports = function (app) {
 
     // mengubah data item facebook
     app.route('/update/item').post((req, res) => {
-        Controller.updateitem(req, res);
+        Controller.updateItem(req, res);
+        res.redirect('../indexing.html');
+        res.end()
     })
 
     // merubah seluru email

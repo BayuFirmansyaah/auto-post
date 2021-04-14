@@ -23,8 +23,8 @@ app.use(cookieSession({
 app.listen(port, () => {
     console.log(`Server Berhasil dijalankan di port`+port);
 });
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({limit:'100mb'}));
+app.use(bodyParser.urlencoded({ extended: true, limit:'100mb'}));
 
 app.use(upload());
 
