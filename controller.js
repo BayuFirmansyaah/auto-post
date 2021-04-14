@@ -11,11 +11,6 @@ const { get } = require('http');
 const salt = bcrypt.genSaltSync(10);
 let onRun = 0;
 const clipboardy = require('clipboardy');
-<<<<<<< HEAD
-=======
-
->>>>>>> 5a524c263c19166fc57a7dff1fad29d2e26605b9
-
 
 // ======================================================================================
 // =========================== bagian untuk koneksi database ============================
@@ -454,6 +449,7 @@ exports.Run = async (data) => {
     await page.setViewport({ width: 1200, height: 800 });
     console.log("link jalan")
     let logs = []; 
+    let report_post = [];
     let items = [];
     let item = [];
     
@@ -706,6 +702,13 @@ exports.Run = async (data) => {
 
                     await page.waitForSelector("[aria-label='Terbitkan']");
                     await page.click("[aria-label='Terbitkan']");
+                    let log_post = {
+                        id : data_barang[j].id,
+                        kode : data_barang[j].kode,
+                        status : 'success'
+                    };
+
+                    report_post.push(log_post);
                     count_post +=1;
                 }
                 
@@ -745,10 +748,14 @@ exports.Run = async (data) => {
             return false;
         }
 
-
-
     }
-    console.log(logs)
+
+    let result_report = {
+        akun : logs,
+        barang : report_post
+    }
+
+    fs.writeFileSync('logs.json',JSON.stringify(result_report,null,2));
     //Close Browser
     await browser.close();
 }
