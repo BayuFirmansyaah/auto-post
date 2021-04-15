@@ -517,8 +517,9 @@ exports.Run = async (data) => {
             for (let j = 0; j < data_barang.length; j++) {
                 let log_post;
                 // melakukan pengecekan apakah data barang sama dengan data akun yang akan di post
-                 if (data_barang[j].account == data_barang[i].username) {
+                 if (data_barang[j].account == data.akun[i].username) {
                     // melakukan pengecekan apakah ada data yang kosong
+                    
                     if(data_barang[i].judul.length <=1 ||
                         data_barang[i].kategori.length <= 1 ||
                         data_barang[i].deskripsi.length <= 1 ||
@@ -779,8 +780,6 @@ exports.Run = async (data) => {
     }
 
     fs.writeFileSync('logs.json',JSON.stringify(result_report,null,2));
-    let selesai = d.getTime();
-    console.log(`${mulai} ~ ${selesai}`)
     //Close Browser
     await browser.close();
 }
