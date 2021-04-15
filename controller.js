@@ -516,13 +516,16 @@ exports.Run = async (data) => {
             
             for (let j = 0; j < data_barang.length; j++) {
                 let log_post;
+                
                 // melakukan pengecekan apakah data barang sama dengan data akun yang akan di post
-                 if (data_barang[j].account == data_barang[i].username) {
+                 if (data_barang[j].account == data.akun[i].username) {
                     // melakukan pengecekan apakah ada data yang kosong
-                    if(data_barang[i].judul.length <=1 ||
-                        data_barang[i].kategori.length <= 1 ||
-                        data_barang[i].deskripsi.length <= 1 ||
-                        data_barang[i].gambar.length <= 1){
+                    let nameImage = data_barang[j].gambar;
+                    nameImage = nameImage.split(" ");
+                    if(data_barang[j].judul.length <=1 ||
+                        data_barang[j].kategori.length <= 1 ||
+                        data_barang[j].deskripsi.length <= 1 ||
+                        nameImage.length <=1){
                         // menuliskan logs report
                         log_post = {
                             akun: data.akun[i].username,
@@ -539,9 +542,6 @@ exports.Run = async (data) => {
                         clipboardy.writeSync(data_barang[j].deskripsi);
 
                         //melakukan repeat pada foto
-                        let nameImage = data_barang[j].gambar;
-                        nameImage = nameImage.split(" ");
-
                         for (let k = 0; k < nameImage.length; k++) {
                             const inputUploadHandle = await page.$("input[type=file]");
                             let fileToUpload = data.path + nameImage[k];
@@ -779,8 +779,6 @@ exports.Run = async (data) => {
     }
 
     fs.writeFileSync('logs.json',JSON.stringify(result_report,null,2));
-    let selesai = d.getTime();
-    console.log(`${mulai} ~ ${selesai}`)
     //Close Browser
     await browser.close();
 }

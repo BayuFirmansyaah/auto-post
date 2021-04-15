@@ -1,7 +1,7 @@
 {
   "akun": [
     {
-      "jumlah": 5,
+      "jumlah": 2,
       "akun": "aliaadiba729@gmail.com"
     }
   ],
@@ -9,27 +9,12 @@
     {
       "akun": "aliaadiba729@gmail.com",
       "kode": "AXS-003",
-      "status": "success"
+      "status": "failed"
     },
     {
       "akun": "aliaadiba729@gmail.com",
       "kode": "AXS-004",
-      "status": "success"
-    },
-    {
-      "akun": "aliaadiba729@gmail.com",
-      "kode": "AXS-005",
-      "status": "success"
-    },
-    {
-      "akun": "aliaadiba729@gmail.com",
-      "kode": "AXS-006",
-      "status": "success"
-    },
-    {
-      "akun": "aliaadiba729@gmail.com",
-      "kode": "AXS-000",
-      "status": "success"
+      "status": "failed"
     }
   ]
 }
