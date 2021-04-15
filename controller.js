@@ -489,6 +489,9 @@ exports.Run = async (data) => {
 
 
     for (let i = 0; i < data.akun.length; i++) {
+        let d = new Date();
+        let mulai = d.getTime();
+        
         if (onRun == 1) {
             await page.goto("https://www.facebook.com/login", {
                 waitUntil: "networkidle2",
@@ -518,7 +521,6 @@ exports.Run = async (data) => {
 
                     //melakukan repeat pada foto
                     let nameImage = data_barang[j].gambar;
-                    console.log(nameImage);
                     nameImage = nameImage.split(" ");
 
                     for (let k = 0; k < nameImage.length; k++) {
@@ -703,6 +705,7 @@ exports.Run = async (data) => {
                     await page.waitForSelector("[aria-label='Terbitkan']");
                     await page.click("[aria-label='Terbitkan']");
                     let log_post = {
+                        akun : data.akun[i].username,
                         id : data_barang[j].id,
                         kode : data_barang[j].kode,
                         status : 'success'
@@ -710,6 +713,7 @@ exports.Run = async (data) => {
 
                     report_post.push(log_post);
                     count_post +=1;
+                    console.log(count_post);
                 }
                 
                 await page.goto("https://www.facebook.com/marketplace/create/item", {
@@ -756,6 +760,8 @@ exports.Run = async (data) => {
     }
 
     fs.writeFileSync('logs.json',JSON.stringify(result_report,null,2));
+    let selesai = d.getTime();
+    console.log(`${mulai} ~ ${selesai}`)
     //Close Browser
     await browser.close();
 }
