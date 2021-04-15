@@ -1,11 +1,45 @@
 {
   "akun": [
     {
-      "jumlah": 2,
-      "akun": "aliaadiba729@gmail.com"
+      "akun": "aliaadiba729@gmail.com",
+      "jumlah": 10,
+      "berhasil": 0,
+      "gagal": 10,
+      "mulai": "11.25.59",
+      "selesai": "11.28.17"
     }
   ],
   "barang": [
+    {
+      "akun": "aliaadiba729@gmail.com",
+      "kode": "AXS-000",
+      "status": "failed"
+    },
+    {
+      "akun": "aliaadiba729@gmail.com",
+      "kode": "AXS-001",
+      "status": "failed"
+    },
+    {
+      "akun": "aliaadiba729@gmail.com",
+      "kode": "AXS-002",
+      "status": "failed"
+    },
+    {
+      "akun": "aliaadiba729@gmail.com",
+      "kode": "AXS-003",
+      "status": "failed"
+    },
+    {
+      "akun": "aliaadiba729@gmail.com",
+      "kode": "AXS-001",
+      "status": "failed"
+    },
+    {
+      "akun": "aliaadiba729@gmail.com",
+      "kode": "AXS-002",
+      "status": "failed"
+    },
     {
       "akun": "aliaadiba729@gmail.com",
       "kode": "AXS-003",
@@ -14,6 +48,16 @@
     {
       "akun": "aliaadiba729@gmail.com",
       "kode": "AXS-004",
+      "status": "failed"
+    },
+    {
+      "akun": "aliaadiba729@gmail.com",
+      "kode": "AXS-005",
+      "status": "failed"
+    },
+    {
+      "akun": "aliaadiba729@gmail.com",
+      "kode": "AXS-006",
       "status": "failed"
     }
   ]
