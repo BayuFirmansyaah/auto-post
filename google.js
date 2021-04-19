@@ -261,7 +261,7 @@ $.ajax({
             data.forEach((akun)=>{
                 code +=`
                     <ul>
-                        <li>Akun : ${akun.akun}</li>
+                        <li>${akun.akun}</li>
                         <li>Posting : ${akun.jumlah} </li>
                         <li>Berhasil : ${akun.berhasil}</li>
                         <li>Gagal : ${akun.gagal}</li>
