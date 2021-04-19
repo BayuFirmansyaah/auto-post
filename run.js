@@ -27,7 +27,6 @@ let dataServer = {
 };
 
 
-
 // ketika tombol save item ditekan 
 $('.btn-save').on('click', async function () {
     let id = document.querySelectorAll('.id-barang');
@@ -143,7 +142,7 @@ $('.btn-play').on('click', async function () {
 })
 
 
-var map = {}; 
+var map = {};
 onkeydown = onkeyup = function (e) {
     e = e || event; // to deal with IE
     map[e.keyCode] = e.type == 'keydown';
@@ -158,15 +157,16 @@ onkeydown = onkeyup = function (e) {
             document.querySelector('.content').classList.add('table-none')
             document.querySelector('table').classList.add('table-full')
             document.querySelector('.row-table').classList.add('.row-table-none')
-            $('.sidebar').html(`  <a href="/google.html">
+            $('.sidebar').html(` 
+                <a href="/google.html">
                     <p class="sub-heading "><i class="fab fa-facebook"></i></p>
                 </a>
                 <a href="/indexing.html">
                     <p class="sub-heading "><i class="fas fa-server"></i></p>
                 </a>
-                    <div data-toggle="modal" data-target="#path">
-    <p class="sub-heading "><i class="fas fa-map-marker-alt"></i></p>
-</div>`)
+                <div data-toggle="modal" data-target="#path">
+                <p class="sub-heading "><i class="fas fa-map-marker-alt"></i></p>
+                </div>`)
             localStorage.setItem('ls', false);
 
         } else if (block == null) {
@@ -176,16 +176,16 @@ onkeydown = onkeyup = function (e) {
             document.querySelector('.table').classList.remove('table-full')
             document.querySelector('.row-table').classList.remove('.row-table-none')
             $('.sidebar').html(` <h6 class="text-heading text-primary">DATA ACCOUNTS</h6>
-    <a href="/google.html">
-        <p class="sub-heading "><i class="fab fa-facebook"></i> Facebook Accounts</p>
-    </a>
-    <h6 class="text-heading text-primary">INVENTORY</h6>
-    <a href="/indexing.html">
-        <p class="sub-heading "><i class="fas fa-server"></i> Item</p>
-    </a>
-    <div data-toggle="modal" data-target="#path">
-        <p class="sub-heading "><i class="fas fa-map-marker-alt"></i> Path Image</p>
-    </div>`)
+                <a href="/google.html">
+                    <p class="sub-heading "><i class="fab fa-facebook"></i> Facebook Accounts</p>
+                </a>
+                <h6 class="text-heading text-primary">INVENTORY</h6>
+                <a href="/indexing.html">
+                    <p class="sub-heading "><i class="fas fa-server"></i> Item</p>
+                </a>
+                <div data-toggle="modal" data-target="#path">
+                    <p class="sub-heading "><i class="fas fa-map-marker-alt"></i> Path Image</p>
+                </div>`)
             localStorage.setItem('ls', true);
         }
         map = {};
