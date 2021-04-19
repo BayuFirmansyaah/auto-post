@@ -1,38 +1,33 @@
 {
   "akun": [
     {
-      "akun": "putriseptia003s@gmail.com",
-      "jumlah": 5,
-      "berhasil": 2,
-      "gagal": 3,
-      "mulai": "11.3.20",
-      "selesai": "11.4.30"
+      "akun": "089530534789",
+      "jumlah": 4,
+      "berhasil": 3,
+      "gagal": 1,
+      "mulai": "13.57.2",
+      "selesai": "13.57.55"
     }
   ],
   "barang": [
     {
-      "akun": "putriseptia003s@gmail.com",
+      "akun": "089530534789",
+      "kode": "AXS-000",
+      "status": "data tidak lengkap"
+    },
+    {
+      "akun": "089530534789",
+      "kode": "AXS-001",
+      "status": "berhasil"
+    },
+    {
+      "akun": "089530534789",
       "kode": "AXS-002",
       "status": "berhasil"
     },
     {
-      "akun": "putriseptia003s@gmail.com",
-      "kode": "AXS-003",
-      "status": "data tidak lengkap"
-    },
-    {
-      "akun": "putriseptia003s@gmail.com",
-      "kode": "AXS-004",
-      "status": "data tidak lengkap"
-    },
-    {
-      "akun": "putriseptia003s@gmail.com",
-      "kode": "AXS-005",
-      "status": "data tidak lengkap"
-    },
-    {
-      "akun": "putriseptia003s@gmail.com",
-      "kode": "AXS-002",
+      "akun": "089530534789",
+      "kode": "AXS-001",
       "status": "berhasil"
     }
   ]

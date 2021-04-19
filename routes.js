@@ -39,13 +39,13 @@ module.exports = function (app) {
 
     //mendapatkan log barang
     app.route('/get/log').get((req, res) => {
-        Controller.getLog(req, res);
+        Controller.getLog(res, req);
         res.end();
     })
 
     // mendapatkan log barang dan akun
     app.route('/get/logs').get((req, res) => {
-        Controller.getLogs(req, res);
+        Controller.getLogs(res, req);
         res.end();
     })
 

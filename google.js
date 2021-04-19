@@ -251,3 +251,28 @@ $('.logout').on('click', function () {
     sessionStorage.setItem('nama', null);
     window.location.replace("http://localhost:3000");
 });
+
+// melakukan fetching data untuk log report akun
+$.ajax({
+    url : 'http://localhost:3000/get/logs',
+    success : (results) =>{
+            let code = "";
+            let data = results.akun;
+            data.forEach((akun)=>{
+                code +=`
+                    <ul>
+                        <li>${akun.akun}</li>
+                        <li>Posting : ${akun.jumlah} </li>
+                        <li>Berhasil : ${akun.berhasil}</li>
+                        <li>Gagal : ${akun.gagal}</li>
+                        <li>Start : ${akun.mulai}</li>
+                        <li>Stop : ${akun.selesai}</li>
+                    </ul>
+                `
+            })
+            $('.row-log').html(code);
+    },
+    error : (err) =>{
+            console.log(err);
+    }
+})
