@@ -261,7 +261,7 @@ exports.getLog = function(res,reg){
 }
 
 // mendapatkan log barang dan akun
-exports.getLogs = function (res, reg) {
+exports.getLogs = function (res, req) {
     let data = fs.readFileSync('./logs.json', 'utf-8');
     data = JSON.parse(data);
     res.json(data);

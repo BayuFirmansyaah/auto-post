@@ -159,12 +159,12 @@ onkeydown = onkeyup = function (e) {
             document.querySelector('table').classList.add('table-full')
             document.querySelector('.row-table').classList.add('.row-table-none')
             $('.sidebar').html(`  <a href="/google.html">
-    <p class="sub-heading "><i class="fab fa-facebook"></i></p>
-</a>
-<a href="/indexing.html">
-    <p class="sub-heading "><i class="fas fa-server"></i></p>
-</a>
-<div data-toggle="modal" data-target="#path">
+                    <p class="sub-heading "><i class="fab fa-facebook"></i></p>
+                </a>
+                <a href="/indexing.html">
+                    <p class="sub-heading "><i class="fas fa-server"></i></p>
+                </a>
+                    <div data-toggle="modal" data-target="#path">
     <p class="sub-heading "><i class="fas fa-map-marker-alt"></i></p>
 </div>`)
             localStorage.setItem('ls', false);
