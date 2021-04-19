@@ -787,7 +787,6 @@ exports.Run = async (data) => {
                         }
                         count_post += 1;                        
                     }
-
                     // log report
                     report_post.push(log_post);
                     fs.writeFileSync('log.json', JSON.stringify(report_post, null, 2));
