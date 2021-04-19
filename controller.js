@@ -521,6 +521,7 @@ exports.Run = async (data) => {
                 let log_post;
 
                 // melakukan pengecekan apakah data barang sama dengan data akun yang akan di post
+
                 if (data_barang[j].account == data.akun[i].username) {
                     // melakukan pengecekan apakah ada data yang kosong
                     let nameImage = data_barang[j].gambar;
@@ -529,6 +530,7 @@ exports.Run = async (data) => {
                         data_barang[j].kategori.length <= 1 ||
                         data_barang[j].deskripsi.length <= 1 ||
                         nameImage.length <= 1) {
+
                         // menuliskan logs report
                         log_post = {
                             akun: data.akun[i].username,
@@ -813,6 +815,7 @@ exports.Run = async (data) => {
     }
 
     fs.writeFileSync('logs.json', JSON.stringify(result_report, null, 2));
+
     //Close Browser
     await browser.close();
 }

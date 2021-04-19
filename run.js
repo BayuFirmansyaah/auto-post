@@ -191,6 +191,12 @@ localStorage.setItem('ls',false);
     localStorage.setItem('ls',true);
 }
 map = {};
+}else if(map[16] && map[83]){
+    document.querySelectorAll("[aria-label='save']")[0].click()
+     map = {};
+}else if(map[16] && map[65]){
+    $('.checked').attr('checked', 'checked');
+     map = {};
 }
 }
         
