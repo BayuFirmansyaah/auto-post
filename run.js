@@ -27,7 +27,6 @@ let dataServer = {
 };
 
 
-
 // ketika tombol save item ditekan 
 $('.btn-save').on('click', async function () {
     let id = document.querySelectorAll('.id-barang');
@@ -142,6 +141,7 @@ $('.btn-play').on('click', async function () {
     }
 })
 
+
 //ShortCut
 var map = {};
 onkeydown = onkeyup = function (e) {
@@ -157,6 +157,7 @@ onkeydown = onkeyup = function (e) {
             document.querySelector('.content').classList.add('table-none')
             document.querySelector('table').classList.add('table-full')
             document.querySelector('.row-table').classList.add('.row-table-none')
+
             $('.sidebar').html(`  <a href="/google.html">
                 <p class="sub-heading "><i class="fab fa-facebook"></i></p>
             </a>
@@ -166,6 +167,7 @@ onkeydown = onkeyup = function (e) {
             <div data-toggle="modal" data-target="#path">
                 <p class="sub-heading "><i class="fas fa-map-marker-alt"></i></p>
             </div>`)
+
 
             localStorage.setItem('ls', false);
 
@@ -186,6 +188,7 @@ onkeydown = onkeyup = function (e) {
             <div data-toggle="modal" data-target="#path">
                 <p class="sub-heading "><i class="fas fa-map-marker-alt"></i> Path Image</p>
             </div>`)
+
 
             localStorage.setItem('ls', true);
         }

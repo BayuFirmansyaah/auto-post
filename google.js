@@ -74,7 +74,6 @@ $.ajax({
     }
 })
 
-
 // mendapatkan data item barang
 $.ajax({
     url: 'http://localhost:3000/get/item/' + sessionStorage.getItem("id_user"),
@@ -100,7 +99,6 @@ $.ajax({
         console.log(err);
     }
 })
-
 
 // jika tombol hapus ditekan
 $('.btn-delete-all').on('click', function () {
@@ -132,7 +130,6 @@ $('.btn-delete-all').on('click', function () {
         alert('tidak ada item yang dipilih');
     }
 })
-
 
 // //jika tombol pause ditekan
 $('.btn-pause').on('click', function () {
@@ -201,23 +198,21 @@ $('.btn-edit-all').on('click', function () {
 
     if (id_facebook.length == 1) {
         let data = `
-                        <div class="custom-file">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">username</span>
-                                </div>
-                                <input type="text" class="form-control username" aria-label="Username" name="username"
-                                    aria-describedby="basic-addon1" value="">
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">password</span>
-                                </div>
-                                <input type="text" class="form-control password" aria-label="password" name="password"
-                                    aria-describedby="basic-addon1">
-                                <input type="hidden" name="id" value="${id_facebook}" class="id_facebook">
-                            </div>
-                        </div>`;
+                <div class="custom-file">
+                <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">username</span>
+                </div>
+                <input type="text" class="form-control username" aria-label="Username" name="username"aria-describedby="basic-addon1" value="">
+                </div>
+                <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">password</span>
+                </div>
+                <input type="text" class="form-control password" aria-label="password" name="password" aria-describedby="basic-addon1">
+                <input type="hidden" name="id" value="${id_facebook}" class="id_facebook">
+                </div>
+                </div>`;
         $('.modal-data').html(data);
         $.ajax({
             url: 'http://localhost:3000/get/account/detail/' + id_facebook,
@@ -254,12 +249,12 @@ $('.logout').on('click', function () {
 
 // melakukan fetching data untuk log report akun
 $.ajax({
-    url : 'http://localhost:3000/get/logs',
-    success : (results) =>{
-            let code = "";
-            let data = results.akun;
-            data.forEach((akun)=>{
-                code +=`
+    url: 'http://localhost:3000/get/logs',
+    success: (results) => {
+        let code = "";
+        let data = results.akun;
+        data.forEach((akun) => {
+            code += `
                     <ul>
                         <li>${akun.akun}</li>
                         <li>Posting : ${akun.jumlah} </li>
@@ -269,10 +264,10 @@ $.ajax({
                         <li>Stop : ${akun.selesai}</li>
                     </ul>
                 `
-            })
-            $('.row-log').html(code);
+        })
+        $('.row-log').html(code);
     },
-    error : (err) =>{
-            console.log(err);
+    error: (err) => {
+        console.log(err);
     }
 })

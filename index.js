@@ -187,47 +187,47 @@ $('.btn-edit-all').on('click', function () {
                 desc = data[0].deskripsi;
                 img = data[0].gambar;
                 let contentForm = `
-        <div class="row">
-        <div class="col">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Username</label>
-                <input type="text" class="form-control" 
-                    aria-describedby="emailHelp" name="username" value=${username}>
-            </div>
-        </div>
-        <div class="col">
-            <div class="form-group">
-                <label for="exampleInputPassword1">Kode</label>
-                <input type="text" class="form-control" name="kode" value=${kode}>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Judul Barang</label>
-                <input type="text" class="form-control" 
-                    aria-describedby="emailHelp" name="judul" value=${judul}>
-            </div>
-        </div>
-        <div class="col">
-            <div class="form-group">
-                <label for="exampleInputPassword1">Kategori</label>
-                <input type="text" class="form-control" name="kategori" value=${kategori}>
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">Deskripsi</label>
-        <textarea class="form-control" rows="3"
-            name="deskripsi">${desc}</textarea>
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Gambar</label>
-        <input type="text" class="form-control" name="gambar" value=${img}>
-        <input type="hidden" name="id" value="${id_barang}" class="id_user">
-    </div>
-   `; $('.modal-body-update-username').html(contentForm);
+                        <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Username</label>
+                                <input type="text" class="form-control" 
+                                    aria-describedby="emailHelp" name="username" value=${username}>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Kode</label>
+                                <input type="text" class="form-control" name="kode" value=${kode}>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Judul Barang</label>
+                                <input type="text" class="form-control" 
+                                    aria-describedby="emailHelp" name="judul" value=${judul}>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Kategori</label>
+                                <input type="text" class="form-control" name="kategori" value=${kategori}>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Deskripsi</label>
+                        <textarea class="form-control" rows="3"
+                            name="deskripsi">${desc}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Gambar</label>
+                        <input type="text" class="form-control" name="gambar" value=${img}>
+                        <input type="hidden" name="id" value="${id_barang}" class="id_user">
+                    </div>`;
+                $('.modal-body-update-username').html(contentForm);
                 $('.modal-edit-akun').attr('action', 'http://localhost:3000/update/item');
                 $('.btn-save-akun').removeClass('disabled');
                 $('.btn-save-akun').removeAttr('disabled', '');
@@ -240,16 +240,16 @@ $('.btn-edit-all').on('click', function () {
     } else if (id_barang.length > 0 && id_barang.length > 1) {
         $('.modal-edit-data').removeClass('modal-lg');
         let contentForm = `
-        <div class="custom-file">
-            <div class="input-group mb-3">
-            <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">username</span>
-        </div>
-            <input type="text" class="form-control" aria-label="password" name="email"
-                                aria-describedby="basic-addon1">
-            <input type="hidden" name="id" value="${id_barang}" class="id_barang">
-        </div>
-        </div>`;
+                <div class="custom-file">
+                    <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">username</span>
+                </div>
+                    <input type="text" class="form-control" aria-label="password" name="email"
+                                        aria-describedby="basic-addon1">
+                    <input type="hidden" name="id" value="${id_barang}" class="id_barang">
+                </div>
+                </div>`;
         $('.modal-body-update-username').html(contentForm);
         $('.modal-edit-akun').attr('action', 'http://localhost:3000/update/all/email');
         $('.btn-save-akun').removeClass('disabled');
@@ -259,6 +259,23 @@ $('.btn-edit-all').on('click', function () {
         $('.btn-save-akun').addClass('disabled');
         $('.btn-save-akun').attr('disabled', '');
         $('.modal-body-update-username').html("<h3 class='text-center'>Wajib Memilih Salah Satu Data </h3>");
+    }
+})
+
+// melakukan fetching data untuk log report akun
+$.ajax({
+    url: 'http://localhost:3000/get/log',
+    success: (results) => {
+        let code = "";
+        results.forEach((data) => {
+            code += `
+                    <li>Barang ${data.kode} ${data.status} di akun ${data.akun}</li>
+                `
+        })
+        $('.row-log ul').html(code);
+    },
+    error: (err) => {
+        console.log(err);
     }
 })
 
