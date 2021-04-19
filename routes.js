@@ -37,10 +37,18 @@ module.exports = function (app) {
         Controller.getItemRun(req, res);
     })
 
-    //aadlkdjlakjd
+    //mendapatkan log barang
     app.route('/get/log').get((req, res) => {
         Controller.getLog(req, res);
+        res.end();
     })
+
+    // mendapatkan log barang dan akun
+    app.route('/get/logs').get((req, res) => {
+        Controller.getLogs(req, res);
+        res.end();
+    })
+
 
     // ==================================================================================
     // ============================ bagian untuk end point add ==========================

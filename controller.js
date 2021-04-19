@@ -253,6 +253,20 @@ exports.getDetailItem = function (req, res) {
         })
 }
 
+// mendapatkan log barang
+exports.getLog = function(res,reg){
+    let data = fs.readFileSync('./log.json','utf-8');
+        data = JSON.parse(data);
+    res.json(data);
+}
+
+// mendapatkan log barang dan akun
+exports.getLogs = function (res, reg) {
+    let data = fs.readFileSync('./logs.json', 'utf-8');
+    data = JSON.parse(data);
+    res.json(data);
+}
+
 // ======================================================================================
 // ======================== bagian untuk end point delete data ==========================
 // ======================================================================================
@@ -538,7 +552,7 @@ exports.Run = async (data) => {
                             akun: data.akun[i].username,
                             id: data_barang[j].id,
                             kode: data_barang[j].kode,
-                            status: 'failed'
+                            status: 'data tidak lengkap'
                         };
                         gagal+=1;
                         await page.goto("https://www.facebook.com/marketplace/create/item", {
@@ -750,7 +764,7 @@ exports.Run = async (data) => {
                                 akun: data.akun[i].username,
                                 id: data_barang[j].id,
                                 kode: data_barang[j].kode,
-                                status: 'success'
+                                status: 'berhasil'
                             };
                             berhasil+=1;
                             console.log("Post Barang Ke " + count_post + " Berhasil");
@@ -763,7 +777,7 @@ exports.Run = async (data) => {
                                 akun: data.akun[i].username,
                                 id: data_barang[j].id,
                                 kode: data_barang[j].kode,
-                                status: 'failed'
+                                status: 'akun terkena limit'
                             };
                             gagal+=1;
                             console.log("Post Barang Ke " + count_post + " Gagal");
@@ -771,9 +785,7 @@ exports.Run = async (data) => {
                                 waitUntil: "networkidle2",
                             });
                         }
-
-                        count_post += 1;
-                        
+                        count_post += 1;                        
                     }
 
                     // log report
