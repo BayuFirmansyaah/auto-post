@@ -96,6 +96,7 @@ $.ajax({
         // jika tombol checked di tekan
         $('.chekedAll').on('change', function () {
             if (this.checked) {
+                $('.checkedAll').attr('checked', 'checked');
                 $('.checked').attr('checked', 'checked');
             } else {
                 $('.checked').removeAttr('checked');
