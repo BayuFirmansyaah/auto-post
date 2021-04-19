@@ -441,7 +441,7 @@ exports.isRun = function (value) {
 //run auto-post
 exports.Run = async (data) => {
 
-    //insert code here
+    // membuka browser
     let browser = await puppeteer.launch({ headless: false, args: ['--start-maximized'] });
     const context = browser.defaultBrowserContext();
     console.log("browser jalan");
@@ -449,15 +449,16 @@ exports.Run = async (data) => {
     let page = await browser.newPage();
     await page.setDefaultNavigationTimeout(100000);
     await page.setViewport({ width: 0, height: 0 });
-    console.log("link jalan")
+
+    // menampung dummy data 
     let logs = [];
     let report_post = [];
     let items = [];
     let item = [];
-
     let lengthBarang = data.barang.length;
     lengthBarang -= 1;
 
+    //melakukan penyortiran data barang sesuai dengan email 
     for (let i = 0; i < data.barang.length; i++) {
 
         if (data.barang.length <= 1) {
@@ -488,18 +489,19 @@ exports.Run = async (data) => {
         }
     }
 
-
-
+    // melakukan perulangan akun
     for (let i = 0; i < data.akun.length; i++) {
         let berhasil = 0;
         let gagal = 0;
         let mulai = moment().hour() + "." + moment().minute() + "." + moment().second();
-        console.log(mulai);
+        console.log('Start : '+mulai);
+
+        // melakukan pengecekan apakah start/pause/stop
         if (onRun == 1) {
             await page.goto("https://www.facebook.com/login", {
                 waitUntil: "networkidle2",
             });
-            console.log(data.akun[i].username);
+            console.log(`Menjalankan Post pada Akun `+data.akun[i].username);
             await page.click("#email");
             await page.keyboard.down("Control");
             await page.keyboard.press("KeyA");
@@ -516,12 +518,12 @@ exports.Run = async (data) => {
 
             let data_barang = items[i];
             let count_post = 0;
-
+            
+            //melakukan perulangan pada akun
             for (let j = 0; j < data_barang.length; j++) {
                 let log_post;
 
                 // melakukan pengecekan apakah data barang sama dengan data akun yang akan di post
-
                 if (data_barang[j].account == data.akun[i].username) {
                     // melakukan pengecekan apakah ada data yang kosong
                     let nameImage = data_barang[j].gambar;
@@ -545,6 +547,7 @@ exports.Run = async (data) => {
                         count_post += 1;
                         console.log("Post Barang Ke " + count_post + " Gagal");
                     } else {
+                        // melakukan copy deskripsi
                         clipboardy.writeSync(data_barang[j].deskripsi);
 
                         //melakukan repeat pada foto
@@ -556,14 +559,17 @@ exports.Run = async (data) => {
                         }
 
                         let namaBarang = data_barang[j].kode + " " + data_barang[j].judul + "(FREE ONGKIR+COD)";
+
                         // melakukan pengisian form
                         await page.type(
                             "[aria-label='Judul'] input[type='text']",
                             namaBarang, { delay: 30 }
                         );
+
                         await page.type("[aria-label='Harga'] input[type='text']", "123", {
                             delay: 30,
                         });
+
                         await page.click("[aria-label='Kategori']");
                         let keyword = data_barang[j].kategori;
                         keyword.toLowerCase();
@@ -697,26 +703,30 @@ exports.Run = async (data) => {
                                 });
                                 break;
                         }
+
                         await page.evaluate(() => {
                             document.querySelector("[aria-label='Kondisi']").click();
                         })
+
                         await page.waitForSelector(
                             "[data-pagelet='root'] div[role='menu'] div[aria-checked='false']"
                         );
+
                         await page.evaluate(() =>
                             document.querySelectorAll("[data-pagelet='root'] div[role='menu'] div[aria-checked='false']")[0].click()
                         );
-
 
                         await page.type(
                             "[aria-label='Keterangan'] textarea",
                             '', { delay: -100 }
                         );
+
+                        // melakukan paste deskripsi
                         await page.keyboard.down("Control");
                         await page.keyboard.press("KeyV");
                         await page.keyboard.up("Control");
 
-
+                        // melakukan pengecekan pada tombol selanjutnya
                         let selanjutnya = await page.evaluate(() => {
                             let selanjutnya = document.querySelector("[aria-label='Selanjutnya']");
                             if (selanjutnya) {
@@ -724,7 +734,7 @@ exports.Run = async (data) => {
                                 if (checked) {
                                     return true;
                                 } else {
-                                    return false;
+                                    return true;
                                 }
                             } else {
                                 selanjutnya = null;
@@ -732,7 +742,7 @@ exports.Run = async (data) => {
                             }
                         })
 
-
+                        // melakukan pengecekan jika tombol selanjutnya sudah di tekan atau belum
                         if (selanjutnya == true) {
                             await page.waitForSelector("[aria-label='Terbitkan']");
                             await page.click("[aria-label='Terbitkan']");
@@ -765,6 +775,8 @@ exports.Run = async (data) => {
                         count_post += 1;
                         
                     }
+
+                    // log report
                     report_post.push(log_post);
                     fs.writeFileSync('log.json', JSON.stringify(report_post, null, 2));
 
@@ -772,6 +784,7 @@ exports.Run = async (data) => {
 
             }
 
+            // melakukan logout
             await page.click("[aria-label='Akun']");
             page.evaluate(() => {
                 let btn = document.querySelectorAll('.ow4ym5g4 ')
@@ -781,6 +794,7 @@ exports.Run = async (data) => {
                     }
                 }
             });
+
             let selesai = moment().hour() + "." + moment().minute() + "." + moment().second();
             let log = {
                 "akun": data.akun[i].username,
@@ -809,6 +823,7 @@ exports.Run = async (data) => {
 
     }
 
+    // log report
     let result_report = {
         akun: logs,
         barang: report_post
