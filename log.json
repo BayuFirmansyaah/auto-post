@@ -1,7 +1,27 @@
 [
   {
     "akun": "putriseptia003s@gmail.com",
-    "kode": "AXS-006",
-    "status": "failed"
+    "kode": "AXS-002",
+    "status": "berhasil"
+  },
+  {
+    "akun": "putriseptia003s@gmail.com",
+    "kode": "AXS-003",
+    "status": "data tidak lengkap"
+  },
+  {
+    "akun": "putriseptia003s@gmail.com",
+    "kode": "AXS-004",
+    "status": "data tidak lengkap"
+  },
+  {
+    "akun": "putriseptia003s@gmail.com",
+    "kode": "AXS-005",
+    "status": "data tidak lengkap"
+  },
+  {
+    "akun": "putriseptia003s@gmail.com",
+    "kode": "AXS-002",
+    "status": "berhasil"
   }
 ]

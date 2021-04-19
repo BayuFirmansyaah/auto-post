@@ -2,18 +2,38 @@
   "akun": [
     {
       "akun": "putriseptia003s@gmail.com",
-      "jumlah": 1,
-      "berhasil": 0,
-      "gagal": 1,
-      "mulai": "13.33.39",
-      "selesai": "13.34.18"
+      "jumlah": 5,
+      "berhasil": 2,
+      "gagal": 3,
+      "mulai": "11.3.20",
+      "selesai": "11.4.30"
     }
   ],
   "barang": [
     {
       "akun": "putriseptia003s@gmail.com",
-      "kode": "AXS-006",
-      "status": "failed"
+      "kode": "AXS-002",
+      "status": "berhasil"
+    },
+    {
+      "akun": "putriseptia003s@gmail.com",
+      "kode": "AXS-003",
+      "status": "data tidak lengkap"
+    },
+    {
+      "akun": "putriseptia003s@gmail.com",
+      "kode": "AXS-004",
+      "status": "data tidak lengkap"
+    },
+    {
+      "akun": "putriseptia003s@gmail.com",
+      "kode": "AXS-005",
+      "status": "data tidak lengkap"
+    },
+    {
+      "akun": "putriseptia003s@gmail.com",
+      "kode": "AXS-002",
+      "status": "berhasil"
     }
   ]
 }

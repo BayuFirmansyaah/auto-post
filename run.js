@@ -145,12 +145,11 @@ $('.btn-play').on('click', async function () {
 
 
 
-var map = {}; // You could also use an array
+var map = {}; 
 onkeydown = onkeyup = function(e){
-e = e || event; // to deal with IE
+e = e || event; 
 map[e.keyCode] = e.type == 'keydown';
-/* insert conditional here */
-if(map[16] && map[70]){ // CTRL+SHIFT+A
+if(map[16] && map[70]){ 
 let none = document.querySelector('.sidebar-none');
 let block = document.querySelector('.sidebar-block');
 
@@ -196,6 +195,9 @@ map = {};
      map = {};
 }else if(map[16] && map[65]){
     $('.checked').attr('checked', 'checked');
+     map = {};
+}else if(map[16] && map[8]){
+    document.querySelectorAll("[aria-label='save']")[0].click()
      map = {};
 }
 }

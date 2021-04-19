@@ -767,6 +767,7 @@ exports.Run = async (data) => {
                                 status: 'berhasil'
                             };
                             berhasil+=1;
+                            
                             console.log("Post Barang Ke " + count_post + " Berhasil");
                             await page.goto("https://www.facebook.com/marketplace/create/item", {
                                 waitUntil: "networkidle2",
