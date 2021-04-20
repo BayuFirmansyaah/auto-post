@@ -742,17 +742,17 @@ exports.Run = async (data) => {
 
                         // melakukan pengecekan pada tombol selanjutnya
                         let selanjutnya = await page.evaluate(() => {
-                            let selanjutnya = document.querySelector("[aria-label='Selanjutnya']");
-                            if (selanjutnya) {
-                                selanjutnya.onclick() = function(){
+                                let selanjutnya = document.querySelector("[aria-label='Selanjutnya']");
+                                if (selanjutnya) {
+                                    selanjutnya.onclick() = function(){
+                                        return true;
+                                    }
+                                    selanjutnya.click();
+                                    return false;
+                                } else {
+                                    selanjutnya = null;
                                     return true;
                                 }
-                                selanjutnya.click();
-                                return false;
-                            } else {
-                                selanjutnya = null;
-                                return true;
-                            }
                         })
 
                         // melakukan pengecekan jika tombol selanjutnya sudah di tekan atau belum
