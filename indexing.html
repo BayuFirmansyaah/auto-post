@@ -96,7 +96,7 @@
                 </div>
                 <div class="row mt-3 row-table">
                     <div class="col-12" style="height: 425px;overflow-y: scroll;">
-                        <table class="table table-bordered table-hover" style="width: 100%;">
+                        <table class="table table-bordered table-hover" id="example" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th scope="col" width="30px">no</th>
@@ -425,6 +425,18 @@
 
         }
     </script>
+
+    
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+      </script>
 </body>
 
 </html>

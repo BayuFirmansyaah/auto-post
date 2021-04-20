@@ -1,34 +1,19 @@
 {
   "akun": [
     {
-      "akun": "089530534789",
-      "jumlah": 4,
-      "berhasil": 3,
+      "akun": "amanda65623@gmail.com",
+      "jumlah": 1,
+      "berhasil": 0,
       "gagal": 1,
-      "mulai": "13.57.2",
-      "selesai": "13.57.55"
+      "mulai": "10.59.27",
+      "selesai": "10.59.56"
     }
   ],
   "barang": [
     {
-      "akun": "089530534789",
-      "kode": "AXS-000",
-      "status": "data tidak lengkap"
-    },
-    {
-      "akun": "089530534789",
-      "kode": "AXS-001",
-      "status": "berhasil"
-    },
-    {
-      "akun": "089530534789",
+      "akun": "amanda65623@gmail.com",
       "kode": "AXS-002",
-      "status": "berhasil"
-    },
-    {
-      "akun": "089530534789",
-      "kode": "AXS-001",
-      "status": "berhasil"
+      "status": "akun terkena limit"
     }
   ]
 }
