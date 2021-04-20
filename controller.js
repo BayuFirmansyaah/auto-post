@@ -744,12 +744,11 @@ exports.Run = async (data) => {
                         let selanjutnya = await page.evaluate(() => {
                             let selanjutnya = document.querySelector("[aria-label='Selanjutnya']");
                             if (selanjutnya) {
-                                let checked = selanjutnya.click();
-                                if (checked) {
-                                    return true;
-                                } else {
+                                selanjutnya.onclick() = function(){
                                     return true;
                                 }
+                                selanjutnya.click();
+                                return false;
                             } else {
                                 selanjutnya = null;
                                 return true;
