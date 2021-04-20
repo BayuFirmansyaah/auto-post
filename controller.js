@@ -456,7 +456,7 @@ exports.isRun = function (value) {
 exports.Run = async (data) => {
 
     // membuka browser
-    let browser = await puppeteer.launch({ headless: false, args: ['--start-maximized'] });
+    let browser = await puppeteer.launch({ headless: true, args: ['--start-maximized'] });
     const context = browser.defaultBrowserContext();
     console.log("browser jalan");
     context.overridePermissions("https://www.facebook.com", []);
@@ -744,11 +744,10 @@ exports.Run = async (data) => {
                         let selanjutnya = await page.evaluate(() => {
                             let selanjutnya = document.querySelector("[aria-label='Selanjutnya']");
                             if (selanjutnya) {
-                                let checked = selanjutnya.click();
-                                if (checked) {
+                                if (selanjutnya.click()) {
                                     return true;
                                 } else {
-                                    return true;
+                                    return false;
                                 }
                             } else {
                                 selanjutnya = null;
