@@ -254,9 +254,9 @@ exports.getDetailItem = function (req, res) {
 }
 
 // mendapatkan log barang
-exports.getLog = function(res,reg){
-    let data = fs.readFileSync('./log.json','utf-8');
-        data = JSON.parse(data);
+exports.getLog = function (res, reg) {
+    let data = fs.readFileSync('./log.json', 'utf-8');
+    data = JSON.parse(data);
     res.json(data);
 }
 
@@ -508,14 +508,14 @@ exports.Run = async (data) => {
         let berhasil = 0;
         let gagal = 0;
         let mulai = moment().hour() + "." + moment().minute() + "." + moment().second();
-        console.log('Start : '+mulai);
+        console.log('Start : ' + mulai);
 
         // melakukan pengecekan apakah start/pause/stop
         if (onRun == 1) {
             await page.goto("https://www.facebook.com/login", {
                 waitUntil: "networkidle2",
             });
-            console.log(`Menjalankan Post pada Akun `+data.akun[i].username);
+            console.log(`Menjalankan Post pada Akun ` + data.akun[i].username);
             await page.click("#email");
             await page.keyboard.down("Control");
             await page.keyboard.press("KeyA");
@@ -532,7 +532,7 @@ exports.Run = async (data) => {
 
             let data_barang = items[i];
             let count_post = 0;
-            
+
             //melakukan perulangan pada akun
             for (let j = 0; j < data_barang.length; j++) {
                 let log_post;
@@ -545,7 +545,7 @@ exports.Run = async (data) => {
                     if (data_barang[j].judul.length <= 1 ||
                         data_barang[j].kategori.length <= 1 ||
                         data_barang[j].deskripsi.length <= 1 ||
-                        nameImage.length <0) {
+                        nameImage.length <= 0) {
 
                         // menuliskan logs report
                         log_post = {
@@ -554,7 +554,7 @@ exports.Run = async (data) => {
                             kode: data_barang[j].kode,
                             status: 'data tidak lengkap'
                         };
-                        gagal+=1;
+                        gagal += 1;
                         await page.goto("https://www.facebook.com/marketplace/create/item", {
                             waitUntil: "networkidle2",
                         });
@@ -742,15 +742,16 @@ exports.Run = async (data) => {
 
                         // melakukan pengecekan pada tombol selanjutnya
                         let selanjutnya = await page.evaluate(() => {
-                            let selanjutnya = document.querySelector("[aria-label='Selanjutnya']");
-                            if (selanjutnya) {
-                                selanjutnya.onclick() = function(){
-                                    return true;
-                                }
-                                selanjutnya.click();
+                            let btnselanjutnya = document.querySelector("[aria-label='Selanjutnya']");
+                            if (btnselanjutnya) {
+                               if(btnselanjutnya.getAttribute('aria-disabled') == null){
+                                   btnselanjutnya.click();
+                                   return true;
+                               }else{
                                 return false;
+                               }
                             } else {
-                                selanjutnya = null;
+                                btnselanjutnya = null;
                                 return true;
                             }
                         })
@@ -765,12 +766,14 @@ exports.Run = async (data) => {
                                 kode: data_barang[j].kode,
                                 status: 'berhasil'
                             };
-                            berhasil+=1;
+                            berhasil += 1;
+
                             console.log("Post Barang Ke " + count_post + " Berhasil");
                             await page.goto("https://www.facebook.com/marketplace/create/item", {
                                 waitUntil: "networkidle2",
                             });
                         } else {
+                            
                             // menuliskan logs report
                             log_post = {
                                 akun: data.akun[i].username,
@@ -778,13 +781,14 @@ exports.Run = async (data) => {
                                 kode: data_barang[j].kode,
                                 status: 'akun terkena limit'
                             };
-                            gagal+=1;
+                            gagal += 1;
                             console.log("Post Barang Ke " + count_post + " Gagal");
                             await page.goto("https://www.facebook.com/marketplace/create/item", {
                                 waitUntil: "networkidle2",
                             });
+                            j=data_barang.length;
                         }
-                        count_post += 1;                        
+                        count_post += 1;
                     }
                     // log report
                     report_post.push(log_post);
@@ -810,7 +814,7 @@ exports.Run = async (data) => {
                 "akun": data.akun[i].username,
                 "jumlah": count_post,
                 "berhasil": berhasil,
-                "gagal"   : gagal,
+                "gagal": gagal,
                 "mulai": mulai,
                 "selesai": selesai
             }
