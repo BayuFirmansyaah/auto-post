@@ -72,7 +72,7 @@
         <div class="data-table">
             <div class="container-fluid " style="padding: 15px;">
                 <div class="row">
-                    <div class="col-10">
+                    <div class="col-1">
                         <div class="dropdown">
                             <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -84,9 +84,9 @@
                                 <button class="dropdown-item" data-toggle="modal" data-target="#modalAddManually">Add
                                     Via Manually</button>
                             </div>
-                        </div>
+                        </div>                  
                     </div>
-
+                    <div class="col-9"><p class="btn btn-jumlah">Jumlah 0</p> </div>
                     <div class="col-2">
                         <button class="btn btn-success btn-edit-all" data-toggle="modal" data-target="#allAkun"><i
                                 class="fas fa-pen-alt"></i></button>
@@ -96,7 +96,7 @@
                 </div>
                 <div class="row mt-3 row-table">
                     <div class="col-12" style="height: 425px;overflow-y: scroll;">
-                        <table class="table table-bordered table-hover" id="example" style="width: 100%;">
+                        <table class="table table-bordered table-hover freeze" id="example" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th scope="col" width="30px">no</th>
@@ -428,15 +428,7 @@
 
     
 
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable();
-        } );
-      </script>
 </body>
 
 </html>

@@ -72,6 +72,18 @@ $.ajax({
                 $(".id-barang", this).attr('checked', 'checked');
             }
 
+            let checkbox = document.querySelectorAll('.checked');
+            let count = 0;
+           
+            for(let i=0;i<checkbox.length;i++){
+                if(checkbox[i].checked){
+                    count+=1;
+                    console.log(count)
+                }
+            }
+
+            $('.btn-jumlah').html('Jumlah '+count);
+
         })
 
         let baris = document.querySelectorAll('.baris-data');
@@ -101,6 +113,34 @@ $.ajax({
             } else {
                 $('.checked').removeAttr('checked');
             }
+
+            let checkbox = document.querySelectorAll('.checked');
+            let count = 0;
+           
+            for(let i=0;i<checkbox.length;i++){
+                if(checkbox[i].checked){
+                    count+=1;
+                    console.log(count)
+                }
+            }
+
+            $('.btn-jumlah').html('Jumlah '+count);
+        })
+
+        // jika tombol cheked di tekan
+        $('.checked').on('change',function(){
+            $(this).attr('checked', 'checked');
+            let checkbox = document.querySelectorAll('.checked');
+            let count = 0;
+           
+            for(let i=0;i<checkbox.length;i++){
+                if(checkbox[i].checked){
+                    count+=1;
+                    console.log(count)
+                }
+            }
+
+            $('.btn-jumlah').html('Jumlah '+count);
         })
     },
     error: (err) => {
