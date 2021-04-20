@@ -545,7 +545,7 @@ exports.Run = async (data) => {
                     if (data_barang[j].judul.length <= 1 ||
                         data_barang[j].kategori.length <= 1 ||
                         data_barang[j].deskripsi.length <= 1 ||
-                        nameImage.length <= 1) {
+                        nameImage.length <0) {
 
                         // menuliskan logs report
                         log_post = {
@@ -742,17 +742,17 @@ exports.Run = async (data) => {
 
                         // melakukan pengecekan pada tombol selanjutnya
                         let selanjutnya = await page.evaluate(() => {
-                                let selanjutnya = document.querySelector("[aria-label='Selanjutnya']");
-                                if (selanjutnya) {
-                                    selanjutnya.onclick() = function(){
-                                        return true;
-                                    }
-                                    selanjutnya.click();
-                                    return false;
-                                } else {
-                                    selanjutnya = null;
+                            let selanjutnya = document.querySelector("[aria-label='Selanjutnya']");
+                            if (selanjutnya) {
+                                selanjutnya.onclick() = function(){
                                     return true;
                                 }
+                                selanjutnya.click();
+                                return false;
+                            } else {
+                                selanjutnya = null;
+                                return true;
+                            }
                         })
 
                         // melakukan pengecekan jika tombol selanjutnya sudah di tekan atau belum
