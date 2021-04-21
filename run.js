@@ -23,13 +23,13 @@ function sortByProperty(objArray, prop, direction) {
 
 // ketika tombol save item ditekan 
 $('.btn-save').on('click', async function () {
-    Save();
+    await Save();
 })
 
 
 // jika tombol play ditekan
 $('.btn-play').on('click', async function () {
-    Play();
+    await Play();
 })
 
 
@@ -62,7 +62,7 @@ onkeydown = onkeyup = function (e) {
 
 
 // function play account
-function Play(){
+const Play = async()=>{
     // melakukan pengecekan terhadap path
     if ($('.path').val() == null) {
         alert("Path Belum Di Set")
@@ -136,7 +136,7 @@ function Play(){
 
 
 // function save data item
-function Save(){
+const Save = async ()=>{
     // melakukan pencarian checkbox
     let id = document.querySelectorAll('.id-barang');
     let id_barang = [];
