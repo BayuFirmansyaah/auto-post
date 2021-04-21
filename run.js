@@ -1,3 +1,5 @@
+
+
 // function sort json
 function sortByProperty(objArray, prop, direction) {
     if (arguments.length < 2) throw new Error("ARRAY, AND OBJECT PROPERTY MINIMUM ARGUMENTS, OPTIONAL DIRECTION");
@@ -89,6 +91,7 @@ const Play = async () => {
             $('.btn-play').removeClass('show');
             $('.btn-pause').addClass('show');
             $('.btn-pause').removeClass('none');
+            localStorage.setItem("btn", 1);
 
             let result = await $.ajax({
                 url: 'http://localhost:3000/get/account/' + sessionStorage.getItem("id_user"),

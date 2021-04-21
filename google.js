@@ -1,6 +1,36 @@
 $('.id_user').val(sessionStorage.getItem('id_user'));
 $('.level').val(sessionStorage.getItem('level'));
-
+ let cekbtn = localStorage.getItem("btn");
+ if(cekbtn == 0){
+    $('.btn-pause').addClass('none');
+    $('.btn-pause').removeClass('show');
+    $('.btn-play').addClass('show');
+    $('.btn-play').removeClass('none');
+    $('.btn-resume').addClass('none');
+    $('.btn-resume').removeClass('show');
+ }else if(cekbtn==1){
+    $('.btn-play').addClass('none');
+    $('.btn-play').removeClass('show');
+    $('.btn-pause').addClass('show');
+    $('.btn-pause').removeClass('none');
+ }else if(cekbtn == 2){
+    $('.btn-pause').addClass('none');
+    $('.btn-pause').removeClass('show');
+    $('.btn-resume').addClass('show');
+    $('.btn-resume').removeClass('none');
+ }else if(cekbtn == 3){
+    $('.btn-pause').addClass('show');
+    $('.btn-pause').removeClass('none');
+    $('.btn-resume').addClass('none');
+    $('.btn-resume').removeClass('show');
+ }else{
+    $('.btn-pause').addClass('none');
+    $('.btn-pause').removeClass('show');
+    $('.btn-play').addClass('show');
+    $('.btn-play').removeClass('none');
+    $('.btn-resume').addClass('none');
+    $('.btn-resume').removeClass('show');
+ }
 
 
 // function sort json
@@ -137,6 +167,7 @@ $('.btn-pause').on('click', function () {
     $('.btn-pause').removeClass('show');
     $('.btn-resume').addClass('show');
     $('.btn-resume').removeClass('none');
+    localStorage.setItem("btn", 2);
     $.ajax({
         url: 'http://localhost:3000/pause',
         success: (data) => {
@@ -154,6 +185,7 @@ $('.btn-resume').on('click', function () {
     $('.btn-resume').removeClass('show');
     $('.btn-pause').addClass('show');
     $('.btn-pause').removeClass('none');
+    localStorage.setItem("btn", 3);
     $.ajax({
         url: 'http://localhost:3000/resume',
         success: (data) => {
@@ -173,6 +205,7 @@ $('.btn-stop').on('click', function () {
     $('.btn-play').removeClass('none');
     $('.btn-resume').addClass('none');
     $('.btn-resume').removeClass('show');
+    localStorage.setItem("btn", 0);
     $.ajax({
         url: 'http://localhost:3000/stop',
         success: (data) => {
