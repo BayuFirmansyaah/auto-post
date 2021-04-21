@@ -72,7 +72,7 @@
         <div class="data-table">
             <div class="container-fluid " style="padding: 15px;">
                 <div class="row">
-                    <div class="col-10">
+                    <div class="col-1">
                         <div class="dropdown">
                             <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -84,9 +84,9 @@
                                 <button class="dropdown-item" data-toggle="modal" data-target="#modalAddManually">Add
                                     Via Manually</button>
                             </div>
-                        </div>
+                        </div>                  
                     </div>
-
+                    <div class="col-9"><p class="btn btn-jumlah">Jumlah 0</p> </div>
                     <div class="col-2">
                         <button class="btn btn-success btn-edit-all" data-toggle="modal" data-target="#allAkun"><i
                                 class="fas fa-pen-alt"></i></button>
@@ -389,81 +389,8 @@
     <script src="main.js"></script>
     <script src="index.js"></script>
     <script src="run.js"></script>
-    <script>
-        if (localStorage.getItem('ls') === "true") {
-            document.querySelector('.sidebar').classList.remove('sidebar-none')
-            document.querySelector('.sidebar').classList.add('sidebar-block')
-            document.querySelector('.content').classList.remove('table-none')
-            document.querySelector('.table').classList.remove('table-full')
-            document.querySelector('.row-table').classList.remove('.row-table-none')
-            $('.sidebar').html(` <h6 class="text-heading text-primary">DATA ACCOUNTS</h6>
-    <a href="/google.html">
-        <p class="sub-heading "><i class="fab fa-facebook"></i> Facebook Accounts</p>
-    </a>
-    <h6 class="text-heading text-primary">INVENTORY</h6>
-    <a href="/indexing.html">
-        <p class="sub-heading "><i class="fas fa-server"></i> Item</p>
-    </a>
-    <div data-toggle="modal" data-target="#path">
-        <p class="sub-heading "><i class="fas fa-map-marker-alt"></i> Path Image</p>
-    </div>`)
+    
 
-        } else if (localStorage.getItem('ls') === "false") {
-            document.querySelector('.sidebar').classList.add('sidebar-none')
-            document.querySelector('.sidebar').classList.remove('sidebar-block')
-            document.querySelector('.content').classList.add('table-none')
-            document.querySelector('table').classList.add('table-full')
-            document.querySelector('.row-table').classList.add('.row-table-none')
-            $('.sidebar').html(`  <a href="/google.html">
-    <p class="sub-heading "><i class="fab fa-facebook"></i></p>
-</a>
-<a href="/indexing.html">
-    <p class="sub-heading "><i class="fas fa-server"></i></p>
-</a>
-<div data-toggle="modal" data-target="#path">
-    <p class="sub-heading "><i class="fas fa-map-marker-alt"></i></p>
-</div>`)
-
-
-        }
-    </script>
-
-
-
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
-    <script>
-        function myFunction() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script>
-<script>
-    $(document).ready(function () {
-        $("#posSearch").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#posTable tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-</script>
 </body>
 
 </html>
