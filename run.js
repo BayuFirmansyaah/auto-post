@@ -20,59 +20,50 @@ function sortByProperty(objArray, prop, direction) {
     return clone;
 }
 
-let dataServer = {
-    akun: null,
-    barang: null,
-    path: null
-};
-
 
 // ketika tombol save item ditekan 
 $('.btn-save').on('click', async function () {
-    let id = document.querySelectorAll('.id-barang');
-    let id_barang = [];
-
-    id.forEach((id) => {
-        if (id.checked) {
-            id_barang.push(id.getAttribute('value'));
-        }
-    });
-
-    if (id_barang.length > 0) {
-        let result = await $.ajax({
-            url: 'http://localhost:3000/get/item/' + sessionStorage.getItem("id_user"),
-            success: async (data) => {
-                return data;
-            },
-            error: (err) => {
-                console.log(err);
-            }
-        })
-
-        let temporary = [];
-        let Item = result.Search;
-        Item = sortByProperty(Item, "Item.account");
-        await Item.forEach((item) => {
-            for (let i = 0; i < id_barang.length; i++) {
-                if (id_barang[i] == item.id_barang) {
-                    temporary.push(item);
-                }
-            }
-        })
-        localStorage.setItem('item', JSON.stringify(temporary));
-        alert("Data Berhasil disimpan");
-        location.reload();
-    } else {
-        alert("Tidak Ada data item yang dipilih");
-    }
-
+    Save();
 })
 
 
-let items = localStorage.getItem('daftar_nama');
-
 // jika tombol play ditekan
 $('.btn-play').on('click', async function () {
+    Play();
+})
+
+
+//ketika shortcut ditekan
+var map = {};
+onkeydown = onkeyup = function (e) {
+    e = e || event;
+    map[e.keyCode] = e.type == 'keydown';
+    if (map[16] && map[70]) {
+        showSideBar();
+        map = {};   
+    }else if (map[16] && map[83]) {
+        document.querySelectorAll("[aria-label='save']")[0].click()
+        map = {};
+    } else if (map[16] && map[65]) {
+        $('.checked').attr('checked', 'checked');
+        map = {};
+    } else if (map[16] && map[68]) {
+        document.querySelectorAll("[aria-label='hapus']")[0].click()
+        map = {};
+    }else if(map[16]){
+
+    }
+}
+
+
+// ======================================================================================
+// ================================= Prototype Functions=================================
+// ======================================================================================
+
+
+// function play account
+function Play(){
+    // melakukan pengecekan terhadap path
     if ($('.path').val() == null) {
         alert("Path Belum Di Set")
     } else {
@@ -103,6 +94,7 @@ $('.btn-play').on('click', async function () {
                 }
             })
 
+            // melakukan pengurutan akun
             let temporary = [];
             let Akun = result.Search;
             Akun = sortByProperty(Akun, "Akun.username");
@@ -113,6 +105,8 @@ $('.btn-play').on('click', async function () {
                     }
                 }
             });
+
+            // menyimpan data akun di localstorage
             localStorage.setItem('akun', JSON.stringify(temporary));
 
             // menyimpan data yang akan dikirim ke server
@@ -122,8 +116,7 @@ $('.btn-play').on('click', async function () {
                 path: $('.path').val()
             };
 
-            console.table(data);
-
+            // mengirimkan perintah run ke server
             $.ajax({
                 url: 'http://localhost:3000/run',
                 type: 'post',
@@ -139,26 +132,72 @@ $('.btn-play').on('click', async function () {
         }
 
     }
-})
+}
 
 
-//ShortCut
-var map = {};
-onkeydown = onkeyup = function (e) {
-    e = e || event;
-    map[e.keyCode] = e.type == 'keydown';
-    if (map[16] && map[70]) {
-        let none = document.querySelector('.sidebar-none');
-        let block = document.querySelector('.sidebar-block');
+// function save data item
+function Save(){
+    // melakukan pencarian checkbox
+    let id = document.querySelectorAll('.id-barang');
+    let id_barang = [];
 
-        if (none == null) {
-            document.querySelector('.sidebar').classList.add('sidebar-none')
-            document.querySelector('.sidebar').classList.remove('sidebar-block')
-            document.querySelector('.content').classList.add('table-none')
-            document.querySelector('table').classList.add('table-full')
-            document.querySelector('.row-table').classList.add('.row-table-none')
+    // mendapatkan nilai checkbox
+    id.forEach((id) => {
+        if (id.checked) {
+            id_barang.push(id.getAttribute('value'));
+        }
+    });
 
-            $('.sidebar').html(`  <a href="/google.html">
+    // melakukan pengecekan nilai yang didapat dari chekbox
+    if (id_barang.length > 0) {
+        let result = await $.ajax({
+            url: 'http://localhost:3000/get/item/' + sessionStorage.getItem("id_user"),
+            success: async (data) => {
+                return data;
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        })
+
+        // melakukan pengurutan data
+        let temporary = [];
+        let Item = result.Search;
+        Item = sortByProperty(Item, "Item.account");
+        await Item.forEach((item) => {
+            for (let i = 0; i < id_barang.length; i++) {
+                if (id_barang[i] == item.id_barang) {
+                    temporary.push(item);
+                }
+            }
+        })
+
+        // menyimpan data item ke localstorage
+        localStorage.setItem('item', JSON.stringify(temporary));
+
+        alert("Data Berhasil disimpan");
+        location.reload();
+    } else {
+        alert("Tidak Ada data item yang dipilih");
+    }
+}
+
+
+// function showSidBar
+function showSideBar(){
+    // melakukan query element
+    let none = document.querySelector('.sidebar-none');
+    let block = document.querySelector('.sidebar-block');
+
+    // melakukan pengecekan nilai element
+    if (none == null) {
+        document.querySelector('.sidebar').classList.add('sidebar-none')
+        document.querySelector('.sidebar').classList.remove('sidebar-block')
+        document.querySelector('.content').classList.add('table-none')
+        document.querySelector('table').classList.add('table-full')
+        document.querySelector('.row-table').classList.add('.row-table-none')
+
+        $('.sidebar').html(`  <a href="/google.html">
                 <p class="sub-heading "><i class="fab fa-facebook"></i></p>
             </a>
             <a href="/indexing.html">
@@ -169,15 +208,15 @@ onkeydown = onkeyup = function (e) {
             </div>`)
 
 
-            localStorage.setItem('ls', false);
+        localStorage.setItem('ls', false);
 
-        } else if (block == null) {
-            document.querySelector('.sidebar').classList.remove('sidebar-none')
-            document.querySelector('.sidebar').classList.add('sidebar-block')
-            document.querySelector('.content').classList.remove('table-none')
-            document.querySelector('.table').classList.remove('table-full')
-            document.querySelector('.row-table').classList.remove('.row-table-none')
-            $('.sidebar').html(` <h6 class="text-heading text-primary">DATA ACCOUNTS</h6>
+    } else if (block == null) {
+        document.querySelector('.sidebar').classList.remove('sidebar-none')
+        document.querySelector('.sidebar').classList.add('sidebar-block')
+        document.querySelector('.content').classList.remove('table-none')
+        document.querySelector('.table').classList.remove('table-full')
+        document.querySelector('.row-table').classList.remove('.row-table-none')
+        $('.sidebar').html(` <h6 class="text-heading text-primary">DATA ACCOUNTS</h6>
             <a href="/google.html">
                 <p class="sub-heading "><i class="fab fa-facebook"></i> Facebook Accounts</p>
             </a>
@@ -190,20 +229,11 @@ onkeydown = onkeyup = function (e) {
             </div>`)
 
 
-            localStorage.setItem('ls', true);
-        }
-        map = {};
-    } else if (map[16] && map[83]) {
-        document.querySelectorAll("[aria-label='save']")[0].click()
-        map = {};
-    } else if (map[16] && map[65]) {
-        $('.checked').attr('checked', 'checked');
-        map = {};
-    } else if (map[16] && map[68]) {
-        document.querySelectorAll("[aria-label='hapus']")[0].click()
-        map = {};
+        localStorage.setItem('ls', true);
     }
 }
+
+
 // overflow log selalu dibawah
 function updateScroll() {
     var element = document.querySelector(".row-log");
