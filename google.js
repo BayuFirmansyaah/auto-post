@@ -1,6 +1,36 @@
 $('.id_user').val(sessionStorage.getItem('id_user'));
 $('.level').val(sessionStorage.getItem('level'));
-
+ let cekbtn = localStorage.getItem("btn");
+ if(cekbtn == 0){
+    $('.btn-pause').addClass('none');
+    $('.btn-pause').removeClass('show');
+    $('.btn-play').addClass('show');
+    $('.btn-play').removeClass('none');
+    $('.btn-resume').addClass('none');
+    $('.btn-resume').removeClass('show');
+ }else if(cekbtn==1){
+    $('.btn-play').addClass('none');
+    $('.btn-play').removeClass('show');
+    $('.btn-pause').addClass('show');
+    $('.btn-pause').removeClass('none');
+ }else if(cekbtn == 2){
+    $('.btn-pause').addClass('none');
+    $('.btn-pause').removeClass('show');
+    $('.btn-resume').addClass('show');
+    $('.btn-resume').removeClass('none');
+ }else if(cekbtn == 3){
+    $('.btn-pause').addClass('show');
+    $('.btn-pause').removeClass('none');
+    $('.btn-resume').addClass('none');
+    $('.btn-resume').removeClass('show');
+ }else{
+    $('.btn-pause').addClass('none');
+    $('.btn-pause').removeClass('show');
+    $('.btn-play').addClass('show');
+    $('.btn-play').removeClass('none');
+    $('.btn-resume').addClass('none');
+    $('.btn-resume').removeClass('show');
+ }
 
 
 // function sort json
@@ -35,7 +65,7 @@ $.ajax({
         let i = 1;
         akun.forEach(data => {
             row += `
-                    <tr class="baris-data">
+                    <tr class="baris-data baris-akun">
                         <th scope="row">${i}</th>
                         <td class="text-center">
                             <input type="checkbox" class="checked id-facebook" value="${data.id}" 
@@ -49,6 +79,8 @@ $.ajax({
 
         // mengisi data kedalam tabel
         $('.table-body').html(row);
+
+
 
         $('.baris-data').on('click', function () {
             let cek = $(".id-facebook", this)
@@ -68,6 +100,16 @@ $.ajax({
                 $('.checked').removeAttr('checked');
             }
         })
+
+        let dataAkun = JSON.parse(localStorage.getItem('data-akun'));
+        let checkbox = document.querySelectorAll('.checked');
+        let barisAkun = document.querySelectorAll('.baris-akun');
+
+        for (let i = 0; i < dataAkun.length; i++) {
+            let index = dataAkun[i]
+            checkbox[index].setAttribute('checked', 'checked');
+             barisAkun[i].classList.add('disabled-row')
+        }
     },
     error: (err) => {
         console.log(err);
@@ -138,6 +180,7 @@ $('.btn-pause').on('click', function () {
     $('.btn-pause').removeClass('show');
     $('.btn-resume').addClass('show');
     $('.btn-resume').removeClass('none');
+    localStorage.setItem("btn", 2);
     $.ajax({
         url: 'http://localhost:3000/pause',
         success: (data) => {
@@ -155,6 +198,7 @@ $('.btn-resume').on('click', function () {
     $('.btn-resume').removeClass('show');
     $('.btn-pause').addClass('show');
     $('.btn-pause').removeClass('none');
+    localStorage.setItem("btn", 3);
     $.ajax({
         url: 'http://localhost:3000/resume',
         success: (data) => {
@@ -174,6 +218,7 @@ $('.btn-stop').on('click', function () {
     $('.btn-play').removeClass('none');
     $('.btn-resume').addClass('none');
     $('.btn-resume').removeClass('show');
+    localStorage.setItem("btn", 0);
     $.ajax({
         url: 'http://localhost:3000/stop',
         success: (data) => {

@@ -102,7 +102,7 @@ function loadData(data){
         })
 
         row += `
-            <tr class="baris-data">
+            <tr class="baris-data baris-item">
                 <th scope="row">${i}</th>
                 <td class="text-center"> 
                     <input type="checkbox" class="checked id-barang" value="${data.id_barang}" >
@@ -155,6 +155,26 @@ function loadData(data){
             })
         }
     })
+
+    let dataBarangSelect = JSON.parse(localStorage.getItem('data-barang'));
+    let checkbox = document.querySelectorAll('.checked');
+    let barisAkun = document.querySelectorAll('.baris-item');
+
+    for(let i=0;i<dataBarangSelect.length;i++){
+        let index = dataBarangSelect[i]
+        checkbox[index].setAttribute('checked', 'checked');
+        let count = 0;
+        barisAkun[i].classList.add('disabled-row')
+        for (let j = 0; j < checkbox.length; j++) {
+            if (checkbox[j].checked) {
+                count += 1;
+                console.log(count)
+            }
+        }
+
+        $('.btn-jumlah').html('Jumlah ' + count);
+
+    }
 
     // memberikan event jika tombol checkedAll di tekan
     $('.chekedAll').on('change', function () {
@@ -397,4 +417,5 @@ $('.level').val(sessionStorage.getItem('level'));
 if ($('.level').val(sessionStorage.getItem('level')) != "admin") {
     $('.add').addClass('none');
 }
+
 

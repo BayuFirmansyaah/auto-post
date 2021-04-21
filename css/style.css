@@ -199,4 +199,12 @@ li{
     text-transform: lowercase;
 }
 
+.disabled-row{
+    background-color:#f2f2f2;
+}
+
+.disabled-row::hover{
+    background-color:#f2f2f2;
+}
+
 

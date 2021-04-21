@@ -74,12 +74,21 @@ const Play = async () => {
         // mendapatkan id akun
         let id = document.querySelectorAll('.id-facebook');
         let id_facebook = [];
+        let index = [];
 
         id.forEach((id) => {
             if (id.checked) {
                 id_facebook.push(id.getAttribute('value'));
             }
         })
+
+        for (let i = 0; i < id.length; i++) {
+            if (id[i].checked) {
+                index.push(i);
+            }
+        }
+
+        localStorage.setItem('data-akun', JSON.stringify(index));
 
         // jika data akun lebih dari no
         if (id_facebook.length > 0) {
@@ -88,6 +97,7 @@ const Play = async () => {
             $('.btn-play').removeClass('show');
             $('.btn-pause').addClass('show');
             $('.btn-pause').removeClass('none');
+            localStorage.setItem("btn", 1);
 
             let result = await $.ajax({
                 url: 'http://localhost:3000/get/account/' + sessionStorage.getItem("id_user"),
@@ -122,6 +132,9 @@ const Play = async () => {
                 headless: JSON.parse(localStorage.getItem('headless'))
             };
 
+                alert('program dijalankan')
+                location.reload();
+
             // mengirimkan perintah run ke server
             $.ajax({
                 url: 'http://localhost:3000/run',
@@ -153,6 +166,7 @@ const Save = async () => {
     // melakukan pencarian checkbox
     let id = document.querySelectorAll('.id-barang');
     let id_barang = [];
+    let index = [];
 
     // mendapatkan nilai checkbox
     id.forEach((id) => {
@@ -160,6 +174,14 @@ const Save = async () => {
             id_barang.push(id.getAttribute('value'));
         }
     });
+
+   for(let i=0;i<id.length;i++){
+        if(id[i].checked){
+            index.push(i);
+        }
+    }
+ 
+    localStorage.setItem('data-barang', JSON.stringify(index));
 
     // melakukan pengecekan nilai yang didapat dari chekbox
     if (id_barang.length > 0) {
