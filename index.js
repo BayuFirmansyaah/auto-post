@@ -74,15 +74,15 @@ $.ajax({
 
             let checkbox = document.querySelectorAll('.checked');
             let count = 0;
-           
-            for(let i=0;i<checkbox.length;i++){
-                if(checkbox[i].checked){
-                    count+=1;
+
+            for (let i = 0; i < checkbox.length; i++) {
+                if (checkbox[i].checked) {
+                    count += 1;
                     console.log(count)
                 }
             }
 
-            $('.btn-jumlah').html('Jumlah '+count);
+            $('.btn-jumlah').html('Jumlah ' + count);
 
         })
 
@@ -116,31 +116,31 @@ $.ajax({
 
             let checkbox = document.querySelectorAll('.checked');
             let count = 0;
-           
-            for(let i=0;i<checkbox.length;i++){
-                if(checkbox[i].checked){
-                    count+=1;
+
+            for (let i = 0; i < checkbox.length; i++) {
+                if (checkbox[i].checked) {
+                    count += 1;
                     console.log(count)
                 }
             }
 
-            $('.btn-jumlah').html('Jumlah '+count);
+            $('.btn-jumlah').html('Jumlah ' + count);
         })
 
         // jika tombol cheked di tekan
-        $('.checked').on('change',function(){
+        $('.checked').on('change', function () {
             $(this).attr('checked', 'checked');
             let checkbox = document.querySelectorAll('.checked');
             let count = 0;
-           
-            for(let i=0;i<checkbox.length;i++){
-                if(checkbox[i].checked){
-                    count+=1;
+
+            for (let i = 0; i < checkbox.length; i++) {
+                if (checkbox[i].checked) {
+                    count += 1;
                     console.log(count)
                 }
             }
 
-            $('.btn-jumlah').html('Jumlah '+count);
+            $('.btn-jumlah').html('Jumlah ' + count);
         })
     },
     error: (err) => {
@@ -319,14 +319,15 @@ $.ajax({
     }
 })
 
-    < script >
-        if (localStorage.getItem('ls') === "true") {
+//mengecek sidebar 
+if (localStorage.getItem('ls') === "true") {
     document.querySelector('.sidebar').classList.remove('sidebar-none')
     document.querySelector('.sidebar').classList.add('sidebar-block')
     document.querySelector('.content').classList.remove('table-none')
     document.querySelector('.table').classList.remove('table-full')
     document.querySelector('.row-table').classList.remove('.row-table-none')
-    $('.sidebar').html(` <h6 class="text-heading text-primary">DATA ACCOUNTS</h6>
+    $('.sidebar').html(`
+    <h6 class="text-heading text-primary">DATA ACCOUNTS</h6>
     <a href="/google.html">
         <p class="sub-heading "><i class="fab fa-facebook"></i> Facebook Accounts</p>
     </a>
@@ -344,28 +345,27 @@ $.ajax({
     document.querySelector('.content').classList.add('table-none')
     document.querySelector('table').classList.add('table-full')
     document.querySelector('.row-table').classList.add('.row-table-none')
-    $('.sidebar').html(`  <a href="/google.html">
-    <p class="sub-heading "><i class="fab fa-facebook"></i></p>
-</a>
-<a href="/indexing.html">
-    <p class="sub-heading "><i class="fas fa-server"></i></p>
-</a>
-<div data-toggle="modal" data-target="#path">
-    <p class="sub-heading "><i class="fas fa-map-marker-alt"></i></p>
-</div>`)
+    $('.sidebar').html(`
+    <a href="/google.html">
+        <p class="sub-heading "><i class="fab fa-facebook"></i></p>
+    </a>
+    <a href="/indexing.html">
+        <p class="sub-heading "><i class="fas fa-server"></i></p>
+    </a>
+    <div data-toggle="modal" data-target="#path">
+        <p class="sub-heading "><i class="fas fa-map-marker-alt"></i></p>
+    </div>`)
 
 
 }
-    </script >
 
-    <script>
-        $(document).ready(function () {
-            $("#posSearch").on("keyup", function () {
-                var value = $(this).val().toLowerCase();
-                $("#posTable tr").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
+
+$(document).ready(function () {
+    $("#posSearch").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#posTable tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
     });
-</script>
+});
 
