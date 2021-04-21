@@ -40,8 +40,8 @@ onkeydown = onkeyup = function (e) {
     map[e.keyCode] = e.type == 'keydown';
     if (map[16] && map[70]) {
         showSideBar();
-        map = {};   
-    }else if (map[16] && map[83]) {
+        map = {};
+    } else if (map[16] && map[83]) {
         document.querySelectorAll("[aria-label='save']")[0].click()
         map = {};
     } else if (map[16] && map[65]) {
@@ -50,10 +50,16 @@ onkeydown = onkeyup = function (e) {
     } else if (map[16] && map[68]) {
         document.querySelectorAll("[aria-label='hapus']")[0].click()
         map = {};
-    }else if(map[16]){
+    } else if (map[16]) {
 
     }
 }
+
+
+$("select").change(function () {
+    let headles
+    headles = document.getElementById("namacombobox").value;
+});
 
 
 // ======================================================================================
@@ -62,7 +68,7 @@ onkeydown = onkeyup = function (e) {
 
 
 // function play account
-const Play = async()=>{
+const Play = async () => {
     // melakukan pengecekan terhadap path
     if ($('.path').val() == null) {
         alert("Path Belum Di Set")
@@ -113,7 +119,8 @@ const Play = async()=>{
             let data = {
                 akun: JSON.parse(localStorage.getItem('akun')),
                 barang: JSON.parse(localStorage.getItem('item')),
-                path: $('.path').val()
+                path: $('.path').val(),
+                headless: JSON.parse(localStorage.getItem('headless'))
             };
 
             // mengirimkan perintah run ke server
@@ -135,8 +142,15 @@ const Play = async()=>{
 }
 
 
+//function mendatapatkan value headles
+$("select").change(function () {
+   let headless = document.getElementById("namacombobox").value;
+   localStorage.setItem("headless", headless);
+});
+
+
 // function save data item
-const Save = async ()=>{
+const Save = async () => {
     // melakukan pencarian checkbox
     let id = document.querySelectorAll('.id-barang');
     let id_barang = [];
@@ -184,7 +198,7 @@ const Save = async ()=>{
 
 
 // function showSidBar
-function showSideBar(){
+function showSideBar() {
     // melakukan query element
     let none = document.querySelector('.sidebar-none');
     let block = document.querySelector('.sidebar-block');

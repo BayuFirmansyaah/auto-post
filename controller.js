@@ -455,8 +455,9 @@ exports.isRun = function (value) {
 //run auto-post
 exports.Run = async (data) => {
 
+    
     // membuka browser
-    let browser = await puppeteer.launch({ headless: false, args: ['--start-maximized'] });
+    let browser = await puppeteer.launch({ headless: data.headless, args: ['--start-maximized'] });
     const context = browser.defaultBrowserContext();
     console.log("browser jalan");
     context.overridePermissions("https://www.facebook.com", []);
