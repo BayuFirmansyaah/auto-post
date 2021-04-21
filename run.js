@@ -35,11 +35,11 @@ $('.btn-play').on('click', async function () {
 
 //ketika shortcut ditekan
 var map = {};
-onkeydown = onkeyup = function (e) {
+onkeydown = onkeyup = async function (e) {
     e = e || event;
     map[e.keyCode] = e.type == 'keydown';
     if (map[16] && map[70]) {
-        showSideBar();
+        await showSideBar();
         map = {};   
     }else if (map[16] && map[83]) {
         document.querySelectorAll("[aria-label='save']")[0].click()
@@ -50,8 +50,6 @@ onkeydown = onkeyup = function (e) {
     } else if (map[16] && map[68]) {
         document.querySelectorAll("[aria-label='hapus']")[0].click()
         map = {};
-    }else if(map[16]){
-
     }
 }
 

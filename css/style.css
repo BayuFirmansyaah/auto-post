@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Permanent+Marker&display=swap');
+
 .none{
     display: none;
 }
@@ -15,7 +17,8 @@ body {
    }
 
    .navbar-brand {
-       font-family: 'Pacifico', cursive;
+       font-family: 'Berkshire Swash', cursive;
+        text-transform: capitalize;
    }
 
    nav .dropdown-menu {
