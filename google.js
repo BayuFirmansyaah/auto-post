@@ -133,6 +133,7 @@ $('.btn-delete-all').on('click', function () {
 
 // //jika tombol pause ditekan
 $('.btn-pause').on('click', function () {
+    // pause hidden resume show
     $('.btn-pause').addClass('none');
     $('.btn-pause').removeClass('show');
     $('.btn-resume').addClass('show');

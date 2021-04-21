@@ -83,6 +83,7 @@ const Play = async () => {
 
         // jika data akun lebih dari no
         if (id_facebook.length > 0) {
+            // play hidden pause show
             $('.btn-play').addClass('none');
             $('.btn-play').removeClass('show');
             $('.btn-pause').addClass('show');
@@ -254,3 +255,6 @@ function updateScroll() {
 
 updateScroll();
 
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
