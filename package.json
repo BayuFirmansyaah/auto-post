@@ -20,6 +20,7 @@
     "express-session": "^1.17.1",
     "jquery": "^3.6.0",
     "jsdom": "^16.5.3",
+    "jsonfile": "^6.1.0",
     "localstorage": "^1.0.1",
     "moment": "^2.29.1",
     "mysql": "^2.18.1",

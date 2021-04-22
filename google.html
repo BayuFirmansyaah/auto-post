@@ -310,6 +310,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script src="google.js"></script>
     <script src="run.js"></script>
     <script>
@@ -360,9 +361,29 @@
 
         }
     </script>
- <script>    
-      
-</script>    
+<script>
+    $(document).ready(function () {
+        let socket = io.connect('http://localhost:3000', { path: '/socket.io' })
+
+        socket.on('logs', function (results) {
+            let code = "";
+        let data = results.akun;
+        data.forEach((akun) => {
+            code += `
+                    <ul>
+                        <li>${akun.akun}</li>
+                        <li>Posting : ${akun.jumlah} </li>
+                        <li>Berhasil : ${akun.berhasil}</li>
+                        <li>Gagal : ${akun.gagal}</li>
+                        <li>Start : ${akun.mulai}</li>
+                        <li>Stop : ${akun.selesai}</li>
+                    </ul>
+                `
+        })
+        $('.row-log').html(code);
+        })
+    })
+</script>  
 </body>
 
 </html>

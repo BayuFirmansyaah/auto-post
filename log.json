@@ -1,7 +1,22 @@
 [
   {
-    "akun": "amanda65623@gmail.com",
+    "akun": "ekasukmatd002@gmail.com",
     "kode": "AXS-002",
-    "status": "akun terkena limit"
+    "status": "berhasil"
+  },
+  {
+    "akun": "ekasukmatd002@gmail.com",
+    "kode": "AXS-003",
+    "status": "berhasil"
+  },
+  {
+    "akun": "kaylahumeera@gmail.com",
+    "kode": "AXS-004",
+    "status": "berhasil"
+  },
+  {
+    "akun": "kaylahumeera@gmail.com",
+    "kode": "AXS-005",
+    "status": "berhasil"
   }
 ]

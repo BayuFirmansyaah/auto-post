@@ -455,7 +455,7 @@ exports.isRun = function (value) {
 //run auto-post
 exports.Run = async (data) => {
 
-    
+
     // membuka browser
     let browser = await puppeteer.launch({ headless: data.headless, args: ['--start-maximized'] });
     const context = browser.defaultBrowserContext();
@@ -745,12 +745,12 @@ exports.Run = async (data) => {
                         let selanjutnya = await page.evaluate(() => {
                             let btnselanjutnya = document.querySelector("[aria-label='Selanjutnya']");
                             if (btnselanjutnya) {
-                               if(btnselanjutnya.getAttribute('aria-disabled') == null){
-                                   btnselanjutnya.click();
-                                   return true;
-                               }else{
-                                return false;
-                               }
+                                if (btnselanjutnya.getAttribute('aria-disabled') == null) {
+                                    btnselanjutnya.click();
+                                    return true;
+                                } else {
+                                    return false;
+                                }
                             } else {
                                 btnselanjutnya = null;
                                 return true;
@@ -774,7 +774,7 @@ exports.Run = async (data) => {
                                 waitUntil: "networkidle2",
                             });
                         } else {
-                            
+
                             // menuliskan logs report
                             log_post = {
                                 akun: data.akun[i].username,
@@ -787,7 +787,7 @@ exports.Run = async (data) => {
                             await page.goto("https://www.facebook.com/marketplace/create/item", {
                                 waitUntil: "networkidle2",
                             });
-                            j=data_barang.length;
+                            j = data_barang.length;
                         }
                         count_post += 1;
                     }
@@ -821,7 +821,14 @@ exports.Run = async (data) => {
             }
 
             logs.push(log)
+            alert("Akun 1 Selesai");
+            // log report
+            let result_report = {
+                akun: logs,
+                barang: report_post
+            }
 
+            fs.writeFileSync('logs.json', JSON.stringify(result_report, null, 2));
             let url = await page.url();
             await page.waitFor(500)
             await page.goto("https://www.facebook.com/login", {
@@ -836,15 +843,11 @@ exports.Run = async (data) => {
             return false;
         }
 
+
+
     }
 
-    // log report
-    let result_report = {
-        akun: logs,
-        barang: report_post
-    }
 
-    fs.writeFileSync('logs.json', JSON.stringify(result_report, null, 2));
 
     //Close Browser
     await browser.close();
