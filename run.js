@@ -97,6 +97,9 @@ const Play = async () => {
             $('.btn-play').removeClass('show');
             $('.btn-pause').addClass('show');
             $('.btn-pause').removeClass('none');
+            $('.btn-edit-all').attr('disabled',"");
+            $('.btn-delete-all').attr('disabled',"");
+            
             localStorage.setItem("btn", 1);
 
             let result = await $.ajax({
@@ -240,7 +243,10 @@ function showSideBar() {
             </a>
             <div data-toggle="modal" data-target="#path">
                 <p class="sub-heading "><i class="fas fa-map-marker-alt"></i></p>
-            </div>`)
+            </div>
+            <a href="/directory.html">
+                <p class="sub-heading "><i class="fas fa-folder-tree"></i></p>
+            </a>`)
 
 
         localStorage.setItem('ls', false);
@@ -261,7 +267,11 @@ function showSideBar() {
             </a>
             <div data-toggle="modal" data-target="#path">
                 <p class="sub-heading "><i class="fas fa-map-marker-alt"></i> Path Image</p>
-            </div>`)
+            </div>
+            <h6 class="text-heading text-primary">DIRECTORY</h6>
+                <a href="/directory.html">
+                    <p class="sub-heading "><i class="fas fa-folder-tree"></i> File Manager</p>
+                </a>`)
 
 
         localStorage.setItem('ls', true);

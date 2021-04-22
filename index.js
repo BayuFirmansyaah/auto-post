@@ -387,7 +387,11 @@ if (localStorage.getItem('ls') === "true") {
     </a>
     <div data-toggle="modal" data-target="#path">
         <p class="sub-heading "><i class="fas fa-map-marker-alt"></i> Path Image</p>
-    </div>`)
+    </div>
+    <h6 class="text-heading text-primary">DIRECTORY</h6>
+        <a href="/directory.html">
+            <p class="sub-heading "><i class="fas fa-folder-tree"></i> File Manager</p>
+        </a>`)
 
 } else if (localStorage.getItem('ls') === "false") {
     document.querySelector('.sidebar').classList.add('sidebar-none')
@@ -404,7 +408,10 @@ if (localStorage.getItem('ls') === "true") {
     </a>
     <div data-toggle="modal" data-target="#path">
         <p class="sub-heading "><i class="fas fa-map-marker-alt"></i></p>
-    </div>`)
+    </div>
+    <a href="/directory.html">
+        <p class="sub-heading "><i class="fas fa-folder-tree"></i></p>
+    </a>`)
 }
 
 

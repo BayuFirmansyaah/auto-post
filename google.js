@@ -8,21 +8,29 @@ $('.level').val(sessionStorage.getItem('level'));
     $('.btn-play').removeClass('none');
     $('.btn-resume').addClass('none');
     $('.btn-resume').removeClass('show');
+    $('.btn-edit-all').removeAttr('disabled');
+    $('.btn-delete-all').removeAttr('disabled');
  }else if(cekbtn==1){
     $('.btn-play').addClass('none');
     $('.btn-play').removeClass('show');
     $('.btn-pause').addClass('show');
     $('.btn-pause').removeClass('none');
+    $('.btn-edit-all').attr('disabled',"");
+    $('.btn-delete-all').attr('disabled',"");
  }else if(cekbtn == 2){
     $('.btn-pause').addClass('none');
     $('.btn-pause').removeClass('show');
     $('.btn-resume').addClass('show');
     $('.btn-resume').removeClass('none');
+    $('.btn-edit-all').attr('disabled',"");
+    $('.btn-delete-all').attr('disabled',"");
  }else if(cekbtn == 3){
     $('.btn-pause').addClass('show');
     $('.btn-pause').removeClass('none');
     $('.btn-resume').addClass('none');
     $('.btn-resume').removeClass('show');
+    $('.btn-edit-all').attr('disabled',"");
+    $('.btn-delete-all').attr('disabled',"");
  }else{
     $('.btn-pause').addClass('none');
     $('.btn-pause').removeClass('show');
@@ -108,7 +116,7 @@ $.ajax({
         for (let i = 0; i < dataAkun.length; i++) {
             let index = dataAkun[i]
             checkbox[index].setAttribute('checked', 'checked');
-             barisAkun[i].classList.add('disabled-row')
+             barisAkun[index].classList.add('disabled-row')
         }
     },
     error: (err) => {
@@ -210,7 +218,7 @@ $('.btn-resume').on('click', function () {
     })
 })
 
-//jika tompol stop ditekan
+//jika tombol stop ditekan
 $('.btn-stop').on('click', function () {
     $('.btn-pause').addClass('none');
     $('.btn-pause').removeClass('show');
@@ -218,6 +226,8 @@ $('.btn-stop').on('click', function () {
     $('.btn-play').removeClass('none');
     $('.btn-resume').addClass('none');
     $('.btn-resume').removeClass('show');
+    $('.btn-edit-all').removeAttr('disabled');
+    $('.btn-delete-all').removeAttr('disabled');
     localStorage.setItem("btn", 0);
     $.ajax({
         url: 'http://localhost:3000/stop',
