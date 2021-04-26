@@ -240,6 +240,7 @@ li{
     height: 95px;
     background-color:#393940;
     position: absolute;
+    display: none;
 }
 
 .button-side-menu{

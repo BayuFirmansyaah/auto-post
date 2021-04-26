@@ -203,64 +203,30 @@
 
         }
     </script>
-<<<<<<< HEAD
-<script language=JavaScript>
-   
-    //Disable right mouse click Script
-    
-    //For full source code, visit http://www.aplikasipc.com/
-    
-    var message="PESAN ANDA DISINI";
-    
-    ///////////////////////////////////
-    
-    
-    function clickNS4(e){
-    
-    if (document.layers||document.getElementById&&!document.all){
-    
-    if (e.which==2||e.which==3){
-    
-    alert(message);
-    
-    return false;
-    
-    }
-    
-    }
-    
-    }
-    
-    if (document.layers){
-    
-    document.captureEvents(Event.MOUSEDOWN);
-    
-    document.onmousedown=clickNS4;
-    
-    }
-    
-    else if (document.all&&!document.getElementById){
-    
-    document.onmousedown=clickIE4;
-    
-    }
-    
-    document.oncontextmenu=new Function("alert(message);return false")
 
-    
-    </script>  
-=======
     <script language=JavaScript>
+        let count = 0;
         let content = document.querySelector('.content');
         content.addEventListener('contextmenu', function (ev) {
             ev.preventDefault();
-            let x =ev.clientX;
-            let y =ev.clientY;
-            console.log(x,y);
+            let x = ev.clientX;
+            x -= 260;
+            let y = ev.clientY;
+            y -= 200;
+            if (count == 0) {
+                document.querySelector('.side-menu-click').style.marginLeft = x + "px"
+                document.querySelector('.side-menu-click').style.marginTop = y + "px"
+                document.querySelector('.side-menu-click').style.display = "block"
+                count+=1;
+            } else {
+                document.querySelector('.side-menu-click').style.display = "none"
+                count-=1;
+            }
+
+            console.log(x, y);
             return false;
         }, false);
     </script>
->>>>>>> 33283e48031e672bd31f1b417abe6cc64ffff621
 </body>
 
 </html>
