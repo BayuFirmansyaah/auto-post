@@ -87,10 +87,10 @@
 
 
                     <div class="side-menu-click">
-                        <li class="button-side-menu">
+                        <li class="button-side-menu" data-toggle="modal" data-target="#create">
                             Create Folder
                         </li>
-                        <li class="button-side-menu">
+                        <li class="button-side-menu" data-toggle="modal" data-target="#rename">
                             Rename Folder
                         </li>
                         <li class="button-side-menu">
@@ -103,6 +103,72 @@
         </div>
     </div>
     <!-- end content -->
+
+    <!-- modal create -->
+    <div class="modal fade" id="create" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Create Folder</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="http://localhost:3000/add/folder" method="post">
+                        <div class="custom-file">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Folder Name</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="name" name="name"
+                                    aria-describedby="basic-addon1">
+                                <input type="hidden" name="id_user" value="" class="id_user">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
+                    <button type="submit" class="btn btn-success">save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal Rename -->
+    <div class="modal fade" id="rename" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Rename Folder</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="http://localhost:3000/update/folder" method="post">
+                        <div class="custom-file">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Folder Name</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="name" name="name"
+                                    aria-describedby="basic-addon1">
+                                <input type="hidden" name="id_user" value="" class="id_user">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
+                    <button type="submit" class="btn btn-success">save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- modal path -->
     <div class="modal fade" id="path" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -154,7 +220,7 @@
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
     <script src="directory.js"> </script>
-
+    <script>$('.id_user').val(sessionStorage.getItem('id_user'));</script>
 </body>
 
 </html>

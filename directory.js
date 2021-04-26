@@ -1,7 +1,3 @@
-
-
-
-
 $(document).ready(function () {
 
 });
@@ -49,30 +45,23 @@ if (localStorage.getItem('ls') === "true") {
 
 }
 
-$('.content').mousedown(function (event) {
-    switch (event.which) {
-        case 1:
-            document.querySelector('.side-menu-click').style.display = "none"
-            break;
-        case 2:
-            alert('Middle Mouse button pressed.');
-            break;
-        case 3:
-            let x = event.clientX;
-            x -= 260;
-            let y = event.clientY;
-            y -= 200;
-            document.querySelector('.side-menu-click').style.marginLeft = x + "px"
-            document.querySelector('.side-menu-click').style.marginTop = y + "px"
-            document.querySelector('.side-menu-click').style.display = "block"
-            break;
-        default:
-            alert('You have a strange Mouse!');
-    }
-});
-
+let count = 0;
 let content = document.querySelector('.content');
 content.addEventListener('contextmenu', function (ev) {
     ev.preventDefault();
+    let x = ev.clientX;
+    x -= 260;
+    let y = ev.clientY;
+    y -= 200;
+    if (count == 0) {
+        document.querySelector('.side-menu-click').style.marginLeft = x + "px"
+        document.querySelector('.side-menu-click').style.marginTop = y + "px"
+        document.querySelector('.side-menu-click').style.display = "block"
+        count += 1;
+    } else {
+        document.querySelector('.side-menu-click').style.display = "none"
+        count -= 1;
+    }
+
     return false;
 }, false);
