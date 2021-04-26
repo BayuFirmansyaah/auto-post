@@ -43,23 +43,6 @@ $('.btn-edit-all').on('click', function () {
     Edit();
 })
 
-// melakukan fetching data untuk log report akun
-$.ajax({
-    url: 'http://localhost:3000/get/log',
-    success: (results) => {
-        let code = "";
-        results.forEach((data) => {
-            code += `
-                    <li>Barang ${data.kode} ${data.status} di akun ${data.akun}</li>
-                `
-        })
-        $('.row-log ul').html(code);
-    },
-    error: (err) => {
-        console.log(err);
-    }
-})
-
 
 //live searching 
 $(document).ready(function () {
@@ -78,7 +61,7 @@ $(document).ready(function () {
 
 
 // function untuk melakukan load data
-function loadData(data){
+function loadData(data) {
     let Item = data.Search;
     Item = sortByProperty(Item, "Item.account");
     let row = "";
@@ -160,15 +143,14 @@ function loadData(data){
     let checkbox = document.querySelectorAll('.checked');
     let barisAkun = document.querySelectorAll('.baris-item');
 
-    for(let i=0;i<dataBarangSelect.length;i++){
+    for (let i = 0; i < dataBarangSelect.length; i++) {
         let index = dataBarangSelect[i]
         checkbox[index].setAttribute('checked', 'checked');
         let count = 0;
-        barisAkun[i].classList.add('disabled-row')
+        barisAkun[index].classList.add('disabled-row')
         for (let j = 0; j < checkbox.length; j++) {
             if (checkbox[j].checked) {
                 count += 1;
-                console.log(count+=10)
             }
         }
 

@@ -15,7 +15,7 @@
     <!-- font awesome -->
     <base href="/">
     <script src="./fa.js" crossorigin="anonymous"></script>
-    
+
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <title>Skipper Auto Post</title>
 </head>
@@ -89,9 +89,11 @@
                                 <button class="dropdown-item" data-toggle="modal" data-target="#modalAddManually">Add
                                     Via Manually</button>
                             </div>
-                        </div>                  
+                        </div>
                     </div>
-                    <div class="col-9 pl-5"><p class="btn btn-jumlah">Jumlah 0</p> </div>
+                    <div class="col-9 pl-5">
+                        <p class="btn btn-jumlah">Jumlah 0</p>
+                    </div>
                     <div class="col-2">
                         <button class="btn btn-success btn-edit-all" data-toggle="modal" data-target="#allAkun"><i
                                 class="fas fa-pen-alt"></i></button>
@@ -102,7 +104,8 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                         <input class="form-control" id="posSearch" type="text" placeholder="Masukan Kata Kunci Pencarian">
+                        <input class="form-control" id="posSearch" type="text"
+                            placeholder="Masukan Kata Kunci Pencarian">
                     </div>
                 </div>
                 <div class="row mt-3 row-table">
@@ -395,9 +398,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
         </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script src="main.js"></script>
     <script src="index.js"></script>
     <script src="run.js"></script>
+    <script>
+        $(document).ready(function () {
+            let socket = io.connect('http://localhost:3000', { path: '/socket.io' })
+
+            socket.on('log', function (result) {
+                let code = "";
+
+                result.forEach((data) => {
+                    code += `
+                    <li>Barang ${data.kode} ${data.status} di akun ${data.akun}</li>
+                `
+                })
+
+                $('.row-log ul').html(code);
+            })
+        })
+    </script>
 </body>
 
 </html>
