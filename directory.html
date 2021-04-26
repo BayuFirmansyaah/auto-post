@@ -15,7 +15,7 @@
     <!-- font awesome -->
     <base href="/">
     <script src="./fa.js"></script>
-    
+
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <title>Skipper Auto Post</title>
 </head>
@@ -85,9 +85,22 @@
                         </div>
                     </div>
 
+
+                    <div class="side-menu-click">
+                        <li class="button-side-menu">
+                            Create Folder
+                        </li>
+                        <li class="button-side-menu">
+                            Rename Folder
+                        </li>
+                        <li class="button-side-menu">
+                            Delete Folder
+                        </li>
+                    </div>
+
                 </div>
             </div>
-        </div>  
+        </div>
     </div>
     <!-- end content -->
 
@@ -131,7 +144,8 @@
         </div>
     </div>
 
-    
+
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -142,9 +156,9 @@
     <script src="google.js"></script>
     <script src="run.js"></script>
     <script>
-        $( document ).ready(function() {
-  
-});
+        $(document).ready(function () {
+
+        });
         if (localStorage.getItem('ls') === "true") {
             document.querySelector('.sidebar').classList.remove('sidebar-none')
             document.querySelector('.sidebar').classList.add('sidebar-block')
@@ -189,62 +203,16 @@
 
         }
     </script>
-<script language=JavaScript>
-   
-    //Disable right mouse click Script
-    
-    //For full source code, visit http://www.aplikasipc.com/
-    
-    var message="PESAN ANDA DISINI";
-    
-    ///////////////////////////////////
-    
-    function clickIE4(){
-    
-    if (event.button==2){
-    
-    alert(message);
-    
-    return false;
-    
-    }
-    
-    }
-    
-    function clickNS4(e){
-    
-    if (document.layers||document.getElementById&&!document.all){
-    
-    if (e.which==2||e.which==3){
-    
-    alert(message);
-    
-    return false;
-    
-    }
-    
-    }
-    
-    }
-    
-    if (document.layers){
-    
-    document.captureEvents(Event.MOUSEDOWN);
-    
-    document.onmousedown=clickNS4;
-    
-    }
-    
-    else if (document.all&&!document.getElementById){
-    
-    document.onmousedown=clickIE4;
-    
-    }
-    
-    document.oncontextmenu=new Function("alert(message);return false")
-
-    
-    </script>  
+    <script language=JavaScript>
+        let content = document.querySelector('.content');
+        content.addEventListener('contextmenu', function (ev) {
+            ev.preventDefault();
+            let x =ev.clientX;
+            let y =ev.clientY;
+            console.log(x,y);
+            return false;
+        }, false);
+    </script>
 </body>
 
 </html>
