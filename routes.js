@@ -76,6 +76,12 @@ module.exports = function (app) {
         res.end();
     })
 
+    //menambah folder baru
+    app.route('/add/folder').post((req, res) => {
+        Controller.createFolder(req, res);
+        res.end();
+    })
+
 
     // ===================================================================================
     // =========================== bagian untuk end point update =========================
@@ -97,6 +103,12 @@ module.exports = function (app) {
     app.route('/update/all/email').post((req, res) => {
         Controller.updateEmailAll(req, res);
     });
+
+    //merubah nama folder
+    app.route('/update/folder').post((req, res) => {
+        Controller.renameFolder(req, res);
+        res.end();
+    })
 
 
     // ==================================================================================
@@ -121,6 +133,12 @@ module.exports = function (app) {
     //menghapus semua item
     app.route('/delete/item/all/:id_user').get((req, res) => {
         Controller.hapusSemuaBarang(req, res);
+    })
+
+    //menghapus folder baru
+    app.route('/delete/folder').post((req, res) => {
+        Controller.hapusFolder(req, res);
+        res.end();
     })
 
 
