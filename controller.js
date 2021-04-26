@@ -104,18 +104,15 @@ exports.createFolder = function (req, res) {
             console.log(err);
         }
         else {
-            const folderName = 'files/'+ name;
+            const folderName = 'files/' + name;
             try {
-                if (!fs.existsSync(folderName)) { 
+                if (!fs.existsSync(folderName)) {
                     fs.mkdirSync(folderName)
                 }
             } catch (err) {
                 console.error(err)
             }
         }
-
-        res.redirect('./directory.html');
-        res.end();
     })
 }
 
@@ -288,6 +285,18 @@ exports.getLogs = function (res, req) {
     let data = fs.readFileSync('./logs.json', 'utf-8');
     data = JSON.parse(data);
     res.json(data);
+}
+
+// mendapatkan data barang
+exports.getDirectory = function (req, res) {
+    db.query('SELECT * FROM file_manager WHERE id_user=?', [req.params.id], function (err, row) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(row);
+            res.end();
+        }
+    })
 }
 
 // ======================================================================================

@@ -65,3 +65,15 @@ content.addEventListener('contextmenu', function (ev) {
 
     return false;
 }, false);
+
+let id = sessionStorage.getItem('id_user');
+
+$.ajax({
+    url: 'http://localhost:3000/get/directory/13',
+    success : (result) =>{
+        console.log(result.Search)
+    },
+    error : (err) => {
+            console.log(err);
+    }
+})
