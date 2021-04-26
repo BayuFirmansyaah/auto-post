@@ -106,7 +106,7 @@ exports.createFolder = function (req, res) {
         else {
             const folderName = 'files/'+ name;
             try {
-                if (!fs.existsSync(folderName)) {
+                if (!fs.existsSync(folderName)) { 
                     fs.mkdirSync(folderName)
                 }
             } catch (err) {
