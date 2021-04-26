@@ -65,123 +65,31 @@
     <!-- end sidebar -->
 
     <!-- content -->
-    <div class="content">
-        
+    <div class="content directory">
+        <div class="google-account">
+            <div class="google-icon">
+                <i class="fas fa-folder-plus"></i>
+            </div>
+            <h6>File Manager</h6>
+            <p class="text-secondary">Create directory or read files</p>
+        </div>
+
+        <div class="data-table folders">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-2">
+                        <div class="folder">
+                            <i class="fas fa-folder"></i>
+                            <p>AXS IMAGE</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>  
     </div>
     <!-- end content -->
-
-
-    <!-- Modal File-->
-    <div class="modal fade" id="file" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Add Facebook Account</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="http://localhost:3000/convert/account" method="post" enctype="multipart/form-data" >
-                        <div class="custom-file">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="inputGroupFile04"
-                                    aria-describedby="inputGroupFileAddon04" name="filename" required accept=".xlsx">
-                                <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-                            </div>
-                            <label class="custom-file-label" for="customFile">Choose file</label>
-                            <input type="hidden" name="id" value="" class="id_user">
-                        </div>
-
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button"  class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
-                    <button type="submit"  class="btn btn-success">save</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--Modal manualy-->
-    <div class="modal fade" id="manualy" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Add Facebook Account</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="http://localhost:3000/add/account" method="post">
-                        <div class="custom-file">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">Username</span>
-                                </div>
-                                <input type="text" class="form-control" name="username">
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">Password</span>
-                                </div>
-                                <input type="text" class="form-control" aria-label="password" name="password"
-                                    aria-describedby="basic-addon1">
-                                <input type="hidden" name="id" value="" class="id_user">
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
-                    <button type="submit" class="btn btn-success">save</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--Modal add account-->
-    <div class="modal fade" id="add-akun" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Add User Account</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="http://localhost:3000/add/account/user" method="post">
-                        <div class="custom-file">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">Username</span>
-                                </div>
-                                <input type="text" class="form-control" name="username">
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">Password</span>
-                                </div>
-                                <input type="text" class="form-control" aria-label="password" name="password"
-                                    aria-describedby="basic-addon1">
-                                <input type="hidden" name="level" value="" class="level">
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
-                    <button type="submit" class="btn btn-success">save</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- modal path -->
     <div class="modal fade" id="path" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -223,29 +131,7 @@
         </div>
     </div>
 
-    <!-- modal edit akun -->
-    <div class="modal fade" id="akun" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit Data Akun</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="" method="post" class="modal-edit-akun">
-                <div class="modal-body modal-data">
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
-                    <button type="submit" class="btn btn-success btn-save-akun">save</button>
-                </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
