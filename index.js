@@ -168,7 +168,7 @@ function loadData(data){
         for (let j = 0; j < checkbox.length; j++) {
             if (checkbox[j].checked) {
                 count += 1;
-                console.log(count)
+                console.log(count+=10)
             }
         }
 

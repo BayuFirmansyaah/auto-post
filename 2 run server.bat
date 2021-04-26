@@ -1,1 +1,2 @@
-nodemon .src/server
+CALL run xampp.bat
+node server
