@@ -1,5 +1,4 @@
-
-        $(document).ready(function () {
+$(document).ready(function () {
 
         });
         if (localStorage.getItem('ls') === "true") {
@@ -45,25 +44,3 @@
 
 
         }
-
-        let count = 0;
-        let content = document.querySelector('.content');
-        content.addEventListener('contextmenu', function (ev) {
-            ev.preventDefault();
-            let x = ev.clientX;
-            x -= 260;
-            let y = ev.clientY;
-            y -= 200;
-            if (count == 0) {
-                document.querySelector('.side-menu-click').style.marginLeft = x + "px"
-                document.querySelector('.side-menu-click').style.marginTop = y + "px"
-                document.querySelector('.side-menu-click').style.display = "block"
-                count+=1;
-            } else {
-                document.querySelector('.side-menu-click').style.display = "none"
-                count-=1;
-            }
-
-            console.log(x, y);
-            return false;
-        }, false);

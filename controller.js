@@ -98,10 +98,20 @@ exports.addItemManually = function (req, res) {
 //add folder baru
 exports.createFolder = function (req, res) {
     let name = req.body.name;
-    let id_user = req.body.id;
+    let id_user = req.body.id_user;
     db.query("INSERT INTO file_manager (id_user,name) VALUES(?,?)", [id_user, name], (err) => {
         if (err) {
             console.log(err);
+        }
+        else {
+            const folderName = 'files/'+ name;
+            try {
+                if (!fs.existsSync(folderName)) {
+                    fs.mkdirSync(folderName)
+                }
+            } catch (err) {
+                console.error(err)
+            }
         }
     })
 }
