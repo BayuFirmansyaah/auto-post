@@ -85,7 +85,7 @@ function loadData(data) {
         })
 
         row += `
-            <tr class="baris-data baris-item">
+            <tr class="baris-data baris-item" value="${data.id_barang}">
                 <th scope="row">${i}</th>
                 <td class="text-center"> 
                     <input type="checkbox" class="checked id-barang" value="${data.id_barang}" >
@@ -121,40 +121,31 @@ function loadData(data) {
 
     })
 
-
-    // memberikan event jika tombol hapus ditekan
-    $('.btn-delete').on('click', function () {
-        let id = $(this).attr('data-id');
-        let konfirmasi = confirm("apakah anda yakin ingin menghapus data ini ?");
-        if (konfirmasi) {
-            $.ajax({
-                url: 'http://localhost:3000/delete/item/' + id,
-                success: (data) => {
-                    alert(data);
-                },
-                error: (err) => {
-                    alert(err);
-                }
-            })
-        }
-    })
-
     let dataBarangSelect = JSON.parse(localStorage.getItem('data-barang'));
     let checkbox = document.querySelectorAll('.checked');
     let barisAkun = document.querySelectorAll('.baris-item');
 
     for (let i = 0; i < dataBarangSelect.length; i++) {
         let index = dataBarangSelect[i]
-        checkbox[index].setAttribute('checked', 'checked');
-        let count = 0;
-        barisAkun[index].classList.add('disabled-row')
-        for (let j = 0; j < checkbox.length; j++) {
-            if (checkbox[j].checked) {
-                count += 1;
+        
+        checkbox.forEach((el)=>{
+            if(el.getAttribute('value') == index){
+                console.log(el.getAttribute('value'),index)
+                $(this).attr('checked', 'checked')
             }
-        }
+        })
 
-        $('.btn-jumlah').html('Jumlah ' + count);
+        // checkbox[index].setAttribute('checked', 'checked');
+        // let count = 0;
+        // barisAkun[index].classList.add('disabled-row')
+
+        // for (let j = 0; j < checkbox.length; j++) {
+        //     if (checkbox[j].checked) {
+        //         count += 1;
+        //     }
+        // }
+
+        // $('.btn-jumlah').html('Jumlah ' + count);
 
     }
 
@@ -202,11 +193,28 @@ function loadData(data) {
 const Delete = () => {
     let id = document.querySelectorAll('.id-barang');
     let id_barang = [];
+    let index_id_barang = []
+    let count = 0;
     id.forEach((id) => {
         if (id.checked) {
+            index_id_barang.push(count);
             id_barang.push(id.getAttribute('value'));
         }
+        count++;
     })
+
+
+    Array.prototype.remove = function () {
+        var what, a = arguments, L = a.length, ax;
+        while (L && this.length) {
+            what = a[--L];
+            while ((ax = this.indexOf(what)) !== -1) {
+                this.splice(ax, 1);
+            }
+        }
+        return this;
+    };
+
 
     if (id_barang.length > 0) {
         let konfirmasi = confirm("apakah anda yakin ingin menghapus data ini ?");
@@ -221,6 +229,17 @@ const Delete = () => {
                     alert(err);
                 }
             })
+
+            let data_id_barang = JSON.parse(localStorage.getItem('data-barang'))
+
+            console.log(data_id_barang);
+            index_id_barang.forEach((id) => {
+                data_id_barang.remove(parseInt(id));
+            })
+
+            localStorage.setItem('data-barang', JSON.stringify(data_id_barang));
+            console.log(data_id_barang);
+
         }
     } else {
         alert('tidak ada item yang dipilih');

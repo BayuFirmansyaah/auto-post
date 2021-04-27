@@ -1,35 +1,54 @@
 let id = sessionStorage.getItem('id_user');
-
+let id_selected = [];
 $.ajax({
-    url: 'http://localhost:3000/get/directory/13',
-    success : (result) =>{
+    url: 'http://localhost:3000/get/directory/' + id,
+    success: (result) => {
         let code = ` <div class="side-menu-click">
-        <li class="button-side-menu" data-toggle="modal" data-target="#create">
-            Create Folder
-        </li>
-        <li class="button-side-menu" data-toggle="modal" data-target="#rename">
-            Rename Folder
-        </li>
-        <li class="button-side-menu">
-            Delete Folder
-        </li>
-    </div>`;
-        result.forEach((data)=>{
+                        <li class="button-side-menu" data-toggle="modal" data-target="#create">
+                            Create Folder
+                        </li>
+                        <li class="button-side-menu" data-toggle="modal" data-target="#rename">
+                            Rename Folder
+                        </li>
+                        <li class="button-side-menu">
+                            Delete Folder
+                        </li>
+                    </div>`;
+
+        result.forEach((data) => {
             code += `<div class="col-2">
-                        <div class="folder" data-id=${data.id} >
+                        <div class="folder" data-id=${data.id} style='background-color:transparent'>
                             <i class="fas fa-folder"></i>
                             <p>${data.name}</p>
                         </div>
-                    </div>
-`;
-        $('.row-directory').html(code);
+                    </div>`;
+            $('.row-directory').html(code);
+            $('.folder').on('click',function(){
+                if ($(this).attr('style') == `background-color:transparent`){
+                    $(this).removeAttr('style')
+                    $(this).attr('style','background-color:blue;color:white')
+                    $(this).find('p').attr('style','color:white')
+
+                    let selected = document.querySelectorAll('.folder');
+                    selected.forEach((e)=>{
+                        if(e.getAttribute('style') == 'background-color:blue;color:white'){
+                            id_selected.push(e.getAttribute('data-id'));
+                        }
+                    })
+
+                }else{
+                    $(this).removeAttr('style')
+                    $(this).attr('style', 'background-color:transparent');
+                    $(this).find('p').attr('style', 'color:gray')
+                }
+            })
 
         })
     },
-    error : (err) => {
-            console.log(err);
+    error: (err) => {
+        console.log(err);
     }
-})
+});
 
 if (localStorage.getItem('ls') === "true") {
     // document.querySelector('.table').classList.remove('table-full')
@@ -93,7 +112,8 @@ content.addEventListener('contextmenu', function (ev) {
         document.querySelector('.side-menu-click').style.display = "none"
         count -= 1;
     }
-
     return false;
 }, false);
+
+$('.id_user').val(sessionStorage.getItem('id_user'));
 

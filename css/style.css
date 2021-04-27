@@ -221,6 +221,7 @@ li{
     text-align: center;
     padding: 7.5px;
     cursor: pointer;
+    background-color: transparent;
 }
 
 .folder i{
