@@ -169,7 +169,6 @@ const Save = async () => {
     // melakukan pencarian checkbox
     let id = document.querySelectorAll('.id-barang');
     let id_barang = [];
-    let index = [];
 
     // mendapatkan nilai checkbox
     id.forEach((id) => {
@@ -178,13 +177,8 @@ const Save = async () => {
         }
     });
 
-   for(let i=0;i<id.length;i++){
-        if(id[i].checked){
-            index.push(i);
-        }
-    }
  
-    localStorage.setItem('data-barang', JSON.stringify(index));
+    localStorage.setItem('data-barang', JSON.stringify(id_barang));
 
     // melakukan pengecekan nilai yang didapat dari chekbox
     if (id_barang.length > 0) {
