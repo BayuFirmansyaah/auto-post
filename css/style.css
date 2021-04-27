@@ -283,4 +283,12 @@ li{
     z-index: 1000000;
 }
 
+.btn-directory{
+    width: 45px;
+    height: 45px;
+    font-size: 25px;
+    margin-bottom: 20px;
+    margin-right: 15px;
+}
+
 
