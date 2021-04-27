@@ -76,15 +76,9 @@
 
         <div class="data-table folders">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row row-directory">
 
-                    <div class="col-2">
-                        <div class="folder">
-                            <i class="fas fa-folder"></i>
-                            <p>AXS IMAGE</p>
-                        </div>
-                    </div>
-
+                    
 
                     <div class="side-menu-click">
                         <li class="button-side-menu" data-toggle="modal" data-target="#create">
@@ -103,6 +97,72 @@
         </div>
     </div>
     <!-- end content -->
+
+    <!-- modal create -->
+    <div class="modal fade" id="create" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Create Folder</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="http://localhost:3000/add/folder" method="post">
+                        <div class="custom-file">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Folder Name</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="name" name="name"
+                                    aria-describedby="basic-addon1">
+                                <input type="hidden" name="id_user" value="" class="id_user">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
+                    <button type="submit" class="btn btn-success">save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal Rename -->
+    <div class="modal fade" id="rename" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Rename Folder</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="http://localhost:3000/update/folder" method="post">
+                        <div class="custom-file">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Folder Name</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="name" name="name"
+                                    aria-describedby="basic-addon1">
+                                <input type="hidden" name="id_user" value="" class="id_user">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
+                    <button type="submit" class="btn btn-success">save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- modal path -->
     <div class="modal fade" id="path" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -144,72 +204,6 @@
         </div>
     </div>
 
-    <!-- modal create -->
-    <div class="modal fade" id="create" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Create Folder</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="http://localhost:3000/add/folder" method="post">
-                        <div class="custom-file">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">Folder Name</span>
-                                </div>
-                                <input type="text" class="form-control" aria-label="name" name="name"
-                                    aria-describedby="basic-addon1">
-                                    <input type="hidden" name="id_user" value="" class="id_user">
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
-                    <button type="submit" class="btn btn-success">save</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- modal Rename -->
-    <div class="modal fade" id="rename" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Rename Folder</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="http://localhost:3000/update/folder" method="post">
-                        <div class="custom-file">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">Folder Name</span>
-                                </div>
-                                <input type="text" class="form-control" aria-label="name" name="name"
-                                    aria-describedby="basic-addon1">
-                                    <input type="hidden" name="id_user" value="" class="id_user">
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
-                    <button type="submit" class="btn btn-success">save</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 
     <!-- Optional JavaScript; choose one of the two! -->
@@ -219,79 +213,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
-
-    <script>
-        $(document).ready(function () {
-
-        });
-        if (localStorage.getItem('ls') === "true") {
-            document.querySelector('.sidebar').classList.remove('sidebar-none')
-            document.querySelector('.sidebar').classList.add('sidebar-block')
-            document.querySelector('.content').classList.remove('table-none')
-            document.querySelector('.table').classList.remove('table-full')
-            document.querySelector('.row-table').classList.remove('.row-table-none')
-            $('.sidebar').html(` <h6 class="text-heading text-primary">DATA ACCOUNTS</h6>
-    <a href="/google.html">
-        <p class="sub-heading "><i class="fab fa-facebook"></i> Facebook Accounts</p>
-    </a>
-    <h6 class="text-heading text-primary">INVENTORY</h6>
-    <a href="/indexing.html">
-        <p class="sub-heading "><i class="fas fa-server"></i> Item</p>
-    </a>
-    <div data-toggle="modal" data-target="#path">
-        <p class="sub-heading "><i class="fas fa-map-marker-alt"></i> Path Image</p>
-    </div>
-    <h6 class="text-heading text-primary">DIRECTORY</h6>
-        <a href="/directory.html">
-            <p class="sub-heading "><i class="fas fa-folder-tree"></i> File Manager</p>
-        </a>`)
-
-        } else if (localStorage.getItem('ls') === "false") {
-            document.querySelector('.sidebar').classList.add('sidebar-none')
-            document.querySelector('.sidebar').classList.remove('sidebar-block')
-            document.querySelector('.content').classList.add('table-none')
-            document.querySelector('table').classList.add('table-full')
-            document.querySelector('.row-table').classList.add('.row-table-none')
-            $('.sidebar').html(`  <a href="/google.html">
-    <p class="sub-heading "><i class="fab fa-facebook"></i></p>
-</a>
-<a href="/indexing.html">
-    <p class="sub-heading "><i class="fas fa-server"></i></p>
-</a>
-<div data-toggle="modal" data-target="#path">
-    <p class="sub-heading "><i class="fas fa-map-marker-alt"></i></p>
-</div>
-<a href="/google.html">
-    <p class="sub-heading "><i class="fas fa-folder-tree"></i></p>
-        </a>`)
-
-
-        }
-    </script>
-
-    <script language=JavaScript>
-        let count = 0;
-        let content = document.querySelector('.content');
-        content.addEventListener('contextmenu', function (ev) {
-            ev.preventDefault();
-            let x = ev.clientX;
-            x -= 260;
-            let y = ev.clientY;
-            y -= 200;
-            if (count == 0) {
-                document.querySelector('.side-menu-click').style.marginLeft = x + "px"
-                document.querySelector('.side-menu-click').style.marginTop = y + "px"
-                document.querySelector('.side-menu-click').style.display = "block"
-                count+=1;
-            } else {
-                document.querySelector('.side-menu-click').style.display = "none"
-                count-=1;
-            }
-
-            console.log(x, y);
-            return false;
-        }, false);
-    </script>
+    <script src="directory.js"> </script>
     <script>$('.id_user').val(sessionStorage.getItem('id_user'));</script>
 </body>
 

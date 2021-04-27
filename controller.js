@@ -104,9 +104,9 @@ exports.createFolder = function (req, res) {
             console.log(err);
         }
         else {
-            const folderName = 'files/'+ name;
+            const folderName = 'files/' + name;
             try {
-                if (!fs.existsSync(folderName)) { 
+                if (!fs.existsSync(folderName)) {
                     fs.mkdirSync(folderName)
                 }
             } catch (err) {
@@ -287,6 +287,17 @@ exports.getLogs = function (res, req) {
     res.json(data);
 }
 
+// mendapatkan data barang
+exports.getDirectory = function (req, res) {
+    db.query('SELECT * FROM file_manager WHERE id_user=?', [req.params.id], function (err, row) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(row);
+            res.end();
+        }
+    })
+}
 
 // ======================================================================================
 // ======================== bagian untuk end point delete data ==========================

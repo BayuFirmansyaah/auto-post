@@ -49,6 +49,11 @@ module.exports = function (app) {
         res.end();
     })
 
+    // get direcroty 
+    app.route('/get/directory/:id').get((req,res)=>{
+        Controller.getDirectory(req,res)
+    })
+
 
     // ==================================================================================
     // ============================ bagian untuk end point add ==========================
@@ -79,6 +84,7 @@ module.exports = function (app) {
     //menambah folder baru
     app.route('/add/folder').post((req, res) => {
         Controller.createFolder(req, res);
+        res.redirect('../../directory.html');
         res.end();
     })
 
