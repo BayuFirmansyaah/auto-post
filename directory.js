@@ -3,7 +3,17 @@ let id = sessionStorage.getItem('id_user');
 $.ajax({
     url: 'http://localhost:3000/get/directory/13',
     success : (result) =>{
-        let code = "";
+        let code = ` <div class="side-menu-click">
+        <li class="button-side-menu" data-toggle="modal" data-target="#create">
+            Create Folder
+        </li>
+        <li class="button-side-menu" data-toggle="modal" data-target="#rename">
+            Rename Folder
+        </li>
+        <li class="button-side-menu">
+            Delete Folder
+        </li>
+    </div>`;
         result.forEach((data)=>{
             code += `<div class="col-2">
                         <div class="folder" data-id=${data.id} >
@@ -75,9 +85,9 @@ content.addEventListener('contextmenu', function (ev) {
     y -= 200;
     if (count == 0) {
         let doc = document.querySelector('.side-menu-click')
-        doc.attr(marginLeft = x + "px")
-        doc.attr(marginTop = y + "px")
-        doc.attr(display = "block")
+        doc.style.marginLeft = x + "px"
+        doc.style.marginTop = y + "px"
+        doc.style.display = "block"
         count += 1;
     } else {
         document.querySelector('.side-menu-click').style.display = "none"
