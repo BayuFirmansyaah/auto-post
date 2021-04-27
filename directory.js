@@ -3,7 +3,16 @@ let id_selected = [];
 $.ajax({
     url: 'http://localhost:3000/get/directory/' + id,
     success: (result) => {
-        let code = ` <div class="side-menu-click">
+        let code ="";
+        result.forEach((data) => {
+            code += `<div class="col-2">
+                        <div class="folder" data-id=${data.id} style='background-color:transparent'>
+                            <i class="fas fa-folder"></i>
+                            <p>${data.name}</p>
+                        </div>
+                    </div>`;
+        })
+        code += ` <div class="side-menu-click">
                         <li class="button-side-menu" data-toggle="modal" data-target="#create">
                             Create Folder
                         </li>
@@ -13,43 +22,32 @@ $.ajax({
                         <li class="button-side-menu">
                             Delete Folder
                         </li>
-                    </div>`;
+                    </div>`
+        $('.row-directory').html(code);
+        $('.folder').on('click', function () {
+            if ($(this).attr('style') == `background-color:transparent`) {
+                $(this).removeAttr('style')
+                $(this).attr('style', 'background-color:blue;color:white')
+                $(this).find('p').attr('style', 'color:white')
 
-        result.forEach((data) => {
-            code += `<div class="col-2">
-                        <div class="folder" data-id=${data.id} style='background-color:transparent'>
-                            <i class="fas fa-folder"></i>
-                            <p>${data.name}</p>
-                        </div>
-                    </div>`;
-            $('.row-directory').html(code);
-            $('.folder').on('click',function(){
-                if ($(this).attr('style') == `background-color:transparent`){
-                    $(this).removeAttr('style')
-                    $(this).attr('style','background-color:blue;color:white')
-                    $(this).find('p').attr('style','color:white')
+                let selected = document.querySelectorAll('.folder');
+                selected.forEach((e) => {
+                    if (e.getAttribute('style') == 'background-color:blue;color:white') {
+                        id_selected.push(e.getAttribute('data-id'));
+                    }
+                })
 
-                    let selected = document.querySelectorAll('.folder');
-                    selected.forEach((e)=>{
-                        if(e.getAttribute('style') == 'background-color:blue;color:white'){
-                            id_selected.push(e.getAttribute('data-id'));
-                        }
-                    })
-
-                }else{
-                    $(this).removeAttr('style')
-                    $(this).attr('style', 'background-color:transparent');
-                    $(this).find('p').attr('style', 'color:gray')
-                }
-            })
-
+            } else {
+                $(this).removeAttr('style')
+                $(this).attr('style', 'background-color:transparent');
+                $(this).find('p').attr('style', 'color:gray')
+            }
         })
     },
     error: (err) => {
         console.log(err);
     }
 });
-
 
 if (localStorage.getItem('ls') === "true") {
     // document.querySelector('.table').classList.remove('table-full')

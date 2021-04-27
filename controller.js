@@ -632,127 +632,127 @@ exports.Run = async (data) => {
                         switch (keyword) {
                             case "peralatan":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[2].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[2].click()
                                 });
                                 break;
                             case "mebel":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[3].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[3].click()
                                 });
                                 break;
                             case "peralatan rumah tangga":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[4].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[4].click()
                                 });
                                 break;
                             case "kebun":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[5].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[5].click()
                                 });
                                 break;
                             case "perkakas":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[6].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[6].click()
                                 });
                                 break;
                             case "video game":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[7].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[7].click()
                                 });
                                 break;
                             case "buku, film, & musik":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[8].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[8].click()
                                 });
                                 break;
                             case "tas & koper":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[9].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[9].click()
                                 });
                                 break;
                             case "sepatu wanita":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[10].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[10].click()
                                 });
                                 break;
                             case "sepatu pria":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[11].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[11].click()
                                 });
                                 break;
                             case "aksesoris":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[12].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[12].click()
                                 });
                                 break;
                             case "kecantikan":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[13].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[13].click()
                                 });
                                 break;
                             case "kebutuhan hewan peliharaan":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[14].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[14].click()
                                 });
                                 break;
                             case "anak-anak":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[15].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[15].click()
                                 });
                                 break;
                             case "mainan":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[16].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[16].click()
                                 });
                                 break;
                             case "elektronik":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[17].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[17].click()
                                 });
                                 break;
                             case "telepon seluler":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[18].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[18].click()
                                 });
                                 break;
                             case "sepeda":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[19].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[19].click()
                                 });
                                 break;
                             case "kerajinan":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[20].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[20].click()
                                 });
                                 break;
                             case "olahraga":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[21].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[21].click()
                                 });
                                 break;
                             case "otomotif":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[22].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[22].click()
                                 });
                                 break;
                             case "alat musik":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[23].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[23].click()
                                 });
                                 break;
                             case "koleksi":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[24].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[24].click()
                                 });
                                 break;
                             case "garage sale":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[25].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[25].click()
                                 });
                                 break;
                             default:
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[26].click()
+                                    document.querySelectorAll("div[data-visualcompletion='ignore-dynamic'] div[role='button']")[26].click()
                                 });
                                 break;
                         }
@@ -762,11 +762,11 @@ exports.Run = async (data) => {
                         })
 
                         await page.waitForSelector(
-                            "[data-pagelet='root'] div[role='menu'] div[aria-checked='false']"
+                            "div[role='menu'] div[aria-checked='false']"
                         );
 
                         await page.evaluate(() =>
-                            document.querySelectorAll("[data-pagelet='root'] div[role='menu'] div[aria-checked='false']")[0].click()
+                            document.querySelectorAll("div[role='menu'] div[aria-checked='false']")[0].click()
                         );
 
                         await page.type(
