@@ -50,6 +50,7 @@ $.ajax({
     }
 });
 
+
 if (localStorage.getItem('ls') === "true") {
     // document.querySelector('.table').classList.remove('table-full')
     // document.querySelector('.row-table').classList.remove('.row-table-none')
@@ -103,9 +104,10 @@ content.addEventListener('contextmenu', function (ev) {
     let y = ev.clientY;
     y -= 200;
     if (count == 0) {
-        document.querySelector('.side-menu-click').style.marginLeft = x + "px"
-        document.querySelector('.side-menu-click').style.marginTop = y + "px"
-        document.querySelector('.side-menu-click').style.display = "block"
+        let doc = document.querySelector('.side-menu-click')
+        doc.style.marginLeft = x + "px"
+        doc.style.marginTop = y + "px"
+        doc.style.display = "block"
         count += 1;
     } else {
         document.querySelector('.side-menu-click').style.display = "none"
