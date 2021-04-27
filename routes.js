@@ -54,6 +54,11 @@ module.exports = function (app) {
         Controller.getDirectory(req,res)
     })
 
+    // get name folder
+    app.route('/get/folder/:name').get((req, res) => {
+        Controller.getNameFolder(req, res);
+    })
+
 
     // ==================================================================================
     // ============================ bagian untuk end point add ==========================

@@ -113,7 +113,7 @@ exports.createFolder = function (req, res) {
             })
 
         }
-        else{
+        else {
             alert("nama folder sudah dipakai");
         }
     } catch (err) {
@@ -303,6 +303,14 @@ exports.getDirectory = function (req, res) {
             res.end();
         }
     })
+}
+
+//mendapatkan nama barang
+exports.getNameFolder = function(req, res){
+    const folderPath = 'files/'+req.params.name
+    let data = fs.readdirSync(folderPath)
+    res.send(data)
+    res.end()
 }
 
 // ======================================================================================

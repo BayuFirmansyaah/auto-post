@@ -1,6 +1,10 @@
 const fs = require('fs')
+const folderPath = 'files/coba3'
 
-const folderPath = 'data'
+let data = fs.readdirSync(folderPath)
+for(let i=1;i<=data.length;i++){
+    d=i-1;
+    console.log(data[d]);
+}
 
 
-console.log(fs.readdirSync(folderPath))

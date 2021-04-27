@@ -6,7 +6,7 @@ $.ajax({
         let code ="";
         result.forEach((data) => {
             code += `<div class="col-2">
-                        <div class="folder" data-id=${data.id} style='background-color:transparent'>
+                        <div class="folder" data-id=${data.id} data-nama=${data.name} style='background-color:transparent'>
                             <i class="fas fa-folder"></i>
                             <p>${data.name}</p>
                         </div>
@@ -50,27 +50,28 @@ $.ajax({
 
         })
 
-        folder.forEach((folder) => {
-            folder.addEventListener('dblclick', function () {
-                $('.row-directory').html(`<div class="row-image">
-                            <div class="img">
-                                <img src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/076620/02/fnd/IND/fmt/png/PUMA-Challenger-Small-Duffel-Bag" alt="">
-                                <p>0_1pic.jpg</p>
-                            </div>
-                            <div class="img">
-                                <img src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/076620/02/fnd/IND/fmt/png/PUMA-Challenger-Small-Duffel-Bag" alt="">
-                                <p>0_1pic.jpg</p>
-                            </div>
-                            <div class="img">
-                                <img src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/076620/02/fnd/IND/fmt/png/PUMA-Challenger-Small-Duffel-Bag" alt="">
-                                <p>0_1pic.jpg</p>
-                            </div>
-                            <div class="img">
-                                <img src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/076620/02/fnd/IND/fmt/png/PUMA-Challenger-Small-Duffel-Bag" alt="">
-                                <p>0_1pic.jpg</p>
-                            </div>
-                        </div>`)})
-        })
+        for(let i=0;i<folder.length;i++){
+            folder[i].addEventListener('dblclick', function () {
+                $('.row-directory').html(`<div class="row-image"> </div>`)
+                let folder =  $(this).attr('data-nama')
+                $.ajax({
+                    url : 'http://localhost:3000/get/folder/'+folder,
+                    success : (result) =>{
+                        let images = "";
+                        result.forEach((img)=>{
+                            images+=`  <div class="img">
+                                     <img src="/files/${folder}/${img}" alt="${img}">
+                                    <p>${img}</p>
+                                </div>`
+                        })
+                        $('.row-image').html(images)
+                    },
+                    error : (err) =>{
+                        console.log(err)
+                    }
+                })
+            })
+            }
         
         // open folder
         
@@ -147,4 +148,3 @@ content.addEventListener('contextmenu', function (ev) {
 }, false);
 
 $('.id_user').val(sessionStorage.getItem('id_user'));
-
