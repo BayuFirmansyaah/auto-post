@@ -26,48 +26,55 @@ $.ajax({
         $('.row-directory').html(code);
 
         // select folder
-        let folder = document.querySelector('.folder')
-        folder.addEventListener('click', function () {
-            if ($(this).attr('style') == `background-color:transparent`) {
-                $(this).removeAttr('style')
-                $(this).attr('style', 'background-color:blue;color:white')
-                $(this).find('p').attr('style', 'color:white')
+        let folder = document.querySelectorAll('.folder')
+        folder.forEach((folder)=>{
+            folder.addEventListener('click', function () {
+                if ($(this).attr('style') == `background-color:transparent`) {
+                    $(this).removeAttr('style')
+                    $(this).attr('style', 'background-color:blue;color:white')
+                    $(this).find('p').attr('style', 'color:white')
 
-                let selected = document.querySelectorAll('.folder');
-                selected.forEach((e) => {
-                    if (e.getAttribute('style') == 'background-color:blue;color:white') {
-                        id_selected.push(e.getAttribute('data-id'));
-                    }
-                })
+                    let selected = document.querySelectorAll('.folder');
+                    selected.forEach((e) => {
+                        if (e.getAttribute('style') == 'background-color:blue;color:white') {
+                            id_selected.push(e.getAttribute('data-id'));
+                        }
+                    })
 
-            } else {
-                $(this).removeAttr('style')
-                $(this).attr('style', 'background-color:transparent');
-                $(this).find('p').attr('style', 'color:gray')
-            }
+                } else {
+                    $(this).removeAttr('style')
+                    $(this).attr('style', 'background-color:transparent');
+                    $(this).find('p').attr('style', 'color:gray')
+                }
+            })
+
         })
 
+        folder.forEach((folder) => {
+            folder.addEventListener('dblclick', function () {
+                $('.row-directory').html(`<div class="row-image">
+                            <div class="img">
+                                <img src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/076620/02/fnd/IND/fmt/png/PUMA-Challenger-Small-Duffel-Bag" alt="">
+                                <p>0_1pic.jpg</p>
+                            </div>
+                            <div class="img">
+                                <img src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/076620/02/fnd/IND/fmt/png/PUMA-Challenger-Small-Duffel-Bag" alt="">
+                                <p>0_1pic.jpg</p>
+                            </div>
+                            <div class="img">
+                                <img src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/076620/02/fnd/IND/fmt/png/PUMA-Challenger-Small-Duffel-Bag" alt="">
+                                <p>0_1pic.jpg</p>
+                            </div>
+                            <div class="img">
+                                <img src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/076620/02/fnd/IND/fmt/png/PUMA-Challenger-Small-Duffel-Bag" alt="">
+                                <p>0_1pic.jpg</p>
+                            </div>
+                        </div>`)})
+        })
+        
         // open folder
-        folder.addEventListener('dblclick',function(){
-            $('.row-directory').html(`<div class="row-image">
-                            <div class="img">
-                                <img src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/076620/02/fnd/IND/fmt/png/PUMA-Challenger-Small-Duffel-Bag" alt="">
-                                <p>0_1pic.jpg</p>
-                            </div>
-                            <div class="img">
-                                <img src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/076620/02/fnd/IND/fmt/png/PUMA-Challenger-Small-Duffel-Bag" alt="">
-                                <p>0_1pic.jpg</p>
-                            </div>
-                            <div class="img">
-                                <img src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/076620/02/fnd/IND/fmt/png/PUMA-Challenger-Small-Duffel-Bag" alt="">
-                                <p>0_1pic.jpg</p>
-                            </div>
-                            <div class="img">
-                                <img src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/076620/02/fnd/IND/fmt/png/PUMA-Challenger-Small-Duffel-Bag" alt="">
-                                <p>0_1pic.jpg</p>
-                            </div>
-                        </div>`)
-        })
+        
+    
     },
     error: (err) => {
         console.log(err);
