@@ -52,12 +52,14 @@ $.ajax({
 
         for(let i=0;i<folder.length;i++){
             folder[i].addEventListener('dblclick', function () {
-                $('.row-directory').html(`<div class="row-image"> </div>`)
+                $('.row-directory').html(`<div class="row-image1">
+                                        </div>`)
+                $('.row-image1').html(`<i class="fas fa-arrow-circle-left"  style="font-size:36px;" onClick="document.location.reload(true)"></i><div class="row-image"></div>`)
                 let folder =  $(this).attr('data-nama')
                 $.ajax({
                     url : 'http://localhost:3000/get/folder/'+folder,
                     success : (result) =>{
-                        let images = "";
+                        let images = ``;
                         result.forEach((img)=>{
                             images+=`  <div class="img">
                                      <img src="/files/${folder}/${img}" alt="${img}">
