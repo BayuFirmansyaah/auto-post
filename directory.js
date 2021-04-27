@@ -66,3 +66,36 @@ content.addEventListener('contextmenu', function (ev) {
     return false;
 }, false);
 
+$('.id_user').val(sessionStorage.getItem('id_user'));
+
+let id = sessionStorage.getItem('id_user');
+$.ajax({
+    url: 'http://localhost:3000/get/directory/' + id,
+    success: (result) => {
+        let code = ` <div class="side-menu-click">
+                        <li class="button-side-menu" data-toggle="modal" data-target="#create">
+                            Create Folder
+                        </li>
+                        <li class="button-side-menu" data-toggle="modal" data-target="#rename">
+                            Rename Folder
+                        </li>
+                        <li class="button-side-menu">
+                            Delete Folder
+                        </li>
+                    </div>`;
+        result.forEach((data) => {
+            code += `<div class="col-2">
+                        <div class="folder" data-id=${data.id} >
+                            <i class="fas fa-folder"></i>
+                            <p>${data.name}</p>
+                        </div>
+                    </div>
+`;
+            $('.row-directory').html(code);
+
+        })
+    },
+    error: (err) => {
+        console.log(err);
+    }
+});
