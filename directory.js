@@ -66,25 +66,3 @@ content.addEventListener('contextmenu', function (ev) {
     return false;
 }, false);
 
-let id = sessionStorage.getItem('id_user');
-
-$.ajax({
-    url: 'http://localhost:3000/get/directory/13',
-    success : (result) =>{
-        let code = "";
-        result.forEach((data)=>{
-            code += `<div class="col-2">
-                        <div class="folder" data-id=${data.id} >
-                            <i class="fas fa-folder"></i>
-                            <p>${data.name}</p>
-                        </div>
-                    </div>
-`;
-        $('.row-directory').html(code);
-
-        })
-    },
-    error : (err) => {
-            console.log(err);
-    }
-})
