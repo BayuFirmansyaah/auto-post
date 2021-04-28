@@ -54,7 +54,7 @@ $.ajax({
             folder[i].addEventListener('dblclick', function () {
                 $('.row-directory').html(`<div class="row-image1">
                                         </div>`)
-                $('.row-image1').html(`<button class="btn-directory" aria-label="back"><i class="fas fa-arrow-circle-left" onClick="document.location.reload(true)"></i></button><button class="btn-directory" aria-label="upload" data-toggle="modal" data-target="#upload"><i class="fas fa-file-upload"></i></button><div class="row-image"></div>`)
+                $('.row-image1').html(`<button class="btn-directory" aria-label="back"><i class="fas fa-arrow-circle-left" onClick="document.location.reload(true)"></i></button><button class="btn-directory" aria-label="upload" data-toggle="modal" data-target="#uploadgambar"><i class="fas fa-file-upload"></i></button><div class="row-image"></div>`)
                 let folder =  $(this).attr('data-nama')
                 $.ajax({
                     url : 'http://localhost:3000/get/folder/'+folder,
