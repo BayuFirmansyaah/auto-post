@@ -69,7 +69,7 @@
     <!-- end sidebar -->
 
     <!-- content -->
-    <div class="content directory">
+    <div class="content directory" style="background-color: gray;">
         <div class="google-account">
             <div class="google-icon">
                 <i class="fas fa-calendar-alt"></i>
@@ -82,45 +82,108 @@
         <div class="data-table bg-none">
             <div class="row row-schedule">
                 <div class="col">
-                    <form>
-                        <div class="form-row align-items-center">
-                            <div class="col-auto">
-                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                    <option selected>Month</option>
-                                    <option value="January">January</option>
-                                    <option value="February">February</option>
-                                    <option value="March">March</option>
-                                    <option value="April">April</option>
-                                    <option value="May">May</option>
-                                    <option value="June">June</option>
-                                    <option value="July">July</option>
-                                    <option value="August">August</option>
-                                    <option value="September">September</option>
-                                    <option value="October">October</option>
-                                    <option value="November">November</option>
-                                    <option value="December">December</option>
-                                </select>
-                            </div>
-                            <div class="col-auto">
-                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                                <select class="custom-select mr-sm-2 day" id="inlineFormCustomSelect">
-                                </select>
-                            </div>
-                            <div class="col-auto">
-                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                                <select class="custom-select mr-sm-2 hour" id="inlineFormCustomSelect">
-                                </select>
-                            </div>
-                            <div class="col-auto">
-                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                                <select class="custom-select mr-sm-2 minute" id="inlineFormCustomSelect">
-                                </select>
-                            </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <form>
+                                <div class="form-row align-items-center">
+                                    <div class="col-auto">
+                                        <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                                        <select class="custom-select mr-sm-2 Month" id="inlineFormCustomSelect">
+                                            <option value="0" selected>Month</option>
+                                            <option value="1">January</option>
+                                            <option value="2">February</option>
+                                            <option value="3">March</option>
+                                            <option value="4">April</option>
+                                            <option value="5">May</option>
+                                            <option value="6">June</option>
+                                            <option value="7">July</option>
+                                            <option value="8">August</option>
+                                            <option value="9">September</option>
+                                            <option value="10">October</option>
+                                            <option value="11">November</option>
+                                            <option value="12">December</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                                        <select class="custom-select mr-sm-2 day" id="inlineFormCustomSelect">
+                                        </select>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                                        <select class="custom-select mr-sm-2 hour" id="inlineFormCustomSelect">
+                                        </select>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                                        <select class="custom-select mr-sm-2 minute" id="inlineFormCustomSelect">
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                        <div class="col">
+                            <button class="btn btn-primary float-right">Create Schedule</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="accordion" id="accordionExample">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Collapsible Group Item #1
+                                    </button>
+                                </h2>
+                            </div>
+                    
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the
+                                    <code>.show</code> class.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Collapsible Group Item #2
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    Some placeholder content for the second accordion panel. This panel is hidden by default.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingThree">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Collapsible Group Item #3
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    And lastly, the placeholder content for the third and final accordion panel. This panel is hidden by
+                                    default.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -177,12 +240,6 @@
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
     <script src="directory.js"> </script>
-    <script>
-        function reloadpage() {
-            location.reload()
-        }
-    </script>
-    <script>$('.file-upload').file_upload();</script>
     <script src="schedule.js"></script>
 </body>
 
