@@ -36,3 +36,4 @@ hours += hour;
 $('.day').html(days);
 $('.hour').html(hours);
 $('.minute').html(minutes);
+
