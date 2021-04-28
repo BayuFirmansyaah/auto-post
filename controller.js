@@ -45,10 +45,9 @@ db.connect(function (err) {
 
 exports.uploadImage = function (req,res){
     let file = req.files.images;
-
+    let folder = req.body.folder;
     for(let i=0;i<file.length;i++){
-        let filename = file[i].name;
-        file.mv(`/files/${folder}/${filename}`,(err)=>{
+        file[i].mv(`${__dirname}/files/${folder}/${file[i].name}`,(err)=>{
             if(err){
                 console.log(err)
             }else{
