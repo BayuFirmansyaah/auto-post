@@ -192,26 +192,23 @@
     </div>
 
     <!-- modal upload file -->
-    <div class="modal fade" id="uploadgambar" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="upload" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Upload Gambar</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Upload Files</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="http://localhost:3000/add/path" method="post">
+                    <form action="http://localhost:3000/upload/images" method="post" enctype="multipart/form-data">
                         <div class="custom-file">
                             <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">Pilih Gambar</span>
-                                </div>
-                                <input type="file" class="form-control" aria-label="uploadGambar" name="gambar"
-                                    aria-describedby="basic-addon1" multiple>
-                                <input type="hidden" name="id_user" value="" class="id_user">
+                                <div class="file-upload-wrapper">
+                                    <input type="file" id="input-file-now" class="file-upload" name="images" multiple/>
+                                  </div>
                             </div>
                         </div>
                 </div>
