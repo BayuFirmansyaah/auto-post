@@ -183,6 +183,11 @@ module.exports = function (app) {
     // ======================= bagian untuk end point run program =======================
     // ==================================================================================
 
+    // schedule
+    app.route('/create/schedule').get((req,res)=>{
+        Controller.Schedule();
+    })
+
     // root index
     app.route('/').get((req, res) => {
         res.sendFile(__dirname + "/login.html");
