@@ -25,6 +25,7 @@
     "localstorage": "^1.0.1",
     "moment": "^2.29.1",
     "mysql": "^2.18.1",
+    "node-cron": "^3.0.0",
     "node-localstorage": "^2.1.6",
     "nodemon": "^2.0.7",
     "puppeteer": "^8.0.0",
