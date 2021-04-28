@@ -52,7 +52,7 @@ exports.uploadImage = function (req,res){
             if(err){
                 console.log(err)
             }else{
-                console.log('gambar berhasil di upload')
+                console.log('gambar berhasil di upload');
             }
         })
     }
