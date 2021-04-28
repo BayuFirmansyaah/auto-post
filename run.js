@@ -240,7 +240,11 @@ function showSideBar() {
             </div>
             <a href="/directory.html">
                 <p class="sub-heading "><i class="fas fa-folder-tree"></i></p>
-            </a>`)
+            </a>
+            <a href="/schedule.html">
+                <p class="sub-heading "><i class="fas fa-calendar-alt"></i></p>
+            </a>
+            `)
 
 
         localStorage.setItem('ls', false);
@@ -265,7 +269,11 @@ function showSideBar() {
             <h6 class="text-heading text-primary">DIRECTORY</h6>
                 <a href="/directory.html">
                     <p class="sub-heading "><i class="fas fa-folder-tree"></i> File Manager</p>
-                </a>`)
+                </a>
+                <h6 class="text-heading text-primary">Task Manager</h6>
+        <a href="/schedule.html">
+            <p class="sub-heading "><i class="fas fa-calendar-alt"></i> Schedule</p>
+        </a>`)
 
 
         localStorage.setItem('ls', true);

@@ -293,4 +293,9 @@ li{
     border:1.5px solid gray;
 }
 
+.form-schedule{
+    background-color: blue;
+    height: 60px;
+    width: 110%;
+}
 

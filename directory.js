@@ -105,6 +105,10 @@ if (localStorage.getItem('ls') === "true") {
     <h6 class="text-heading text-primary">DIRECTORY</h6>
         <a href="/directory.html">
             <p class="sub-heading "><i class="fas fa-folder-tree"></i> File Manager</p>
+        </a>
+        <h6 class="text-heading text-primary">Task Manager</h6>
+        <a href="/schedule.html">
+            <p class="sub-heading "><i class="fas fa-calendar-alt"></i> Schedule</p>
         </a>`)
 
 } else if (localStorage.getItem('ls') === "false") {
@@ -124,6 +128,9 @@ if (localStorage.getItem('ls') === "true") {
 </div>
 <a href="/google.html">
     <p class="sub-heading "><i class="fas fa-folder-tree"></i></p>
+        </a>
+        <a href="/schedule.html">
+        <p class="sub-heading"><i class="fas fa-calendar-alt"></i></p>
         </a>`)
 
 
