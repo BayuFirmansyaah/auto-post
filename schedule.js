@@ -50,3 +50,4 @@ hours += hour;
 
 $('.hour').html(hours);
 $('.minute').html(minutes);
+
