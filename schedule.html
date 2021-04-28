@@ -76,132 +76,57 @@
             </div>
             <h6>Schedule</h6>
             <p class="text-secondary">Create New Schedule</p>
-            
         </div>
-        <div class="data-table">
-            <div class="row form-schedule">
-                <div class="form-group col-md-2" style="margin-top: 10px; margin-left: 6px;height: 200px;">
-                    <select id="inputState" class="form-control">
-                      <option selected>Choose...</option>
-                      <option>...</option>
-                    </select>
-                  </div>
+
+
+        <div class="data-table bg-none">
+            <div class="row row-schedule">
+                <div class="col">
+                    <form>
+                        <div class="form-row align-items-center">
+                            <div class="col-auto">
+                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                    <option selected>Month</option>
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                                <select class="custom-select mr-sm-2 day" id="inlineFormCustomSelect">
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                                <select class="custom-select mr-sm-2 hour" id="inlineFormCustomSelect">
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                                <select class="custom-select mr-sm-2 minute" id="inlineFormCustomSelect">
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="accordion" id="accordionExample">
-                <div class="card">
-                  <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Collapsible Group Item #1
-                      </button>
-                    </h2>
-                  </div>
-              
-                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body">
-                      Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="headingTwo">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Collapsible Group Item #2
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                    <div class="card-body">
-                      Some placeholder content for the second accordion panel. This panel is hidden by default.
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="headingThree">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Collapsible Group Item #3
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                    <div class="card-body">
-                      And lastly, the placeholder content for the third and final accordion panel. This panel is hidden by default.
-                    </div>
-                  </div>
-                </div>
-              </div>
         </div>
-        </div>
+
     </div>
     <!-- end content -->
 
-    <!-- modal create -->
-    <div class="modal fade" id="create" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Create Folder</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="http://localhost:3000/add/folder" method="post">
-                        <div class="custom-file">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">Folder Name</span>
-                                </div>
-                                <input type="text" class="form-control" aria-label="name" name="name"
-                                    aria-describedby="basic-addon1">
-                                <input type="hidden" name="id_user" value="" class="id_user">
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
-                    <button type="submit" class="btn btn-success">save</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- modal Rename -->
-    <div class="modal fade" id="rename" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Rename Folder</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="http://localhost:3000/update/folder" method="post">
-                        <div class="custom-file">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">Folder Name</span>
-                                </div>
-                                <input type="text" class="form-control" aria-label="name" name="name"
-                                    aria-describedby="basic-addon1">
-                                <input type="hidden" name="id_user" value="" class="id_user">
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
-                    <button type="submit" class="btn btn-success">save</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- modal path -->
     <div class="modal fade" id="path" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -243,38 +168,6 @@
         </div>
     </div>
 
-    <!-- modal upload file -->
-    <div class="modal fade" id="upload" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Upload Files</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="http://localhost:3000/upload/images" method="post" enctype="multipart/form-data">
-                        <div class="custom-file">
-                            <div class="input-group mb-3">
-                                <div class="file-upload-wrapper">
-                                    <input type="file" id="input-file-now" class="file-upload" name="images" multiple/>
-                                  </div>
-                            </div>
-                        </div>
-                        <input type="hidden" name="folder" class="folder-value" value="">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
-                    <button type="submit" class="btn btn-success">save</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -285,14 +178,12 @@
         crossorigin="anonymous"></script>
     <script src="directory.js"> </script>
     <script>
-        function reloadpage()
-        {
-        location.reload()
+        function reloadpage() {
+            location.reload()
         }
-        </script>
+    </script>
     <script>$('.file-upload').file_upload();</script>
+    <script src="schedule.js"></script>
 </body>
-
-</html>
 
 </html>

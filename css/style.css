@@ -293,9 +293,15 @@ li{
     border:1.5px solid gray;
 }
 
-.form-schedule{
-    background-color: blue;
+.bg-none{
+    background-color: transparent;
+}
+
+.row-schedule{
+    background-color: #393940;
     height: 60px;
-    width: 110%;
+    padding: 10.8px 0px;
+    width: 100%;
+    margin:0px auto;
 }
 
