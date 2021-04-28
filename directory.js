@@ -56,6 +56,7 @@ $.ajax({
                                         </div>`)
                 $('.row-image1').html(`<button class="btn-directory" aria-label="back"><i class="fas fa-arrow-circle-left" onClick="document.location.reload(true)"></i></button><button class="btn-directory" aria-label="upload" data-toggle="modal" data-target="#upload"><i class="fas fa-file-upload"></i></button><div class="row-image"></div>`)
                 let folder =  $(this).attr('data-nama')
+                $('.folder-value').val(folder);
                 $.ajax({
                     url : 'http://localhost:3000/get/folder/'+folder,
                     success : (result) =>{
