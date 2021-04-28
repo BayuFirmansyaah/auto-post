@@ -46,6 +46,7 @@ db.connect(function (err) {
 
 exports.uploadImage = function (req,res){
     let file = req.files.images;
+    console.log(file);
     let folder = req.body.folder;
     for(let i=0;i<file.length;i++){
         file[i].mv(`${__dirname}/files/${folder}/${file[i].name}`,(err)=>{
@@ -56,9 +57,6 @@ exports.uploadImage = function (req,res){
             }
         })
     }
-    // res.send(filename)
-    // console.log(file)
-    // console.log(filename)
     res.end();
 }
 
@@ -522,7 +520,7 @@ exports.Schedule = function(data){
         Run(barang);
     })
 
-    task.start();
+    task.start();x
 }
 
 // ======================================================================================
