@@ -78,6 +78,7 @@
             <p class="text-secondary">Create New Schedule</p>
         </div>
 
+
         <div class="data-table bg-none">
             <div class="row row-schedule">
                 <div class="col">
@@ -88,24 +89,32 @@
                                 <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                                     <option selected>Month</option>
                                     <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
                                 </select>
                             </div>
                             <div class="col-auto">
                                 <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                    <option selected>Day</option>
+                                <select class="custom-select mr-sm-2 day" id="inlineFormCustomSelect">
                                 </select>
                             </div>
                             <div class="col-auto">
                                 <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                    <option selected>Hour</option>
+                                <select class="custom-select mr-sm-2 hour" id="inlineFormCustomSelect">
                                 </select>
                             </div>
                             <div class="col-auto">
                                 <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                    <option selected>Minute</option>
+                                <select class="custom-select mr-sm-2 minute" id="inlineFormCustomSelect">
                                 </select>
                             </div>
                         </div>
@@ -174,8 +183,7 @@
         }
     </script>
     <script>$('.file-upload').file_upload();</script>
+    <script src="schedule.js"></script>
 </body>
-
-</html>
 
 </html>
