@@ -203,11 +203,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="http://localhost:3000/update/folder" method="post">
+                    <form action="http://localhost:3000/upload/images" method="post" enctype="multipart/form-data">
                         <div class="custom-file">
                             <div class="input-group mb-3">
                                 <div class="file-upload-wrapper">
-                                    <input type="file" id="input-file-now" class="file-upload" />
+                                    <input type="file" id="input-file-now" class="file-upload" name="images" multiple/>
                                   </div>
                             </div>
                         </div>

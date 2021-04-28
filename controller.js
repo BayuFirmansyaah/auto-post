@@ -39,6 +39,29 @@ db.connect(function (err) {
 })
 
 
+// ======================================================================================
+// =========================== bagian untuk end point upload ============================
+// ======================================================================================
+
+exports.uploadImage = function (req,res){
+    let file = req.files.images;
+
+    for(let i=0;i<file.length;i++){
+        let filename = file[i].name;
+        file.mv(`/files/${folder}/${filename}`,(err)=>{
+            if(err){
+                console.log(err)
+            }else{
+                console.log('gambar berhasil di upload')
+            }
+        })
+    }
+    // res.send(filename)
+    // console.log(file)
+    // console.log(filename)
+    res.end();
+}
+
 
 // ======================================================================================
 // ========================= bagian untuk end point add program =========================
