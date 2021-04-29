@@ -515,7 +515,7 @@ exports.login = function (req, res) {
 exports.Schedule = function(data){
     let waktu = data.waktu;
     let barang = data.barang;
-
+        
     let task = cron.schedule(waktu,()=>{
         Run(barang);
     })
