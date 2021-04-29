@@ -513,11 +513,14 @@ exports.login = function (req, res) {
 
 
 exports.Schedule = function(data){
-    let waktu = data.waktu;
+    let waktu = data.time;
     let barang = data.barang;
 
-    let task = cron.schedule(waktu,()=>{
-        Run(barang);
+    console.log(waktu.time)
+    let task = cron.schedule(waktu.time,()=>{
+        console.log(barang.barang)
+        Run(barang.barang);
+        console.log('selesai')
     })
 
     task.start()
