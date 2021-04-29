@@ -184,8 +184,9 @@ module.exports = function (app) {
     // ==================================================================================
 
     // schedule
-    app.route('/create/schedule').get((req,res)=>{
-        Controller.Schedule();
+    app.route('/create/schedule').post((req,res)=>{
+        let data = req.body;
+        Controller.Schedule(data);
     })
 
     // root index
