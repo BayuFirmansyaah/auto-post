@@ -15,7 +15,7 @@
     <!-- font awesome -->
     <base href="/">
     <script src="./fa.js"></script>
-    
+
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <title>Skipper Auto Post</title>
 </head>
@@ -84,7 +84,6 @@
                         <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-plus"></i> add</button>
-                        </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#file">Add Via
                                 File(.xlsx)</a>
@@ -92,17 +91,26 @@
                         </div>
                     </div>
                     <div class="ml-auto mr-3">
-                        <select id="namacombobox">
-                            <option value="false" selected>Preview</option>
+                        <div class="form-row align-items-center">
+                            <div class="col-auto">
+                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                                <select class="custom-select mr-sm-2 day" id="inlineFormCustomSelect">
+                                    <option value="false" selected>Preview</option>
                             <option value="true">Background</option>
-                         </select>
-            
-                        <button class="btn btn-rounded btn-success btn-play none"><i class='fas fa-play'></i></button>
-                        <button class="btn btn-rounded btn-success btn-pause none"><i class='fas fa-pause'></i></button>
-                        <button class="btn btn-rounded btn-success btn-resume none"><i class='fas fa-play'></i></button>
-                        <button class="btn btn-rounded btn-danger btn-stop"><i class="fas fa-stop"></i></button>
-                        <button class="btn btn-rounded btn-warning btn-edit-all " data-toggle="modal" data-target="#akun"><i class="fas fa-pen-alt"></i></button>
-                        <button  class="btn btn-rounded btn-secondary btn-delete-all"><i class="fas fa-eraser"></i></button>
+                                </select>
+                            </div>
+                        
+
+                        <button class="btn btn-rounded btn-success btn-play none list-button"><i class='fas fa-play'></i></button>
+                        <button class="btn btn-rounded btn-success btn-pause none list-button"><i class='fas fa-pause'></i></button>
+                        <button class="btn btn-rounded btn-success btn-resume none list-button"><i class='fas fa-play'></i></button>
+                        <button class="btn btn-rounded btn-danger btn-stop list-button"><i class="fas fa-stop"></i></button>
+                        <button class="btn btn-primary  btn-saveAkun list-button" aria-label="saveAkun"><i class="fas fa-save"></i></button>
+                        <button class="btn btn-rounded btn-warning btn-edit-all list-button " data-toggle="modal"
+                            data-target="#akun"><i class="fas fa-pen-alt"></i></button>
+                        <button class="btn btn-rounded btn-secondary btn-delete-all list-button"><i
+                                class="fas fa-eraser"></i></button>
+                    </div>
                     </div>
                 </div>
                 <div class="row mt-3 row-table">
@@ -126,7 +134,7 @@
             </div>
         </div>
         <div class="row row-log">
-            
+
         </div>
     </div>
     <!-- end content -->
@@ -144,7 +152,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="http://localhost:3000/convert/account" method="post" enctype="multipart/form-data" >
+                    <form action="http://localhost:3000/convert/account" method="post" enctype="multipart/form-data">
                         <div class="custom-file">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="inputGroupFile04"
@@ -158,8 +166,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button"  class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
-                    <button type="submit"  class="btn btn-success">save</button>
+                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
+                    <button type="submit" class="btn btn-success">save</button>
                     </form>
                 </div>
             </div>
@@ -296,16 +304,16 @@
                     </button>
                 </div>
                 <form action="" method="post" class="modal-edit-akun">
-                <div class="modal-body modal-data">
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
-                    <button type="submit" class="btn btn-success btn-save-akun">save</button>
+                    <div class="modal-body modal-data">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
+                        <button type="submit" class="btn btn-success btn-save-akun">save</button>
                 </form>
-                </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -318,9 +326,9 @@
     <script src="google.js"></script>
     <script src="run.js"></script>
     <script>
-        $( document ).ready(function() {
-  
-});
+        $(document).ready(function () {
+
+        });
         if (localStorage.getItem('ls') === "true") {
             document.querySelector('.sidebar').classList.remove('sidebar-none')
             document.querySelector('.sidebar').classList.add('sidebar-block')
@@ -372,15 +380,15 @@
 
         }
     </script>
-<script>
-    $(document).ready(function () {
-        let socket = io.connect('http://localhost:3000', { path: '/socket.io' })
+    <script>
+        $(document).ready(function () {
+            let socket = io.connect('http://localhost:3000', { path: '/socket.io' })
 
-        socket.on('logs', function (results) {
-            let code = "";
-        let data = results.akun;
-        data.forEach((akun) => {
-            code += `
+            socket.on('logs', function (results) {
+                let code = "";
+                let data = results.akun;
+                data.forEach((akun) => {
+                    code += `
                     <ul>
                         <li>${akun.akun}</li>
                         <li>Posting : ${akun.jumlah} </li>
@@ -390,11 +398,11 @@
                         <li>Stop : ${akun.selesai}</li>
                     </ul>
                 `
+                })
+                $('.row-log').html(code);
+            })
         })
-        $('.row-log').html(code);
-        })
-    })
-</script>  
+    </script>
 </body>
 
 </html>

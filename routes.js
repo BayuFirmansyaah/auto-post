@@ -183,6 +183,12 @@ module.exports = function (app) {
     // ======================= bagian untuk end point run program =======================
     // ==================================================================================
 
+    // schedule
+    app.route('/create/schedule').post((req,res)=>{
+        let data = req.body;
+        Controller.Schedule(data);
+    })
+
     // root index
     app.route('/').get((req, res) => {
         res.sendFile(__dirname + "/login.html");

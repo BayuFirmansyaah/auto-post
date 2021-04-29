@@ -26,6 +26,13 @@ $('.btn-save').on('click', async function () {
     await Save();
 })
 
+// ketika tombol save akun ditekan
+$('.btn-saveAkun').on('click', async function(){
+    await saveAkun();
+})
+
+
+
 
 // jika tombol play ditekan
 $('.btn-play').on('click', async function () {
@@ -212,6 +219,51 @@ const Save = async () => {
     } else {
         alert("Tidak Ada data item yang dipilih");
     }
+}
+
+const saveAkun = async() => {
+    let id = document.querySelectorAll('.id-facebook');
+    let id_facebook = [];
+    let index = [];
+
+    id.forEach((id) => {
+        if (id.checked) {
+            id_facebook.push(id.getAttribute('value'));
+        }
+    })
+
+    for (let i = 0; i < id.length; i++) {
+        if (id[i].checked) {
+            index.push(i);
+        }
+    }
+    alert("Data berhasil disimpan")
+    localStorage.setItem('data-akun', JSON.stringify(index));
+
+    let result = await $.ajax({
+        url: 'http://localhost:3000/get/account/' + sessionStorage.getItem("id_user"),
+        success: async (data) => {
+            return data;
+        },
+        error: (err) => {
+            console.log(err);
+        }
+    })
+    
+    let temporary = [];
+            let Akun = result.Search;
+            Akun = sortByProperty(Akun, "Akun.username");
+            await Akun.forEach((Akun) => {
+                for (let i = 0; i < id_facebook.length; i++) {
+                    if (id_facebook[i] == Akun.id) {
+                        temporary.push(Akun);
+                        alert("Data berhasil disimpan")
+                    }
+                }
+            });
+
+            // menyimpan data akun di localstorage
+            localStorage.setItem('akun', JSON.stringify(temporary));
 }
 
 

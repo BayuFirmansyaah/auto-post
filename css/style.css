@@ -4,6 +4,11 @@
     display: none;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 .show{
     display: inline-block;
 }
@@ -298,10 +303,13 @@ li{
 }
 
 .row-schedule{
-    background-color: #393940;
+    background-color:#615f5f;
     height: 60px;
     padding: 10.8px 0px;
     width: 100%;
     margin:0px auto;
 }
 
+.list-button{
+    margin:0px 2.3px;
+}

@@ -520,7 +520,8 @@ exports.Schedule = function(data){
         Run(barang);
     })
 
-    task.start();x
+    task.start()
+
 }
 
 // ======================================================================================
