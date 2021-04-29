@@ -215,7 +215,7 @@ module.exports = function (app) {
     app.route('/run').post(async (req, res) => {
         let data = req.body;
         await Controller.isRun(1);
-        Controller.Run(data);
+        Controller.Run(Run,data);
         console.log("jalan");
         res.send('Program Mulai Dijalankan');
         // res.end();

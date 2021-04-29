@@ -518,9 +518,8 @@ exports.Schedule = function(data){
 
     console.log(waktu.time)
     let task = cron.schedule(waktu.time,()=>{
-        console.log(barang.barang)
-        Run(barang.barang);
-        console.log('selesai')
+        Run(barang.barang)
+        console.log(waktu.time)
     })
 
     task.start()
@@ -538,7 +537,7 @@ exports.isRun = function (value) {
 }
 
 //run auto-post
-exports.Run = async (data) => {
+const Run = async (data) => {
 
 
     // membuka browser
@@ -927,13 +926,13 @@ exports.Run = async (data) => {
             browser.close();
             return false;
         }
-
-
-
     }
-
-
 
     //Close Browser
     await browser.close();
 }
+
+
+exports.Run = function(callback,data){
+        callback(data);
+};

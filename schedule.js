@@ -77,7 +77,7 @@ $('.hour').html(hours);
 $('.minute').html(minutes);
 
 $('.btn-schedule').on('click',function(){
-    let cron_time = { time: `* ${cron_minute} ${cron_hour} ${cron_day} ${cron_month} *`};
+    let cron_time = { time: `0 ${cron_minute} ${cron_hour} ${cron_day} ${cron_month} *`};
 
     let data = {
         time : cron_time,
