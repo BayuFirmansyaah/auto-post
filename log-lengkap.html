@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+    <base href="/">
+    <script src="./fa.js"></script>
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <title>Skipper Auto Post</title>
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light pl-4 fixed-top">
+        <a class="navbar-brand" href="#">auto-Post</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+        </div>
+    </nav>
+    <!-- end navbar -->
+
+    <!-- sidebar -->
+    <div class="sidebar">
+        <h6 class="text-heading text-primary">DATA ACCOUNTS</h6>
+        <a href="/google.html">
+            <p class="sub-heading "><i class="fab fa-facebook"></i> Facebook Accounts</p>
+        </a>
+        <h6 class="text-heading text-primary">INVENTORY</h6>
+        <a href="/indexing.html">
+            <p class="sub-heading "><i class="fas fa-server"></i> Item</p>
+        </a>
+        <div data-toggle="modal" data-target="#path">
+            <p class="sub-heading "><i class="fas fa-map-marker-alt"></i> Path Image</p>
+        </div>
+        <h6 class="text-heading text-primary">DIRECTORY</h6>
+        <a href="/directory.html">
+            <p class="sub-heading "><i class="fas fa-folder-tree"></i> File Manager</p>
+        </a>
+        <h6 class="text-heading text-primary">Task Manager</h6>
+        <a href="/directory.html">
+            <p class="sub-heading "><i class="fas fa-folder-tree"></i> Schedule</p>
+        </a>
+        <!--<h6 class="text-heading text-primary">MORE ACTION</h6>
+        <div data-toggle="modal" data-target="#add-akun" class="add">
+            <p class="sub-heading "><i class="fas fa-user-plus"></i>Add Account User</p>
+        </div>
+        <div class="logout">
+            <p class="sub-heading "><i class="fas fa-sign-out-alt"></i>Sign Out</p>
+        </div>-->
+
+    </div>
+    <!-- end sidebar -->
+
+    <!-- content -->
+    <div class="content directory" style="background-color: rgb(214, 214, 214);">
+        <div class="google-account">
+            <div class="google-icon">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h6>Schedule</h6>
+            <p class="text-secondary">Create New Schedule</p>
+        </div>
+
+
+        <div class="data-table bg-none">
+            <div class="row mt-1">
+                <div class="col-12">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                              
+                              
+                            </div>
+                          </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- end content -->
+
+
+
+    <!-- modal path -->
+    <div class="modal fade" id="path" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Set Path Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="http://localhost:3000/add/path" method="post">
+                        <div class="custom-file">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Path saat ini</span>
+                                </div>
+                                <input type="text" class="form-control path" aria-label="Username" name="username"
+                                    aria-describedby="basic-addon1" readonly value="">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Set Path</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="password" name="path"
+                                    aria-describedby="basic-addon1">
+                                <input type="hidden" name="id_user" value="" class="id_user">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-close" data-dismiss="modal">cancel</button>
+                    <button type="submit" class="btn btn-success">save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            let socket = io.connect('http://localhost:3000', { path: '/socket.io' })
+
+            socket.on('log', function (result) {
+                let code = "";
+                let ct = "";
+                let i = 1;
+                result.forEach((data) => {
+                    console.log(i);
+                    console.log(data.akun);
+                    console.log("Jeda");
+                    if(data.akun == data.akun){
+                    console.log(data.kode);
+                    code += `
+                    <div class="card-header" id="heading${i}">
+                                <h2 class="mb-0">
+                                  <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="false" aria-controls="collapse${i}" style="font-size: 18px;padding: 0;color: #16161d;">
+                                    ${data.akun}
+                                    <i class="fas fa-chevron-down float-right" style="margin:6px auto;"></i>
+                                  </button>
+                                </h2>
+                              </div>
+                              <div id="collapse${i}" class="collapse" aria-labelledby="heading${i}" data-parent="#accordionExample">
+                                <div class="card-body">
+                                  <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" width="30px">no</th>
+                                    <th scope="col">Kode</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="unik">
+                                
+                            </tbody>
+                        </table>
+                                </div>
+                              </div>
+                `;
+                
+                  ct += `
+                <tr class="baris-data baris-akun">
+                                    <th scope="row">1</th>
+                                    <td>${data.kode}</td>
+                                    <td>${data.status}</td>
+                                    </tr>
+                `}
+                i++;
+
+                })
+                
+                
+                $('.card').html(code);
+                $('.unik').html(ct);
+            
+            })
+        })
+    </script>
+</body>
+
+</html>

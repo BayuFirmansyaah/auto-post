@@ -291,7 +291,7 @@ const Edit = () => {
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Judul Barang</label>
                                 <input type="text" class="form-control" 
-                                    aria-describedby="emailHelp" name="judul" value=${judul}>
+                                    aria-describedby="emailHelp" name="judul" value="${judul}">
                             </div>
                         </div>
                         <div class="col">
@@ -308,7 +308,7 @@ const Edit = () => {
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Gambar</label>
-                        <input type="text" class="form-control" name="gambar" value=${img}>
+                        <input type="text" class="form-control" name="gambar" value="${img}">
                         <input type="hidden" name="id" value="${id_barang}" class="id_user">
                     </div>`;
                 $('.modal-body-update-username').html(contentForm);

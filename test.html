@@ -1,0 +1,12 @@
+<input type="file" id="myInput" onchange="selectFolder(event)" webkitdirectory mozdirectory msdirectory odirectory directory multiple />
+<script type="text/javascript">
+    var folder = document.getElementById("myInput");
+folder.onchange=function(){
+  var files = folder.files,
+      len = files.length,
+      i;
+  for(i=0;i<len;i+=1){
+    console.log(files[i]);
+  }
+}
+    </script>
