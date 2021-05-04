@@ -960,7 +960,7 @@ exports.crawling = async (data) =>{
 
         // melakukan perulangan pada ppostingan
         let data_post = await page.evaluate(()=>{
-            
+            null
         })
 
     }
