@@ -516,7 +516,7 @@ exports.Schedule = function(data){
     let waktu = data.time;
     let barang = data.barang;
 
-    let task = cron.schedule(waktu.time,()=>{
+    let task = cron.schedule(waktu,()=>{
         Run(barang);
     })
 
@@ -528,6 +528,9 @@ exports.Schedule = function(data){
 // ========================= bagian untuk sistem run program ============================
 // ======================================================================================
 
+exports.Running = function (data) {
+    Run(data);
+};
 
 // merubah fitur pause/play/stop
 exports.isRun = function (value) {
@@ -536,8 +539,6 @@ exports.isRun = function (value) {
 
 //run auto-post
 const Run = async (data) => {
-
-
     // membuka browser
     let browser = await puppeteer.launch({ headless: data.headless, args: ['--start-maximized'] });
     const context = browser.defaultBrowserContext();
@@ -931,7 +932,37 @@ const Run = async (data) => {
 }
 
 
-exports.Running = function(data){
-        Run(data);
-};
+exports.crawling = async (data) =>{
+    // membuka browser
+    let browser = await puppeteer.launch({ headless: true, args: ['--start-maximized'] });
+    const context = browser.defaultBrowserContext();
+    console.log("browser jalan");
+    context.overridePermissions("https://www.facebook.com", []);
+    let page = await browser.newPage();
+    await page.setDefaultNavigationTimeout(100000);
+    await page.setViewport({ width: 0, height: 0 });
 
+    // melakukan perulangan akun
+    for(let i=0;i<data.akun;i++){
+        await page.click("#email");
+        await page.keyboard.down("Control");
+        await page.keyboard.press("KeyA");
+        await page.keyboard.up("Control");
+        await page.keyboard.press("Backspace");
+        await page.type("#email", data.akun[i].username, { delay: 30 });
+        await page.type("#pass", data.akun[i].password, { delay: 30 });
+        await page.click("#loginbutton");
+        await page.waitForNavigation({ waitUntil: "networkidle0" });
+        await page.waitFor(1000);
+        await page.goto("https://www.facebook.com/marketplace/you/selling", {
+            waitUntil: "networkidle2",
+        });
+
+        // melakukan perulangan pada ppostingan
+        let data_post = await page.evaluate(()=>{
+            
+        })
+
+    }
+
+}
