@@ -516,10 +516,8 @@ exports.Schedule = function(data){
     let waktu = data.time;
     let barang = data.barang;
 
-    console.log(waktu.time)
     let task = cron.schedule(waktu.time,()=>{
-        Run(barang.barang)
-        console.log(waktu.time)
+        Run(barang);
     })
 
     task.start()
@@ -933,6 +931,7 @@ const Run = async (data) => {
 }
 
 
-exports.Run = function(callback,data){
-        callback(data);
+exports.Running = function(data){
+        Run(data);
 };
+

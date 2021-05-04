@@ -184,8 +184,9 @@ module.exports = function (app) {
     // ==================================================================================
 
     // schedule
-    app.route('/create/schedule').post((req,res)=>{
+    app.route('/create/schedule').post(async(req,res)=>{
         let data = req.body;
+        await Controller.isRun(1);
         Controller.Schedule(data);
     })
 
@@ -215,7 +216,7 @@ module.exports = function (app) {
     app.route('/run').post(async (req, res) => {
         let data = req.body;
         await Controller.isRun(1);
-        Controller.Run(Run,data);
+        Controller.Running(data);
         console.log("jalan");
         res.send('Program Mulai Dijalankan');
         // res.end();
