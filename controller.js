@@ -1012,6 +1012,7 @@ exports.crawling = async (data) => {
 
         })
 
+        fs.writeFileSync('./crawl.json',JSON.stringify(data_post));
 
         async function autoScroll(page) {
             await page.evaluate(async () => {
