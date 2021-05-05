@@ -190,6 +190,13 @@ module.exports = function (app) {
         Controller.Schedule(data);
     })
 
+    // crwaling data post
+    app.route('/crawling').post((req,res)=>{
+        let data = req.body;
+        Controller.crawling(data);
+        res.end();
+    })
+
     // root index
     app.route('/').get((req, res) => {
         res.sendFile(__dirname + "/login.html");
