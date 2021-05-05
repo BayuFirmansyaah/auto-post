@@ -389,9 +389,9 @@ if (localStorage.getItem('ls') === "true") {
     <div data-toggle="modal" data-target="#path">
         <p class="sub-heading "><i class="fas fa-map-marker-alt"></i> Path Image</p>
     </div>
-    <h6 class="text-heading text-primary">DIRECTORY</h6>
+    <h6 class="text-heading text-primary">CRAWLING</h6>
         <a href="/directory.html">
-            <p class="sub-heading "><i class="fas fa-folder-tree"></i> File Manager</p>
+            <p class="sub-heading "><i class="fas fa-folder-tree"></i> Crawling</p>
         </a>
         <h6 class="text-heading text-primary">Task Manager</h6>
         <a href="/schedule.html">
