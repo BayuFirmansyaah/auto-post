@@ -390,8 +390,8 @@ if (localStorage.getItem('ls') === "true") {
         <p class="sub-heading "><i class="fas fa-map-marker-alt"></i> Path Image</p>
     </div>
     <h6 class="text-heading text-primary">CRAWLING</h6>
-        <a href="/directory.html">
-            <p class="sub-heading "><i class="fas fa-folder-tree"></i> Crawling</p>
+        <a href="/log-lengkap.html">
+            <p class="sub-heading "><i class="fas fa-spider"></i> Crawling</p>
         </a>
         <h6 class="text-heading text-primary">Task Manager</h6>
         <a href="/schedule.html">
@@ -414,8 +414,8 @@ if (localStorage.getItem('ls') === "true") {
     <div data-toggle="modal" data-target="#path">
         <p class="sub-heading "><i class="fas fa-map-marker-alt"></i></p>
     </div>
-    <a href="/directory.html">
-        <p class="sub-heading "><i class="fas fa-folder-tree"></i></p>
+    <a href="/log-lengkap.html">
+        <p class="sub-heading "><i class="fas fa-spider"></i></p>
     </a>
     <a href="/schedule.html">
         <p class="sub-heading"><i class="fas fa-calendar-alt"></i></p>
