@@ -672,7 +672,7 @@ exports.Run = async (data) => {
                         keyword.toLowerCase();
 
 
-                       switch (keyword) {
+                        switch (keyword) {
                             case "peralatan":
                                 await page.evaluate(() => {
                                     document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[2].click()
@@ -957,4 +957,59 @@ exports.Run = async (data) => {
 
     //Close Browser
     await browser.close();
+}
+
+exports.crawling = async (data) => {
+    // membuka browser
+    let browser = await puppeteer.launch({ headless: true, args: ['--start-maximized'] });
+    const context = browser.defaultBrowserContext();
+    console.log("browser jalan");
+    context.overridePermissions("https://www.facebook.com", []);
+    let page = await browser.newPage();
+    await page.setDefaultNavigationTimeout(100000);
+    await page.setViewport({ width: 0, height: 0 });
+
+    // melakukan perulangan akun
+    for (let i = 0; i < data.akun; i++) {
+        await page.click("#email");
+        await page.keyboard.down("Control");
+        await page.keyboard.press("KeyA");
+        await page.keyboard.up("Control");
+        await page.keyboard.press("Backspace");
+        await page.type("#email", data.akun[i].username, { delay: 30 });
+        await page.type("#pass", data.akun[i].password, { delay: 30 });
+        await page.click("#loginbutton");
+        await page.waitForNavigation({ waitUntil: "networkidle0" });
+        await page.waitFor(1000);
+        await page.goto("https://www.facebook.com/marketplace/you/selling", {
+            waitUntil: "networkidle2",
+        });
+
+        // melakukan perulangan pada ppostingan
+        let data_post = await page.evaluate(() => {
+            let kotak = document.querySelectorAll(".hv4rvrfc")
+            for (let i = 0; i < kotak.length; i++) {
+                let judul = kotak[i].querySelector(".a8c37x1j")
+                if (judul != null) {
+                    let text = judul.innerText
+                    if (text != undefined) {
+                        if (text.length > 50) {
+                            let tgl = kotak[i].querySelector(".ltmttdrg")
+                            let tayang = kotak[i].querySelector(".df2bnetk")
+                            let scrap = [];
+
+                            console.log(judul.innerText)
+                            console.log(tgl.innerText)
+                            console.log(tayang.innerText)
+                        }
+                    }
+
+
+                }
+            }
+
+        })
+
+    }
+
 }
