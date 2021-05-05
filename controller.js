@@ -512,19 +512,11 @@ exports.login = function (req, res) {
 // ======================================================================================
 
 
-<<<<<<< HEAD
-exports.Schedule = function(data){
-    let waktu = data.time;
-    let barang = data.barang;
-
-    let task = cron.schedule(waktu,()=>{
-=======
 exports.Schedule = function (data) {
     let waktu = data.waktu;
     let barang = data.barang;
 
     let task = cron.schedule(waktu, () => {
->>>>>>> 44424e86b483997f25c0e2a820867be9d21eca51
         Run(barang);
     })
 
@@ -1014,4 +1006,4 @@ exports.crawling = async (data) => {
     }
 
 }
->>>>>>> 44424e86b483997f25c0e2a820867be9d21eca51
+
