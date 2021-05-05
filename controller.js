@@ -528,9 +528,6 @@ exports.Schedule = function (data) {
 // ========================= bagian untuk sistem run program ============================
 // ======================================================================================
 
-exports.Running = function (data) {
-    Run(data);
-};
 
 // merubah fitur pause/play/stop
 exports.isRun = function (value) {
@@ -538,7 +535,9 @@ exports.isRun = function (value) {
 }
 
 //run auto-post
-const Run = async (data) => {
+exports.Run = async (data) => {
+
+
     // membuka browser
     let browser = await puppeteer.launch({ headless: data.headless, args: ['--start-maximized'] });
     const context = browser.defaultBrowserContext();
@@ -949,12 +948,16 @@ const Run = async (data) => {
             browser.close();
             return false;
         }
+
+
+
     }
+
+
 
     //Close Browser
     await browser.close();
 }
-
 
 exports.crawling = async (data) => {
     // membuka browser
@@ -984,26 +987,29 @@ exports.crawling = async (data) => {
 
         // melakukan perulangan pada ppostingan
         let data_post = await page.evaluate(() => {
-            let datas_crawling = [];
-            let box_post = document.querySelectorAll(".hv4rvrfc")
-            for (let i = 0; i < box_post.length; i++) {
-                let judul = box_post[i].querySelector(".a8c37x1j")
+            let kotak = document.querySelectorAll(".hv4rvrfc")
+            for (let i = 0; i < kotak.length; i++) {
+                let judul = kotak[i].querySelector(".a8c37x1j")
                 if (judul != null) {
                     let text = judul.innerText
                     if (text != undefined) {
                         if (text.length > 50) {
-                            let date = box_post[i].querySelector(".ltmttdrg").innerText
-                            let view = box_post[i].querySelector(".df2bnetk").innerText
-                            datas_crawling.push({judul:judul,date:date,view:view});
+                            let tgl = kotak[i].querySelector(".ltmttdrg")
+                            let tayang = kotak[i].querySelector(".df2bnetk")
+                            let scrap = [];
+
+                            console.log(judul.innerText)
+                            console.log(tgl.innerText)
+                            console.log(tayang.innerText)
                         }
                     }
+
+
                 }
             }
 
-            return datas_crawling;
         })
 
     }
 
 }
-
