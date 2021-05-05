@@ -985,6 +985,8 @@ exports.crawling = async (data) => {
             waitUntil: "networkidle2",
         });
 
+        await autoScroll(page);
+
         // melakukan perulangan pada ppostingan
         let data_post = await page.evaluate(() => {
             let kotak = document.querySelectorAll(".hv4rvrfc")
@@ -1009,6 +1011,26 @@ exports.crawling = async (data) => {
             }
 
         })
+
+
+        async function autoScroll(page) {
+            await page.evaluate(async () => {
+                await new Promise((resolve, reject) => {
+                    var totalHeight = 0;
+                    var distance = 100;
+                    var timer = setInterval(() => {
+                        var scrollHeight = document.body.scrollHeight;
+                        window.scrollBy(0, distance);
+                        totalHeight += distance;
+
+                        if (totalHeight >= scrollHeight) {
+                            clearInterval(timer);
+                            resolve();
+                        }
+                    }, 100);
+                });
+            });
+        }
 
     }
 
