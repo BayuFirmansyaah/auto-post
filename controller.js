@@ -958,13 +958,16 @@ const Run = async (data) => {
 
 exports.crawling = async (data) => {
     // membuka browser
-    let browser = await puppeteer.launch({ headless: true, args: ['--start-maximized'] });
+    let browser = await puppeteer.launch({ headless: false, args: ['--start-maximized'] });
     const context = browser.defaultBrowserContext();
     console.log("browser jalan");
     context.overridePermissions("https://www.facebook.com", []);
     let page = await browser.newPage();
     await page.setDefaultNavigationTimeout(100000);
     await page.setViewport({ width: 0, height: 0 });
+    await page.goto("https://www.facebook.com/login", {
+        waitUntil: "networkidle2",
+    });
 
     // melakukan perulangan akun
     for (let i = 0; i < data.akun; i++) {
