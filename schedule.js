@@ -1,7 +1,7 @@
-let cron_month =null;
-let cron_day =null;
-let cron_hour =null;
-let cron_minute =null;
+let cron_month = null;
+let cron_day = null;
+let cron_hour = null;
+let cron_minute = null;
 
 let getDaysInMonth = function (month, year) {
     return new Date(year, month, 0).getDate();
@@ -9,27 +9,27 @@ let getDaysInMonth = function (month, year) {
 
 let date = new Date();
 
-let months = ['January', 'February', 'March', 'April', 'May','June',
-    'July', 'August', 'September', 'October', 'November','December'];
+let months = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'];
 
 let month = date.getMonth();
 
 let value_months = `<option value="0" selected>Month</option>`;
 
-for(let i=month;i<months.length;i++){
-    let value = i+1;
+for (let i = month; i < months.length; i++) {
+    let value = i + 1;
     value_months += `<option value="${value}">${months[i]}</option>`;
 }
 $('.Month').html(value_months);
 $('.day').html(`<option selected>Day</option>`);
 
 let days = `<option selected>Day</option>`;
-$('.Month').change(function(){
+$('.Month').change(function () {
     let month = $(this).val();
-        cron_month = month;
-    if(month == 0){
+    cron_month = month;
+    if (month == 0) {
         $('.day').html(`<option selected>Day</option>`);
-    }else{
+    } else {
         let day = "";
         let year = date.getFullYear();
         let count_day = getDaysInMonth(month, year)
@@ -44,7 +44,7 @@ $('.Month').change(function(){
 
 $('.day').change(function () {
     cron_day = $(this).val();
-})  
+})
 
 $('.hour').change(function () {
     cron_hour = $(this).val();
@@ -76,11 +76,11 @@ hours += hour;
 $('.hour').html(hours);
 $('.minute').html(minutes);
 
-$('.btn-schedule').on('click',function(){
-    let cron_time = { time: `0 ${cron_minute} ${cron_hour} ${cron_day} ${cron_month} *`};
+$('.btn-schedule').on('click', function () {
+    let cron_time = { time: `0 ${cron_minute} ${cron_hour} ${cron_day} ${cron_month} *` };
 
     let data = {
-        time : cron_time,
+        time: cron_time,
         barang: {
             akun: JSON.parse(localStorage.getItem('akun')),
             barang: JSON.parse(localStorage.getItem('item')),
