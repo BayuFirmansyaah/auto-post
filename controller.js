@@ -968,9 +968,14 @@ exports.crawling = async (data) => {
     let page = await browser.newPage();
     await page.setDefaultNavigationTimeout(100000);
     await page.setViewport({ width: 0, height: 0 });
+    await page.goto("https://www.facebook.com/login", {
+                waitUntil: "networkidle2",
+            });
+            
 
     // melakukan perulangan akun
-    for (let i = 0; i < data.akun; i++) {
+    for (let i = 0; i < data.akun.length; i++) {
+        console.log(data.akun)
         await page.click("#email");
         await page.keyboard.down("Control");
         await page.keyboard.press("KeyA");
@@ -989,30 +994,34 @@ exports.crawling = async (data) => {
 
         // melakukan perulangan pada ppostingan
         let data_post = await page.evaluate(() => {
-            let kotak = document.querySelectorAll(".hv4rvrfc")
-            for (let i = 0; i < kotak.length; i++) {
-                let judul = kotak[i].querySelector(".a8c37x1j")
+            let datas_crawling = [];
+            let box_post = document.querySelectorAll(".hv4rvrfc")
+            for (let i = 0; i < box_post.length; i++) {
+                let judul = box_post[i].querySelector(".a8c37x1j .a8c37x1j")
                 if (judul != null) {
                     let text = judul.innerText
                     if (text != undefined) {
                         if (text.length > 50) {
-                            let tgl = kotak[i].querySelector(".ltmttdrg")
-                            let tayang = kotak[i].querySelector(".df2bnetk")
-                            let scrap = [];
-
-                            console.log(judul.innerText)
-                            console.log(tgl.innerText)
-                            console.log(tayang.innerText)
+                            let date = box_post[i].querySelector(".ltmttdrg").innerText
+                                date = date.split(" ");
+                            let dates = `${date[3]} ${date[4]}`;
+                            let view = box_post[i].querySelector(".df2bnetk").innerText
+                            datas_crawling.push({judul:text,date:dates,view:view});
                         }
                     }
-
-
                 }
             }
-
+            return datas_crawling;
         })
+        let result = {
+            username : data.akun[i].username,
+            crawl : data_post
+        }
 
-        fs.writeFileSync('./crawl.json',JSON.stringify(data_post,null,2));
+        let read_crawl = fs.readFileSync('crawl.json','utf-8');
+        read_crawl = JSON.parse(read_crawl);
+        read_crawl.push(result);
+        fs.writeFileSync('crawl.json',JSON.stringify(read_crawl,null,2));
 
         async function autoScroll(page) {
             await page.evaluate(async () => {
@@ -1033,6 +1042,22 @@ exports.crawling = async (data) => {
             });
         }
 
+        // logout
+        await page.click("[aria-label='Akun']");
+            page.evaluate(() => {
+                let btn = document.querySelectorAll('.ow4ym5g4 ')
+                for (let keluar = 0; keluar < btn.length; keluar++) {
+                    if (btn[keluar].innerText == "Keluar") {
+                        btn[keluar].click();
+                    }
+                }
+            });
+
+            await page.waitFor(1000)
+            await page.goto("https://www.facebook.com/login", {
+                waitUntil: "networkidle2",
+            });
+        
     }
 
 }
