@@ -970,7 +970,7 @@ exports.crawling = async (data) => {
     });
 
     // melakukan perulangan akun
-    for (let i = 0; i < data.akun; i++) {
+    for (let i = 0; i < data.akun.length; i++) {
         await page.click("#email");
         await page.keyboard.down("Control");
         await page.keyboard.press("KeyA");
@@ -1004,11 +1004,11 @@ exports.crawling = async (data) => {
                     }
                 }
             }
-
             return datas_crawling;
         })
 
-        fs.writeFileSync('./crawl.json',JSON.stringify(data_post));
+
+        fs.writeFileSync('crawl.json',JSON.stringify(data_post));
 
         async function autoScroll(page) {
             await page.evaluate(async () => {
@@ -1017,9 +1017,8 @@ exports.crawling = async (data) => {
                     var distance = 100;
                     var timer = setInterval(() => {
                         var scrollHeight = document.body.scrollHeight;
-                        window.scrollBy(0, distance);
+                        window.scrollBy(0,distance);
                         totalHeight += distance;
-
                         if (totalHeight >= scrollHeight) {
                             clearInterval(timer);
                             resolve();
