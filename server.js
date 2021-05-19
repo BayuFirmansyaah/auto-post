@@ -25,6 +25,14 @@ io.on('connection', function(socket) {
             socket.emit('logs',data);
         })
     })
+
+    // socket.emit('crawl', JSON.parse(fs.readFileSync('./crawl.json', 'utf-8')));
+    // fs.watch("./crawl.json", function (event, fileName) {
+    //     jf.readFile('./crawl.json', function (err, data) {
+    //         var data = data;
+    //         socket.emit('crawl', data);
+    //     })
+    // })
       
 });
 

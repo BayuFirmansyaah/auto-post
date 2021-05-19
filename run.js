@@ -1,3 +1,5 @@
+const { crawling } = require("./controller");
+
 // function sort json
 function sortByProperty(objArray, prop, direction) {
     if (arguments.length < 2) throw new Error("ARRAY, AND OBJECT PROPERTY MINIMUM ARGUMENTS, OPTIONAL DIRECTION");
@@ -31,12 +33,14 @@ $('.btn-saveAkun').on('click', async function(){
     await saveAkun();
 })
 
-
-
-
 // jika tombol play ditekan
 $('.btn-play').on('click', async function () {
     await Play();
+})
+
+// jika tombol crawling ditekan
+$('.btn-crawling').on('click',async function(){
+    await crawling();
 })
 
 
@@ -73,6 +77,70 @@ $("select").change(function () {
 
 
 // function play account
+
+const Crawling = async () => {
+    // mendapatkan id akun
+    let id = document.querySelectorAll('.id-facebook');
+    let id_facebook = [];
+    let index = [];
+
+    id.forEach((id) => {
+        if (id.checked) {
+            id_facebook.push(id.getAttribute('value'));
+        }
+    })
+
+    for (let i = 0; i < id.length; i++) {
+        if (id[i].checked) {
+            index.push(i);
+        }
+    }
+
+    localStorage.setItem('data-akun', JSON.stringify(index));
+
+    let result = await $.ajax({
+        url: 'http://localhost:3000/get/account/' + sessionStorage.getItem("id_user"),
+        success: async (data) => {
+            return data;
+        },
+        error: (err) => {
+            console.log(err);
+        }
+    })
+
+    // melakukan pengurutan akun
+    let temporary = [];
+    let Akun = result.Search;
+    Akun = sortByProperty(Akun, "Akun.username");
+    await Akun.forEach((Akun) => {
+        for (let i = 0; i < id_facebook.length; i++) {
+            if (id_facebook[i] == Akun.id) {
+                temporary.push(Akun);
+            }
+        }
+    });
+
+    // menyimpan data akun di localstorage
+    localStorage.setItem('akun', JSON.stringify(temporary));
+
+    let data = {
+        akun : JSON.parse(localStorage.getItem('akun'))
+    }
+
+    // mengirimkan perintah run ke server
+    $.ajax({
+        url: 'http://localhost:3000/crawling',
+        type: 'post',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: (data) => {
+            alert(data);
+        }
+    })
+
+}
+
 const Play = async () => {
     // melakukan pengecekan terhadap path
     if ($('.path').val() == null) {
