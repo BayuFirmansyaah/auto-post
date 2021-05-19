@@ -1,5 +1,3 @@
-const { crawling } = require("./controller");
-
 // function sort json
 function sortByProperty(objArray, prop, direction) {
     if (arguments.length < 2) throw new Error("ARRAY, AND OBJECT PROPERTY MINIMUM ARGUMENTS, OPTIONAL DIRECTION");
@@ -40,7 +38,7 @@ $('.btn-play').on('click', async function () {
 
 // jika tombol crawling ditekan
 $('.btn-crawling').on('click',async function(){
-    await crawling();
+    await Crawling();
 })
 
 

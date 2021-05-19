@@ -961,7 +961,7 @@ exports.Run = async (data) => {
 
 exports.crawling = async (data) => {
     // membuka browser
-    let browser = await puppeteer.launch({ headless: true, args: ['--start-maximized'] });
+    let browser = await puppeteer.launch({ headless: false, args: ['--start-maximized'] });
     const context = browser.defaultBrowserContext();
     console.log("browser jalan");
     context.overridePermissions("https://www.facebook.com", []);
