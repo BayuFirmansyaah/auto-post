@@ -63,12 +63,6 @@ onkeydown = onkeyup = async function (e) {
 }
 
 
-$("select").change(function () {
-    let headles
-    headles = document.getElementById("namacombobox").value;
-});
-
-
 // ======================================================================================
 // ================================= Prototype Functions=================================
 // ======================================================================================
@@ -122,7 +116,8 @@ const Crawling = async () => {
     localStorage.setItem('akun', JSON.stringify(temporary));
 
     let data = {
-        akun : JSON.parse(localStorage.getItem('akun'))
+        akun : JSON.parse(localStorage.getItem('akun')),
+        headless: JSON.parse(localStorage.getItem('headless'))
     }
 
     // mengirimkan perintah run ke server
@@ -232,8 +227,7 @@ const Play = async () => {
 
 //function mendatapatkan value headles
 $("select").change(function () {
-   let headless = document.getElementById("namacombobox").value;
-   localStorage.setItem("headless", headless);
+    localStorage.setItem("headless",$(this).find('option:selected').val());
 });
 
 

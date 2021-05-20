@@ -953,15 +953,14 @@ exports.Run = async (data) => {
 
     }
 
-
-
     //Close Browser
     await browser.close();
 }
 
 exports.crawling = async (data) => {
     // membuka browser
-    let browser = await puppeteer.launch({ headless: false, args: ['--start-maximized'] });
+
+    let browser = await puppeteer.launch({ headless: data.headless, args: ['--start-maximized'] });
     const context = browser.defaultBrowserContext();
     console.log("browser jalan");
     context.overridePermissions("https://www.facebook.com", []);
@@ -969,9 +968,9 @@ exports.crawling = async (data) => {
     await page.setDefaultNavigationTimeout(100000);
     await page.setViewport({ width: 0, height: 0 });
     await page.goto("https://www.facebook.com/login", {
-                waitUntil: "networkidle2",
-            });
-            
+        waitUntil: "networkidle2",
+    });
+
 
     // melakukan perulangan akun
     for (let i = 0; i < data.akun.length; i++) {
@@ -1002,10 +1001,12 @@ exports.crawling = async (data) => {
                     if (text != undefined) {
                         if (text.length > 50) {
                             let date = box_post[i].querySelector(".ltmttdrg").innerText
-                                date = date.split(" ");
+                            date = date.split(" ");
                             let dates = `${date[3]} ${date[4]}`;
                             let view = box_post[i].querySelector(".df2bnetk").innerText
-                            datas_crawling.push({judul:text,date:dates,view:view});
+                            code = text.split(" ");
+                            code = code[0];
+                            datas_crawling.push({ judul: text, date: dates, view: view,code : code});
                         }
                     }
                 }
@@ -1013,14 +1014,28 @@ exports.crawling = async (data) => {
             return datas_crawling;
         })
         let result = {
-            username : data.akun[i].username,
-            crawl : data_post
+            username: data.akun[i].username,
+            crawl: data_post
         }
 
-        let read_crawl = fs.readFileSync('crawl.json','utf-8');
+        let read_crawl = fs.readFileSync('crawl.json', 'utf-8');
         read_crawl = JSON.parse(read_crawl);
-        read_crawl.push(result);
-        fs.writeFileSync('crawl.json',JSON.stringify(read_crawl,null,2));
+
+        if (read_crawl.length >= 1) {
+            for (let i = 0; i < read_crawl.length; i++) {
+                if (read_crawl[i].username == result.username) {
+                    read_crawl.splice(i, 1);
+                    read_crawl.push(result);
+                    i=read_crawl.length;
+                } else {
+                    read_crawl.push(result);
+                }
+            }
+        } else {
+            read_crawl.push(result);
+        }
+
+        fs.writeFileSync('crawl.json', JSON.stringify(read_crawl, null, 2));
 
         async function autoScroll(page) {
             await page.evaluate(async () => {
@@ -1029,7 +1044,7 @@ exports.crawling = async (data) => {
                     var distance = 100;
                     var timer = setInterval(() => {
                         var scrollHeight = document.body.scrollHeight;
-                        window.scrollBy(0,distance);
+                        window.scrollBy(0, distance);
                         totalHeight += distance;
                         if (totalHeight >= scrollHeight) {
                             clearInterval(timer);
@@ -1042,20 +1057,23 @@ exports.crawling = async (data) => {
 
         // logout
         await page.click("[aria-label='Akun']");
-            page.evaluate(() => {
-                let btn = document.querySelectorAll('.ow4ym5g4 ')
-                for (let keluar = 0; keluar < btn.length; keluar++) {
-                    if (btn[keluar].innerText == "Keluar") {
-                        btn[keluar].click();
-                    }
+        page.evaluate(() => {
+            let btn = document.querySelectorAll('.ow4ym5g4 ')
+            for (let keluar = 0; keluar < btn.length; keluar++) {
+                if (btn[keluar].innerText == "Keluar") {
+                    btn[keluar].click();
                 }
-            });
+            }
+        });
 
-            await page.waitFor(1000)
-            await page.goto("https://www.facebook.com/login", {
-                waitUntil: "networkidle2",
-            });
-        
+        await page.waitFor(1000)
+        await page.goto("https://www.facebook.com/login", {
+            waitUntil: "networkidle2",
+        });
+
     }
+
+    //Close Browser
+    await browser.close();
 
 }
