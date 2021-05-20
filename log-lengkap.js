@@ -78,6 +78,15 @@ $(document).ready(function () {
             })
         }
     
+        $('.baris-data').on('click', function () {
+            let cek = $(".id-facebook", this)
+            if (cek.is(":checked")) {
+                $(".id-facebook", this).removeAttr('checked');
+            } else {
+                $(".id-facebook", this).attr('checked', 'checked');
+            }
+
+        })
 
 
     })

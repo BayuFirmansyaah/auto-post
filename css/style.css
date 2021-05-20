@@ -313,3 +313,7 @@ li{
 .list-button{
     margin:0px 2.3px;
 }
+
+tr,td{
+cursor: pointer;
+}
