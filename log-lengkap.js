@@ -25,7 +25,7 @@ $(document).ready(function () {
                                     <th scope="col" width="60px"><input type="checkbox" class="chekedAll"
                                             style="margin-left: 10px;"></th>
                                     <th scope="col">Judul</th>
-                                    <th scope="col">tanggal post</th>
+                                    <th scope="col">posting</th>
                                     <th scope="col">total views</th>
                                 </tr>
                             </thead>
@@ -44,7 +44,7 @@ $(document).ready(function () {
                             <input type="checkbox" class="checked id-facebook" value=""
                             </td>
                             <td>${result[i].crawl[j].judul}</td>
-                            <td>${result[i].crawl[j].date}</td>
+                            <td class="text-center">${result[i].crawl[j].date}</td>
                             <td>${result[i].crawl[j].view}</td>
                         </tr>`
                 number+=1;

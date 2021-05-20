@@ -1002,7 +1002,7 @@ exports.crawling = async (data) => {
                         if (text.length > 50) {
                             let date = box_post[i].querySelector(".ltmttdrg").innerText
                             date = date.split(" ");
-                            let dates = `${date[3]} ${date[4]}`;
+                            let dates = `${date[4]}`;
                             let view = box_post[i].querySelector(".df2bnetk").innerText
                             code = text.split(" ");
                             code = code[0];
