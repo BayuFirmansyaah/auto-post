@@ -4,6 +4,8 @@ $('.level').val(sessionStorage.getItem('level'));
  if(cekbtn == 0){
     $('.btn-pause').addClass('none');
     $('.btn-pause').removeClass('show');
+    $('.btn-stop').addClass('none');
+    $('.btn-stop').removeClass('show');
     $('.btn-play').addClass('show');
     $('.btn-play').removeClass('none');
     $('.btn-resume').addClass('none');
@@ -15,11 +17,15 @@ $('.level').val(sessionStorage.getItem('level'));
     $('.btn-play').removeClass('show');
     $('.btn-pause').addClass('show');
     $('.btn-pause').removeClass('none');
+    $('.btn-stop').addClass('show');
+    $('.btn-stop').removeClass('none');
     $('.btn-edit-all').attr('disabled',"");
     $('.btn-delete-all').attr('disabled',"");
  }else if(cekbtn == 2){
     $('.btn-pause').addClass('none');
     $('.btn-pause').removeClass('show');
+    $('.btn-stop').addClass('none');
+    $('.btn-stop').removeClass('show');
     $('.btn-resume').addClass('show');
     $('.btn-resume').removeClass('none');
     $('.btn-edit-all').attr('disabled',"");
@@ -27,6 +33,8 @@ $('.level').val(sessionStorage.getItem('level'));
  }else if(cekbtn == 3){
     $('.btn-pause').addClass('show');
     $('.btn-pause').removeClass('none');
+    $('.btn-stop').addClass('show');
+    $('.btn-stop').removeClass('none');
     $('.btn-resume').addClass('none');
     $('.btn-resume').removeClass('show');
     $('.btn-edit-all').attr('disabled',"");
@@ -34,6 +42,8 @@ $('.level').val(sessionStorage.getItem('level'));
  }else{
     $('.btn-pause').addClass('none');
     $('.btn-pause').removeClass('show');
+    $('.btn-stop').addClass('none');
+    $('.btn-stop').removeClass('show');
     $('.btn-play').addClass('show');
     $('.btn-play').removeClass('none');
     $('.btn-resume').addClass('none');
@@ -206,6 +216,8 @@ $('.btn-resume').on('click', function () {
     $('.btn-resume').removeClass('show');
     $('.btn-pause').addClass('show');
     $('.btn-pause').removeClass('none');
+    $('.btn-stop').addClass('show');
+    $('.btn-stop').removeClass('none');
     localStorage.setItem("btn", 3);
     $.ajax({
         url: 'http://localhost:3000/resume',
@@ -222,6 +234,8 @@ $('.btn-resume').on('click', function () {
 $('.btn-stop').on('click', function () {
     $('.btn-pause').addClass('none');
     $('.btn-pause').removeClass('show');
+    $('.btn-stop').addClass('none');
+    $('.btn-stop').removeClass('show');
     $('.btn-play').addClass('show');
     $('.btn-play').removeClass('none');
     $('.btn-resume').addClass('none');
@@ -302,4 +316,6 @@ $('.logout').on('click', function () {
     sessionStorage.setItem('nama', null);
     window.location.replace("http://localhost:3000");
 });
+
+
 

@@ -1,3 +1,3 @@
-CD C:\xampp\
+CD F:\xampp
 xampp-control.exe
 exit 

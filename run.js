@@ -27,7 +27,7 @@ $('.btn-save').on('click', async function () {
 })
 
 // ketika tombol save akun ditekan
-$('.btn-saveAkun').on('click', async function(){
+$('.btn-saveAkun').on('click', async function () {
     await saveAkun();
 })
 
@@ -37,7 +37,7 @@ $('.btn-play').on('click', async function () {
 })
 
 // jika tombol crawling ditekan
-$('.btn-crawling').on('click',async function(){
+$('.btn-crawling').on('click', async function () {
     await Crawling();
 })
 
@@ -90,47 +90,57 @@ const Crawling = async () => {
 
     localStorage.setItem('data-akun', JSON.stringify(index));
 
-    let result = await $.ajax({
-        url: 'http://localhost:3000/get/account/' + sessionStorage.getItem("id_user"),
-        success: async (data) => {
-            return data;
-        },
-        error: (err) => {
-            console.log(err);
-        }
-    })
+    if (id_facebook.length > 0) {
 
-    // melakukan pengurutan akun
-    let temporary = [];
-    let Akun = result.Search;
-    Akun = sortByProperty(Akun, "Akun.username");
-    await Akun.forEach((Akun) => {
-        for (let i = 0; i < id_facebook.length; i++) {
-            if (id_facebook[i] == Akun.id) {
-                temporary.push(Akun);
+        $('.btn-stop').addClass('show');
+        $('.btn-stop').removeClass('none');
+        $('.btn-edit-all').attr('disabled', "");
+        $('.btn-delete-all').attr('disabled', "");
+
+        let result = await $.ajax({
+            url: 'http://localhost:3000/get/account/' + sessionStorage.getItem("id_user"),
+            success: async (data) => {
+                return data;
+            },
+            error: (err) => {
+                console.log(err);
             }
+        })
+
+        // melakukan pengurutan akun
+        let temporary = [];
+        let Akun = result.Search;
+        Akun = sortByProperty(Akun, "Akun.username");
+        await Akun.forEach((Akun) => {
+            for (let i = 0; i < id_facebook.length; i++) {
+                if (id_facebook[i] == Akun.id) {
+                    temporary.push(Akun);
+                }
+            }
+        });
+
+        // menyimpan data akun di localstorage
+        localStorage.setItem('akun', JSON.stringify(temporary));
+
+        let data = {
+            akun: JSON.parse(localStorage.getItem('akun')),
+            headless: JSON.parse(localStorage.getItem('headless'))
         }
-    });
 
-    // menyimpan data akun di localstorage
-    localStorage.setItem('akun', JSON.stringify(temporary));
-
-    let data = {
-        akun : JSON.parse(localStorage.getItem('akun')),
-        headless: JSON.parse(localStorage.getItem('headless'))
+        // mengirimkan perintah run ke server
+        $.ajax({
+            url: 'http://localhost:3000/crawling',
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: (data) => {
+                alert(data);
+            }
+        })
+    } else {
+        alert("Tidak ada data akun yang dipilih");
     }
-
-    // mengirimkan perintah run ke server
-    $.ajax({
-        url: 'http://localhost:3000/crawling',
-        type: 'post',
-        contentType: 'application/json',
-        data: JSON.stringify(data),
-        dataType: 'json',
-        success: (data) => {
-            alert(data);
-        }
-    })
 
 }
 
@@ -165,9 +175,11 @@ const Play = async () => {
             $('.btn-play').removeClass('show');
             $('.btn-pause').addClass('show');
             $('.btn-pause').removeClass('none');
-            $('.btn-edit-all').attr('disabled',"");
-            $('.btn-delete-all').attr('disabled',"");
-            
+            $('.btn-stop').addClass('show');
+            $('.btn-stop').removeClass('none');
+            $('.btn-edit-all').attr('disabled', "");
+            $('.btn-delete-all').attr('disabled', "");
+
             localStorage.setItem("btn", 1);
 
             let result = await $.ajax({
@@ -203,8 +215,8 @@ const Play = async () => {
                 headless: JSON.parse(localStorage.getItem('headless'))
             };
 
-                alert('program dijalankan')
-                location.reload();
+            alert('program dijalankan')
+            location.reload();
 
             // mengirimkan perintah run ke server
             $.ajax({
@@ -227,7 +239,7 @@ const Play = async () => {
 
 //function mendatapatkan value headles
 $("select").change(function () {
-    localStorage.setItem("headless",$(this).find('option:selected').val());
+    localStorage.setItem("headless", $(this).find('option:selected').val());
 });
 
 
@@ -244,7 +256,7 @@ const Save = async () => {
         }
     });
 
- 
+
     localStorage.setItem('data-barang', JSON.stringify(id_barang));
 
     // melakukan pengecekan nilai yang didapat dari chekbox
@@ -281,7 +293,7 @@ const Save = async () => {
     }
 }
 
-const saveAkun = async() => {
+const saveAkun = async () => {
     let id = document.querySelectorAll('.id-facebook');
     let id_facebook = [];
     let index = [];
@@ -309,21 +321,21 @@ const saveAkun = async() => {
             console.log(err);
         }
     })
-    
-    let temporary = [];
-            let Akun = result.Search;
-            Akun = sortByProperty(Akun, "Akun.username");
-            await Akun.forEach((Akun) => {
-                for (let i = 0; i < id_facebook.length; i++) {
-                    if (id_facebook[i] == Akun.id) {
-                        temporary.push(Akun);
-                        alert("Data berhasil disimpan")
-                    }
-                }
-            });
 
-            // menyimpan data akun di localstorage
-            localStorage.setItem('akun', JSON.stringify(temporary));
+    let temporary = [];
+    let Akun = result.Search;
+    Akun = sortByProperty(Akun, "Akun.username");
+    await Akun.forEach((Akun) => {
+        for (let i = 0; i < id_facebook.length; i++) {
+            if (id_facebook[i] == Akun.id) {
+                temporary.push(Akun);
+                alert("Data berhasil disimpan")
+            }
+        }
+    });
+
+    // menyimpan data akun di localstorage
+    localStorage.setItem('akun', JSON.stringify(temporary));
 }
 
 

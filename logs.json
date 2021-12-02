@@ -1,41 +1,18 @@
 {
   "akun": [
     {
-      "akun": "ekasukmatd002@gmail.com",
-      "jumlah": 2,
-      "berhasil": 2,
+      "akun": "annisamelani001@gmail.com",
+      "jumlah": 1,
+      "berhasil": 1,
       "gagal": 0,
-      "mulai": "14.42.31",
-      "selesai": "14.43.7"
-    },
-    {
-      "akun": "kaylahumeera@gmail.com",
-      "jumlah": 2,
-      "berhasil": 2,
-      "gagal": 0,
-      "mulai": "14.43.9",
-      "selesai": "14.46.40"
+      "mulai": "11.16.43",
+      "selesai": "11.17.22"
     }
   ],
   "barang": [
     {
-      "akun": "ekasukmatd002@gmail.com",
-      "kode": "AXS-002",
-      "status": "berhasil"
-    },
-    {
-      "akun": "ekasukmatd002@gmail.com",
-      "kode": "AXS-003",
-      "status": "berhasil"
-    },
-    {
-      "akun": "kaylahumeera@gmail.com",
-      "kode": "AXS-004",
-      "status": "berhasil"
-    },
-    {
-      "akun": "kaylahumeera@gmail.com",
-      "kode": "AXS-005",
+      "akun": "annisamelani001@gmail.com",
+      "kode": "AXS-006",
       "status": "berhasil"
     }
   ]

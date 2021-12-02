@@ -14,6 +14,7 @@ const clipboardy = require('clipboardy');
 const moment = require('moment');
 const { arch } = require('os');
 const cron = require('node-cron');
+const { ECHILD } = require('constants');
 
 // ======================================================================================
 // =========================== bagian untuk koneksi database ============================
@@ -654,7 +655,18 @@ exports.Run = async (data) => {
                             // Sets the value of the file input to fileToUpload
                             inputUploadHandle.uploadFile(fileToUpload);
                         }
-
+                            
+                            await page.waitFor(500)
+                            await page.evaluate(()=>{
+                                let tutup_btn = null;
+                                tutup_btn = document.querySelector("[aria-label='Tutup']");
+                                if(tutup_btn !== null){
+                                    tutup_btn.click();
+                                    tutup_btn = null;
+                                }else{
+                                    tutup_btn = null;
+                                }
+                            })
                         let namaBarang = data_barang[j].kode + " " + data_barang[j].judul + "FREE ONGKIR+COD";
 
                         // melakukan pengisian form
@@ -663,9 +675,32 @@ exports.Run = async (data) => {
                             namaBarang, { delay: 30 }
                         );
 
+                        await page.waitFor(500)
+                        await page.evaluate(()=>{
+                                let tutup_btn = null;
+                                tutup_btn = document.querySelector("[aria-label='Tutup']");
+                                if(tutup_btn !== null){
+                                    tutup_btn.click();
+                                    tutup_btn = null;
+                                }else{
+                                    tutup_btn = null;
+                                }
+                            })
+
                         await page.type("[aria-label='Harga'] input[type='text']", "123", {
                             delay: 30,
                         });
+                        await page.waitFor(500)
+                        await page.evaluate(()=>{
+                                let tutup_btn = null;
+                                tutup_btn = document.querySelector("[aria-label='Tutup']");
+                                if(tutup_btn !== null){
+                                    tutup_btn.click();
+                                    tutup_btn = null;
+                                }else{
+                                    tutup_btn = null;
+                                }
+                            })
 
                         await page.click("[aria-label='Kategori']");
                         let keyword = data_barang[j].kategori;
@@ -675,152 +710,129 @@ exports.Run = async (data) => {
                         switch (keyword) {
                             case "peralatan":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[2].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[4].click()
                                 });
                                 break;
                             case "mebel":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[3].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[5].click()
                                 });
                                 break;
-                            case "pertukangan":
-                                await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[3].click()
-                                });
-                                break;
+                            
                             case "rumah tangga":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[4].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[6].click()
                                 });
                                 break;
-                            case "dapur":
-                                await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[4].click()
-                                });
-                                break;
+                            
                             case "kebun":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[5].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[7].click()
                                 });
                                 break;
                             case "perkakas":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[6].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[8].click()
                                 });
                                 break;
                             case "video game":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[7].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[9].click()
                                 });
                                 break;
                             case "buku":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[8].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[10].click()
                                 });
                                 break;
                             case "tas & koper":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[9].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[11].click()
                                 });
                                 break;
                             case "fashion wanita":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[10].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[12].click()
                                 });
                                 break;
                             case "fashion pria":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[11].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[13].click()
                                 });
                                 break;
                             case "aksesoris":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[12].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[14].click()
                                 });
                                 break;
-                            case "kecantikan":
+                            case "kesehatan & kecantikan":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[13].click()
-                                });
-                                break;
-                            case "kesehatan":
-                                await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[13].click()
-                                });
-                                break;
-                            case "perawatan tubuh":
-                                await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[13].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[15].click()
                                 });
                                 break;
                             case "kebutuhan hewan peliharaan":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[14].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[16].click()
                                 });
                                 break;
                             case "fashion anak & bayi":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[15].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[17].click()
                                 });
                                 break;
                             case "mainan":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[16].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[18].click()
                                 });
                                 break;
-                            case "elektronik":
+                            case "elektronik & komputer":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[17].click()
-                                });
-                                break;
-                            case "komputer & laptop":
-                                await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[17].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[19].click()
                                 });
                                 break;
                             case "handphone & tablet":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[18].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[20].click()
                                 });
                                 break;
                             case "sepeda":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[19].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[21].click()
                                 });
                                 break;
                             case "kerajinan":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[20].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[22].click()
                                 });
                                 break;
                             case "olahraga":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[21].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[23].click()
                                 });
                                 break;
                             case "otomotif":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[22].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[24].click()
                                 });
                                 break;
-                            case "film & musik":
+                            case "alat musik":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[23].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[25].click()
                                 });
                                 break;
                             case "koleksi":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[24].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[26].click()
                                 });
                                 break;
                             case "garage sale":
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[25].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[27].click()
                                 });
                                 break;
                             default:
                                 await page.evaluate(() => {
-                                    document.querySelectorAll("[data-pagelet='root'] div[data-visualcompletion='ignore-dynamic'] div[role='button']")[26].click()
+                                    document.querySelectorAll(".oajrlxb2.gs1a9yip.g5ia77u1")[28].click()
                                 });
                                 break;
                         }
@@ -846,6 +858,20 @@ exports.Run = async (data) => {
                         await page.keyboard.down("Control");
                         await page.keyboard.press("KeyV");
                         await page.keyboard.up("Control");
+
+                        await page.waitFor(1000)
+                        await page.evaluate(()=>{
+                            let tutup_btn = null;
+                            tutup_btn = document.querySelector("[aria-label='Tutup']");
+                            if(tutup_btn !== null){
+                                tutup_btn.click();
+                                tutup_btn = null;
+                            }else{
+                                tutup_btn = null;
+                            }
+                        })
+
+                        
 
                         // melakukan pengecekan pada tombol selanjutnya
                         let selanjutnya = await page.evaluate(() => {
@@ -907,14 +933,17 @@ exports.Run = async (data) => {
 
             // melakukan logout
             await page.click("[aria-label='Akun']");
-            page.evaluate(() => {
-                let btn = document.querySelectorAll('.ow4ym5g4 ')
-                for (let keluar = 0; keluar < btn.length; keluar++) {
-                    if (btn[keluar].innerText == "Keluar") {
-                        btn[keluar].click();
-                    }
-                }
-            });
+            await page.setCookie({});
+            
+            // await page.evaluate(() => {
+            //     let btn = document.querySelectorAll('.ow4ym5g4.f10w8fjw')
+            //     for (let keluar = 0; keluar < btn.length; keluar++) {
+            //         if (btn[keluar].innerText == "Keluar") {
+            //             btn[keluar].click();
+            //         }
+            //     }
+            // });
+
 
             let selesai = moment().hour() + "." + moment().minute() + "." + moment().second();
             let log = {
@@ -927,7 +956,6 @@ exports.Run = async (data) => {
             }
 
             logs.push(log)
-            alert("Akun 1 Selesai");
             // log report
             let result_report = {
                 akun: logs,
@@ -945,7 +973,7 @@ exports.Run = async (data) => {
             i -= 1;
         } else {
             onRun = 0;
-            browser.close();
+            // browser.close();
             return false;
         }
 
@@ -959,7 +987,7 @@ exports.Run = async (data) => {
 
 exports.crawling = async (data) => {
     // membuka browser
-
+    if(onRun == 1){
     let browser = await puppeteer.launch({ headless: data.headless, args: ['--start-maximized'] });
     const context = browser.defaultBrowserContext();
     console.log("browser jalan");
@@ -1034,7 +1062,6 @@ exports.crawling = async (data) => {
         } else {
             read_crawl.push(result);
         }
-
         fs.writeFileSync('crawl.json', JSON.stringify(read_crawl, null, 2));
 
         async function autoScroll(page) {
@@ -1072,7 +1099,12 @@ exports.crawling = async (data) => {
         });
 
     }
-
+    }
+    else{
+        onRun = 0;
+        browser.close();
+        return false;  
+    }
     //Close Browser
     await browser.close();
 
